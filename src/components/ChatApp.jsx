@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react";
 
 import MessagesList from "./MessagesList";
 import MembersList from "./MembersList";
+import TypingIndicator from "./TypingIndicator";
+import Input from "./Input";
 
 // function that creates a new random username:
 function randomName() {
@@ -205,6 +207,80 @@ export default function ChatApp() {
     },
   ]);
 
+  useEffect(() => {
+    if (drone === null) {
+      connectToScaledrone();
+    }
+  }, []);
+
+
+  // helper-constants for connecting to Scaledrone:
+  const messagesRef = useRef();
+  messagesRef.current = messages;
+
+  const membersRef = useRef();
+  membersRef.current = members;
+
+  const meRef = useRef();
+  meRef.current = me;
+
+  // function for connecting to Scaledrone - creates new Scaledrone-object (as part of the window-object):
+
+  function connectToScaledrone() {
+    drone = new window.Scaledrone(CHANNEL, {
+      data: meRef.current,
+    });
+    drone.on('open', error => {
+      if (error) {
+        return console.error(error);
+      }
+      meRef.current.id = drone.clientId;
+      setMe(meRef.current);
+    });
+
+    const room = drone.subscribe('observable-room');
+
+    room.on('message', message => {
+      const {data, member} = message;
+      if (typeof data === 'object' && typeof data.typing === 'boolean') {
+        const newMembers = [...membersRef.current];
+        const index = newMembers.findIndex(m => m.id === member.id);
+        newMembers[index].typing = data.typing;
+        setMembers(newMembers);
+      } else {
+        setMessages([...messagesRef.current, message]);
+      }
+    });
+    room.on('members', members => {
+      setMembers(members);
+    });
+    room.on('member_join', member => {
+      setMembers([...membersRef.current, member]);
+    });
+    room.on('member_leave', ({id}) => {
+      const index = membersRef.current.findIndex(member => member.id === id);
+      const newMembers = [...membersRef.current];
+      newMembers.splice(index, 1);
+      setMembers(newMembers);
+    });
+  }
+
+  // functions for publishing messages which are endered in input-field:
+
+  function onSendMessage(message) {
+    drone.publish({
+      room: "observable-room",
+      message
+    });
+  }
+
+  function onChangeTypingState(isTyping) {
+    drone.publish({
+      room: "observable-room",
+      message: { typing: isTyping },
+    });
+  }
+
   return (
     <main>
       {/* style: app */}
@@ -214,6 +290,15 @@ export default function ChatApp() {
         {/* adding 2 states as prop-values for MessagesList-component: */}
         <MessagesList messages={messages} members={members} me={me} />
         {/* <Chat /> */}
+        <TypingIndicator
+          members={members.filter(
+            (member) => member.typing && member.id !== me.id
+          )}
+        />
+        <Input
+          onSendMessage={onSendMessage}
+          onChangeTypingState={onChangeTypingState}
+        />
       </div>
     </main>
   );
