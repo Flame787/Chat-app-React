@@ -2,7 +2,7 @@
 export default function Message({ message, member, me }) {
 
 //   const { id, memberData } = member;
-//   const { username, color } = member.memberData;   // CHECK USERNAME!!
+  const { username, color } = member.memberData;   // CHECK USERNAME!!
   const { data, id } = message;
   // destructuring member and message into nested prop-attributes
 
@@ -18,7 +18,7 @@ export default function Message({ message, member, me }) {
     <li key={id}>
       <span />
       {/* avatar + color */}
-      {/* <div>{username}</div> */}    
+      <div>{username}</div>    
       {/* // CHECK USERNAME!! */}
       <div>{data}</div>
       {/* data = text of the message */}
