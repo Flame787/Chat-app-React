@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 import Message from "./Message";
 
-export default function MessagesList({ messages, me }) {
+export default function MessagesList({ messages, members, me }) {
   const scrollDownRef = useRef(null);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function MessagesList({ messages, me }) {
   // component returns a list of messages (with text and user-name & avatar):
   return (
     <ul>
-      {messages.map((message) => <Message message={message} me={me} />)}
+      {messages.map((message) => <Message key={message.id} message={message} member={members} me={me} />)}
       <div ref={scrollDownRef}></div>    
     </ul>
   );

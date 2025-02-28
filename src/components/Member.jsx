@@ -1,6 +1,8 @@
-export default function Member({ id, memberData }, isMe) {
-  const { username, color } = memberData;
+export default function Member({ id, memberData, isMe }) {
+  const { color, username } = memberData;
   // destructuring member-data
+
+
 
   return <div key={id}>
     <div></div>   

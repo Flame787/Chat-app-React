@@ -4,8 +4,10 @@ import ChatApp from './components/ChatApp';
 
 function App() {
   return (
-    // <Chat />
-    <h1>hello</h1>
+    
+    // <h1>hello</h1>
+    
+    <ChatApp />
   );
 }
 
