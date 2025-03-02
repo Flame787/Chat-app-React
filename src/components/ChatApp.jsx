@@ -2,10 +2,16 @@
 
 import { useState, useEffect, useRef } from "react";
 
-import MessagesList from "./MessagesList";
-import MembersList from "./MembersList";
-import TypingIndicator from "./TypingIndicator";
+// import MessagesList from "./MessagesList";
+// import MembersList from "./MembersList";
+// import TypingIndicator from "./TypingIndicator";
+
+// import Loader
+// import Header
+import Messages from "./Messages";
 import Input from "./Input";
+import Loader from "./Loader";
+import Registration from "./Registration";
 
 // function that creates a new random username:
 function randomName() {
@@ -156,150 +162,99 @@ function randomColor() {
   return "#" + Math.floor(Math.random() * 0xffffff).toString(16);
 }
 
-let drone = 0;
-
 // Scaledrone channel:
-const CHANNEL = `${process.env.CHANNEL_ID}` || "{INSERT_CHANNEL_ID}";
+// const CHANNEL = `${process.env.CHANNEL_ID}` || "{YdfwYv0JH0iFXUck}";
+
+const CHANNEL = process.env.REACT_APP_CHANNEL_ID
+  ? process.env.CHANNEL_ID
+  : "YdfwYv0JH0iFXUck";
 
 export default function ChatApp() {
-  // states:
-  // const [user, setUser] = useState(null);
-  // const [drone, setDrone] = useState(null);
-
-  // let data="";
-
-  // function connectToScaledrone() {
-  //   const drone = new window.Scaledrone(CHANNEL, {
-  //     data
-  //   });
-  // }
-
   // States:
 
-  const [messages, setMessages] = useState([
-    {
-      // initial state is array, consisting of one message-object:
-      id: "1",
-      data: "Initial text message",
-      // member: {
-      //   id: "1",
-      //   memberData: {
-      //     color: "green",
-      //     username: "testUser",
-      //   },
-      // },
-    },
-  ]);
-
-  // to distinguish 'me' / "our user" from other members - specific state:
-  const [me, setMe] = useState({
-    username: randomName(),
-    color: randomColor(),
+  const [chat, setChat] = useState({
+    member: { username: "" },
+    messages: [],
   });
 
-  const [members, setMembers] = useState([
-    {
-      id: "1",
-      memberData: {
-        color: "green",
-        username: "testUser",
-      },
-    },
-  ]);
+  const [drone, setDrone] = useState(null);
+
+  const [roomLoaded, setRoomLoaded] = useState(false);
+
+  // function for connecting to Scaledrone:
 
   useEffect(() => {
-    if (drone === null) {
-      connectToScaledrone();
+    if (chat.member.username !== "") {
+      const drone = new window.Scaledrone(CHANNEL, {
+        data: chat.member,
+      });
+      setDrone(drone);
     }
-  }, []);
+  }, [chat.member]);
+  // when user enters/gets his username and avatar/color, a new Scaledrone instance of object is created.
+  // This new instance becomes/sets new drone-state.
 
+  useEffect(() => {
+    if (drone && !chat.member.id) {
+      drone.on("open", (error) => {
+        if (error) {
+          return console.error(error);
+        }
+        chat.member.id = drone.clientId;
+        setChat({ ...chat }, chat.member);
 
-  // helper-constants for connecting to Scaledrone:
-  const messagesRef = useRef();
-  messagesRef.current = messages;
+        const room = drone.subscribe("observable-room");
 
-  const membersRef = useRef();
-  membersRef.current = members;
+        room.on("open", (error) => {
+          if (error) {
+            console.error(error);
+          } else {
+            console.log("Connected to room");
+            setRoomLoaded(true);
+          }
+        });
+        room.on("message", (message) => {
+          chat.messages.push(message);
+          setChat({ ...chat }, chat.messages);
+        });
+      });
+      drone.on("error", (error) => console.log(error));
+    }
+  }, [chat, drone]);
 
-  const meRef = useRef();
-  meRef.current = me;
+  // when Scaledrone instance is created, it tries to connect to a chat-room.
+  // When connection opens (drone.on("open")), a clientId for user is generated, user enters the room, and
+  // if connection was succesfull, roomloaded get's to 'true'.
+  // Now the room can receive messages. When new message comes, it's added to chat.messages-list,
+  // and chat-state is changed, and component re-renders.
 
-  // function for connecting to Scaledrone - creates new Scaledrone-object (as part of the window-object):
-
-  function connectToScaledrone() {
-    drone = new window.Scaledrone(CHANNEL, {
-      data: meRef.current,
-    });
-    drone.on('open', error => {
-      if (error) {
-        return console.error(error);
-      }
-      meRef.current.id = drone.clientId;
-      setMe(meRef.current);
-    });
-
-    const room = drone.subscribe('observable-room');
-
-    room.on('message', message => {
-      const {data, member} = message;
-      if (typeof data === 'object' && typeof data.typing === 'boolean') {
-        const newMembers = [...membersRef.current];
-        const index = newMembers.findIndex(m => m.id === member.id);
-        newMembers[index].typing = data.typing;
-        setMembers(newMembers);
-      } else {
-        setMessages([...messagesRef.current, message]);
-      }
-    });
-    room.on('members', members => {
-      setMembers(members);
-    });
-    room.on('member_join', member => {
-      setMembers([...membersRef.current, member]);
-    });
-    room.on('member_leave', ({id}) => {
-      const index = membersRef.current.findIndex(member => member.id === id);
-      const newMembers = [...membersRef.current];
-      newMembers.splice(index, 1);
-      setMembers(newMembers);
-    });
-  }
-
-  // functions for publishing messages which are endered in input-field:
-
-  function onSendMessage(message) {
+  function sendMessage(message) {
     drone.publish({
       room: "observable-room",
-      message
+      message,
     });
   }
 
-  function onChangeTypingState(isTyping) {
-    drone.publish({
-      room: "observable-room",
-      message: { typing: isTyping },
-    });
+  function handleRegistration(username) {
+    chat.member = {
+      username: username,
+    };
+    setChat({ ...chat }, chat.member);
   }
 
-  return (
-    <main>
-      {/* style: app */}
-      <div>
-        {/* style: app-content */}
-        <MembersList members={members} me={me} />
-        {/* adding 2 states as prop-values for MessagesList-component: */}
-        <MessagesList messages={messages} members={members} me={me} />
-        {/* <Chat /> */}
-        <TypingIndicator
-          members={members.filter(
-            (member) => member.typing && member.id !== me.id
-          )}
-        />
-        <Input
-          onSendMessage={onSendMessage}
-          onChangeTypingState={onChangeTypingState}
-        />
-      </div>
-    </main>
+  return chat.member.username === "" ? (
+    <Registration onFormSubmit={handleRegistration} />
+  ) : !roomLoaded ? (
+    // <Loader />
+    <div>
+      <img src="../public/loading_circles.jpg" alt="loading-icon" />   
+      <div>Loading...</div>
+    </div>
+  ) : (
+    <div>
+      {/* <Header /> */}
+      <Messages messages={chat.messages} thisMember={chat.member} />
+      <Input sendMessage={sendMessage} />
+    </div>
   );
 }
