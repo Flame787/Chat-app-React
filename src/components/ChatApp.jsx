@@ -166,8 +166,8 @@ function randomColor() {
 // const CHANNEL = `${process.env.CHANNEL_ID}` || "{YdfwYv0JH0iFXUck}";
 
 const CHANNEL = process.env.REACT_APP_CHANNEL_ID
-  ? process.env.CHANNEL_ID
-  : "YdfwYv0JH0iFXUck";
+  ? process.env.REACT_APP_CHANNEL_ID
+  : "Enter your chat-channel ID";
 
 export default function ChatApp() {
   // States:
