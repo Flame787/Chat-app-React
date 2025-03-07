@@ -1,0 +1,43 @@
+- ABOUT THIS APP:
+
+This is a simple React Chat app, using Scaledrone service for real-time communication 
+(more info on https://www.scaledrone.com/).  
+
+- HOW THE APP WORKS: 
+
+Users can register with a username, pick an avatar and publish messages,
+visible to other users in the same chat-room.
+
+- HOW TO RUN THIS APP LOCALLY:
+
+1. Open your terminal, f.e. Git Bash in the current app/project folder. 
+
+2. To install npm-packages, enter the command: 
+npm install
+
+3. Scaledrone Chat Channel ID can be obtained by a simple free registration on https://www.scaledrone.com/ 
+You can create your own .env file, and save your Channel ID in the environment variable: 
+
+.env
+REACT_APP_CHANNEL_ID=your_api_key
+
+Or for quick testing, Channel ID can be pasted directly into the code (in component ChatApp.jsx: 22).
+
+4. To start the React app on localhost:3000, enter the command: 
+npm start
+
+5. You can open additional browser tabs with the same address: localhost:3000 and register with other users, 
+in order to test from different perspectives how multiple users can participate in a mutual chat-room.
+
+6. Important info about Scaledrone usage:
+
+Scaledrone free plan supports max. 100 users at the same time, 
+up to 20 connections opened at the same time (= concurrent connections), 
+and up to 100k events* (messages and observable events) per day (= daily events).
+
+* If a user sends a message to 10 other users, it will be counted as 11 events. 
+
+You can monitor your channel traffic on: https://dashboard.scaledrone.com/channels.
+
+All traffic is end-to-end SSL encrypted.
+
