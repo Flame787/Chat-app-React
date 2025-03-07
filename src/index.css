@@ -11,3 +11,57 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.avatar-select {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.avatar-item {
+  display: inline-block;
+  text-align: center;
+}
+
+/* invisible radio button: */
+.avatar-item input {
+  display: none;   
+}
+
+.avatar-image {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s ease;
+}
+
+/* avatar gets bigger when hover over */
+.avatar-image:hover {
+  transform: scale(1.1);
+}
+
+/* additional class for avatar-image, if selected by user (clicked): */
+.selected {
+  border: 3px solid blue;
+  box-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
+  transform: scale(1.15);
+}
+
+.messages-list{
+  list-style-type: none;
+  /* padding: 0;
+  margin: 0; */
+}
+
+.message-input{
+  margin-left: 40px;
+}
+
+.registration-label{
+  margin-left: 40px;
+}
+
+.input-username{
+  margin-left: 40px;
+}
