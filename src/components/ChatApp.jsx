@@ -13,7 +13,6 @@ import Input from "./Input";
 import Loader from "./Loader";
 import Registration from "./Registration";
 
-
 // Scaledrone channel:
 // const CHANNEL = `${process.env.CHANNEL_ID}` || "{YdfwYv0JH0iFXUck}";
 
@@ -63,12 +62,17 @@ export default function ChatApp() {
           } else {
             console.log("Connected to room");
             setRoomLoaded(true);
+            drone.publish({
+                room: "observable-room",
+                message: `${chat.member.username} has joined the room.`,
+              });
           }
         });
         room.on("message", (message) => {
           chat.messages.push(message);
           setChat({ ...chat }, chat.messages);
         });
+      
       });
       drone.on("error", (error) => console.log(error));
     }
@@ -87,6 +91,7 @@ export default function ChatApp() {
     });
   }
 
+
   function handleRegistration(username) {
     chat.member = {
       username: username,
@@ -99,7 +104,7 @@ export default function ChatApp() {
   ) : !roomLoaded ? (
     // <Loader />
     <div>
-      <img src="../public/loading_circles.jpg" alt="loading-icon" />   
+      <img src="../public/loading_circles.jpg" alt="loading-icon" />
       <div>Loading...</div>
     </div>
   ) : (
