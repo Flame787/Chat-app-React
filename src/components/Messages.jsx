@@ -22,10 +22,11 @@ export default function Messages({ messages, thisMember }) {
       ? (listItem = (
           <li key={id} data-id={member.id}>
             <div>
-            {/* <img
-                  src={member.clientData.avatar}
+            <img
+                  src={`/avatars/${member.clientData.avatar}`}
                   alt="user-avatar"
-                /> */}
+                  className="avatar-image"
+                />
               <div>{member.clientData.username}</div>
               
               <div>{data}</div>
@@ -48,7 +49,7 @@ export default function Messages({ messages, thisMember }) {
   }
 
   return (
-    <ul>
+    <ul className="messages-list">
       {messages.map((message) => showMessage(message))}
       <div ref={bottomDiv}></div>
     </ul>

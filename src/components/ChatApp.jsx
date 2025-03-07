@@ -24,7 +24,7 @@ export default function ChatApp() {
   // States:
 
   const [chat, setChat] = useState({
-    member: { username: "" },
+    member: { username: "", avatar: "" },
     messages: [],
   });
 
@@ -92,9 +92,10 @@ export default function ChatApp() {
   }
 
 
-  function handleRegistration(username) {
+  function handleRegistration(username, selectedAvatar) {
     chat.member = {
       username: username,
+      avatar: selectedAvatar
     };
     setChat({ ...chat }, chat.member);
   }

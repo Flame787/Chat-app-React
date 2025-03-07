@@ -39,7 +39,7 @@ export default function Input({ sendMessage }) {
     <div>
       <form onSubmit={publishInput}>
       <input
-          className="msg-form__input"
+          className="message-input"
           value={input.text}
           type="text"
           placeholder={input.placeholder}
