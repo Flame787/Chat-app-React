@@ -47,7 +47,7 @@ export default function Messages({ messages, thisMember }) {
                 />
               <div>{member.clientData.username}</div>
               
-              <div>{data}</div>
+              <div>{data.text}</div>
               <div></div>
             </div>
           </li>
@@ -56,7 +56,7 @@ export default function Messages({ messages, thisMember }) {
       : (listItem = (
           <li key={id} data-id={member.id} className={messageClass}>
             <div>
-              <div>{data}</div>
+              <div>{data.text}</div>
               <div></div>
             </div>
           </li>

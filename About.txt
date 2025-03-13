@@ -41,3 +41,25 @@ You can monitor your channel traffic on: https://dashboard.scaledrone.com/channe
 
 All traffic is end-to-end SSL encrypted.
 
+
+Data-structure:
+
+                        chat (state)
+                        |  |  
+      chat.member <-----    ------> chat.messages = [ {0} {1} {2} {3} {4}...] - each message is an object in array
+                                            |
+                                           {0} = message-object:
+
+                                               -> clientId (= member.id)
+                                               -> data (text of the message)
+                                               -> id (each message has it's own id)
+
+                                               -> member (who sent the message)
+                                                         -> clientData
+                                                                     -> username
+                                                                     -> avatar
+                                                         -> id (= clientId)
+                                                         -> timestamp
+
+
+
