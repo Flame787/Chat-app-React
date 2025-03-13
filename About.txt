@@ -51,15 +51,17 @@ Data-structure:
                                            {0} = message-object:
 
                                                -> clientId (= member.id)
-                                               -> data (text of the message)
+                                               -> data (originally: text of the message) - but added new attributes:
+                                                        -> text ("bla bla")
+                                                        -> type (for styling: user-joined, user-left, user-message...)
                                                -> id (each message has it's own id)
 
                                                -> member (who sent the message)
-                                                         -> clientData
+                                                        -> clientData
                                                                      -> username
                                                                      -> avatar
-                                                         -> id (= clientId)
-                                                         -> timestamp
+                                                        -> id (= clientId)
+                                                        -> timestamp
 
 
 
