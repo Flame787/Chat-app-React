@@ -13,7 +13,6 @@ import Input from "./Input";
 import Loader from "./Loader";
 import Registration from "./Registration";
 
-
 // Scaledrone channel:
 // const CHANNEL = `${process.env.CHANNEL_ID}` || "{YdfwYv0JH0iFXUck}";
 
@@ -65,8 +64,10 @@ export default function ChatApp() {
             setRoomLoaded(true);
             drone.publish({
               room: "observable-room",
-              message: `${chat.member.username} has joined the room.`,
-              type: "user-joined"
+              message: {
+                text: `${chat.member.username} has joined the chat.`,
+                type: "user-joined",
+              },
             });
           }
         });
@@ -74,19 +75,31 @@ export default function ChatApp() {
         room.on("message", (message) => {
           chat.messages.push(message);
           setChat({ ...chat }, chat.messages);
+          console.log("all chat-messages:", chat.messages);
         });
 
         // NEW:
         room.on("member_leave", (member) => {
-          console.log(`${member.clientData.username} has left the room`);
+          console.log(`${member.clientData.username} has left the chat`);
           drone.publish({
             room: "observable-room",
-            message: `${member.clientData.username} has left the room.`,
-            type: "user-left"
+            message: {
+              text: `${member.clientData.username} has left the chat.`,
+              type: "user-left",
+            },
           });
         });
 
-        
+        //   room.on("member_leave", (member) => {
+        //    console.log(`${member.clientData.username} has left the chat`);
+        //    drone.publish({
+        //     room: "observable-room",
+        //     message: {
+        //       text: `${member.clientData.username} has left the chat.`,
+        //       username: member.clientData.username,
+        //       type: "user-left"
+        //   }
+        // });
       });
       drone.on("error", (error) => console.log(error));
     }
@@ -101,8 +114,10 @@ export default function ChatApp() {
   function sendMessage(message) {
     drone.publish({
       room: "observable-room",
-      message,
-      type: ""
+      message: {
+        text: message,
+        type: "user-message"
+      }
     });
   }
 
@@ -125,8 +140,8 @@ export default function ChatApp() {
   ) : (
     <div>
       {/* <Header /> */}
-      <Messages messages={chat.messages} thisMember={chat.member}/>
-    
+      <Messages messages={chat.messages} thisMember={chat.member} />
+
       <Input sendMessage={sendMessage} />
     </div>
   );

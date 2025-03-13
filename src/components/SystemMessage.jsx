@@ -6,5 +6,5 @@ export default function SystemMessage(infos) {
 
   }
 
-  return <div className={messageClass}>{infos.map((info) => showMessage(info))}</div>;
+  return <div className={messageClass}>{infos.map((info) => showInfo(info))}</div>;
 }
