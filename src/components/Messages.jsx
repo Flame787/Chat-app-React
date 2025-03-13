@@ -16,11 +16,29 @@ export default function Messages({ messages, thisMember }) {
   function showMessage(message) {
     const { member, data, id } = message;
 
+    const messageClass = messages.type === "user-joined" ? "user-joined" : "";
+
+    // if (type === "user-joined") {
+    //   return (
+    //     <li key={id} className="user-joined">
+    //       <div >{data}</div>
+    //     </li>
+    //   );
+    // }
+
+    // if (type === "user-left") {
+    //   return (
+    //     <li key={id} >
+    //       <div className="user-left">{data}</div>
+    //     </li>
+    //   );
+    // }
+
     let listItem;
 
     sameMember !== member.id
       ? (listItem = (
-          <li key={id} data-id={member.id}>
+          <li key={id} data-id={member.id} className={messageClass}>
             <div>
             <img
                   src={`/avatars/${member.clientData.avatar}`}
@@ -36,7 +54,7 @@ export default function Messages({ messages, thisMember }) {
           //   add username and avatar / color
         ))
       : (listItem = (
-          <li key={id} data-id={member.id}>
+          <li key={id} data-id={member.id} className={messageClass}>
             <div>
               <div>{data}</div>
               <div></div>

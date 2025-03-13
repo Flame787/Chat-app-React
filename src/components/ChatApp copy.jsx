@@ -12,7 +12,7 @@ import Messages from "./Messages";
 import Input from "./Input";
 import Loader from "./Loader";
 import Registration from "./Registration";
-
+import SystemMessage from "./SystemMessage";
 
 // Scaledrone channel:
 // const CHANNEL = `${process.env.CHANNEL_ID}` || "{YdfwYv0JH0iFXUck}";
@@ -77,6 +77,19 @@ export default function ChatApp() {
         });
 
         // NEW:
+
+        // function sendLeaveInfo(info) {
+        //   drone.publish({
+        //     room: "observable-room",
+        //     message: `${member.clientData.username} has left the room.`,
+        //     type: "user-left"
+        //   });
+        // }
+
+        room.on("member_leave", (member) => {
+          sendLeaveInfo(info);
+        });
+
         room.on("member_leave", (member) => {
           console.log(`${member.clientData.username} has left the room`);
           drone.publish({
@@ -126,7 +139,7 @@ export default function ChatApp() {
     <div>
       {/* <Header /> */}
       <Messages messages={chat.messages} thisMember={chat.member}/>
-    
+      <SystemMessage info={}/>
       <Input sendMessage={sendMessage} />
     </div>
   );
