@@ -35,9 +35,9 @@ export default function Input({ sendMessage }) {
   }
 
   return (
-    <div>
-      <form onSubmit={publishInput}>
-        <input
+    <div >
+      <form onSubmit={publishInput} className="flex-form">
+        <textarea
           className="message-input"
           value={input.text}
           type="text"
@@ -48,7 +48,7 @@ export default function Input({ sendMessage }) {
           autoFocus={true}
           onChange={updateInput}
         />
-        <button type="button" onMouseDown={publishInput}>
+        <button className="input-button" type="button" onMouseDown={publishInput}>
           Send
         </button>
       </form>
