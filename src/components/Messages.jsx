@@ -31,7 +31,16 @@ export default function Messages({ messages, thisMember }) {
 
     let listItem;
 
-    sameMember !== member.id
+    message.data.type === "user-left" || message.data.type === "user-joined"
+      ? (listItem = (
+          <li key={id} data-id={member.id}>
+            <div>
+              <div className={messageClass}>{data.text}</div>
+              <div></div>
+            </div>
+          </li>
+        ))
+      : sameMember !== member.id
       ? (listItem = (
           <li key={id} data-id={member.id}>
             <div>
