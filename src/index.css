@@ -19,15 +19,17 @@ code {
 }
 
 .registration-form {
-  margin-left: 10%;
+  margin-left: 5%;
   margin-right: 10%;
   padding-top: 20px;
   padding-bottom: 20px;
   box-shadow: 2px 2px 2px rgb(162, 162, 162);
   background-color: rgb(205, 226, 251);
-  border-radius: 10px;
-  width: 80%;
+  /* border-radius: 10px; */
+  /* width: 80%; */
   max-width: 810px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .registration-label {
@@ -47,10 +49,11 @@ code {
     "Lucida Sans", Arial, sans-serif;
   font-size: 16px;
   box-shadow: 2px 2px 2px rgb(162, 162, 162);
-  border-radius: 10px;
   padding: 5px;
   margin-top: 15px;
   margin-bottom: 40px;
+  border-radius: 10px;
+ 
 }
 
 .avatar-select {
@@ -107,9 +110,9 @@ code {
   padding-bottom: 20px; */
   /* margin-bottom: 20px; */
   padding: 10px;
-  border-top-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  border-radius: 20px;
+  /* border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px; */
+  border-radius: 10px;
   resize: vertical; /* user can scroll vertically, when more content */
   min-height: 60px;
   max-height: 500px;
