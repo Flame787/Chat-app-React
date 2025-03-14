@@ -3,11 +3,14 @@ import { useState, useEffect, useRef } from "react";
 export default function Messages({ messages, thisMember }) {
   //thisMember - the person from whose perspective we are currently seing the chat (user-perspective)
 
-  let sameMember = "";
+  // let sameMember = "";
   // if continuos messages from same user, we don't show his username & avatar for each message
 
   const bottomDiv = useRef();
   // empty div under all messages - when new message arrives, the page scrolls to the last message (= to this div)
+
+  //NEW:
+  const sameMemberRef = useRef("");
 
   useEffect(() => {
     bottomDiv.current.scrollIntoView(); // auto-scrolling to the last div, whenever messages-list changes
@@ -31,17 +34,17 @@ export default function Messages({ messages, thisMember }) {
 
     let listItem;
 
-    message.data.type === "user-left" || message.data.type === "user-joined"
-      ? (listItem = (
+    if (message.data.type === "user-left" || message.data.type === "user-joined")
+      { listItem = (
           <li key={id} data-id={member.id}>
             <div>
               <div className={messageClass}>{data.text}</div>
               <div></div>
             </div>
           </li>
-        ))
-      : sameMember !== member.id
-      ? (listItem = (
+        )
+      } else if (sameMemberRef.current !== member.id) {
+       (listItem = (
           <li key={id} data-id={member.id}>
             <div>
               <img
@@ -55,9 +58,9 @@ export default function Messages({ messages, thisMember }) {
               <div></div>
             </div>
           </li>
-          //   add username and avatar / color
+          
         ))
-      : (listItem = (
+      } else (listItem = (
           <li key={id} data-id={member.id}>
             <div>
               <div className={messageClass}>{data.text}</div>
@@ -66,7 +69,9 @@ export default function Messages({ messages, thisMember }) {
           </li>
         ));
 
-    sameMember = member.id;
+    // sameMember = member.id;
+
+    sameMemberRef.current = member.id; 
     return listItem;
   }
 
