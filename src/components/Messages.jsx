@@ -40,7 +40,7 @@ export default function Messages({ messages, thisMember }) {
                 alt="user-avatar"
                 className="avatar-image"
               />
-              <div>{member.clientData.username}</div>
+              <div className="username">{member.clientData.username}</div>
 
               <div className={messageClass}>{data.text}</div>
               <div></div>

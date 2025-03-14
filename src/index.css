@@ -21,6 +21,7 @@ code {
 .avatar-item {
   display: inline-block;
   text-align: center;
+  
 }
 
 /* invisible radio button: */
@@ -34,6 +35,9 @@ code {
   cursor: pointer;
   border: 2px solid transparent;
   transition: border 0.3s ease;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  
 }
 
 /* avatar gets bigger when hover over */
@@ -54,12 +58,63 @@ code {
   margin: 0; */
 }
 
+/* textarea */
 .message-input {
   margin-left: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  resize: vertical; /* user can scroll vertically, when more content */
+  min-height: 60px;
+  max-height: 500px;
+  width: 500px;
+  min-width: 200px; 
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 16px;
+  box-shadow: 2px 2px 2px rgb(162, 162, 162);
+}
+
+.input-button {
+  margin-left: 30px;
+  margin-right: 30px;
+  padding: 10px 15px;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 1px;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  /* border-radius: 20px; */
+  background-color: rgb(115, 173, 243);
+  border-color: rgb(115, 173, 243);
+  box-shadow: 2px 2px 2px rgb(113, 112, 112);
+}
+
+.input-button:hover {
+  transform: scale(1.1);
+  background-color: rgb(168, 203, 246);
+  /* font-weight: 600; */
+  font-size: 17px;
+}
+
+.flex-form{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .registration-label {
   margin-left: 40px;
+}
+
+.username {
+  font-weight: 600;
+  color: rgb(138, 138, 138);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding-bottom: 15px;
 }
 
 .input-username {
@@ -68,12 +123,28 @@ code {
 
 .user-joined {
   color: green;
+  font-size: 15px;
+  margin-bottom: 5px;
+  margin-left: 25px;
 }
 
 .user-left {
   color: red;
+  font-size: 15px;
+  margin-bottom: 5px;
+  margin-left: 25px;
 }
 
 .user-message {
-  color: blue;
+  display: inline-block;
+  color: black;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  background-color: rgba(168, 212, 250, 0.486);
+  padding: 10px;
+  margin-top: 5px;
+  margin-right: 40px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 2px 2px 2px rgb(191, 191, 191);
 }
