@@ -36,7 +36,7 @@ export default function Input({ sendMessage }) {
 
   return (
     <div >
-      <form onSubmit={publishInput} className="flex-form">
+      <form onSubmit={publishInput} className="flex-message">
         <textarea
           className="message-input"
           value={input.text}

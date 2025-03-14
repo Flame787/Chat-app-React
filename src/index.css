@@ -12,98 +12,22 @@ code {
     monospace;
 }
 
-.avatar-select {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.avatar-item {
-  display: inline-block;
-  text-align: center;
-  
-}
-
-/* invisible radio button: */
-.avatar-item input {
-  display: none;
-}
-
-.avatar-image {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: border 0.3s ease;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  
-}
-
-/* avatar gets bigger when hover over */
-.avatar-image:hover {
-  transform: scale(1.1);
-}
-
-/* additional class for avatar-image, if selected by user (clicked): */
-.selected {
-  border: 3px solid blue;
-  box-shadow: 0 0 10px rgba(0, 0, 255, 0.5);
-  transform: scale(1.15);
-}
-
-.messages-list {
-  list-style-type: none;
-  /* padding: 0;
-  margin: 0; */
-}
-
-/* textarea */
-.message-input {
+.welcome-registration {
   margin-left: 40px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 10px;
-  border-top-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  resize: vertical; /* user can scroll vertically, when more content */
-  min-height: 60px;
-  max-height: 500px;
-  width: 500px;
-  min-width: 200px; 
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  font-size: 16px;
-  box-shadow: 2px 2px 2px rgb(162, 162, 162);
-}
-
-.input-button {
-  margin-left: 30px;
-  margin-right: 30px;
-  padding: 10px 15px;
+  margin-bottom: 40px;
   font-weight: 600;
-  font-size: 16px;
-  letter-spacing: 1px;
-  border-top-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  /* border-radius: 20px; */
-  background-color: rgb(115, 173, 243);
-  border-color: rgb(115, 173, 243);
-  box-shadow: 2px 2px 2px rgb(113, 112, 112);
 }
 
-.input-button:hover {
-  transform: scale(1.1);
-  background-color: rgb(168, 203, 246);
-  /* font-weight: 600; */
-  font-size: 17px;
-}
-
-.flex-form{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+.registration-form {
+  margin-left: 10%;
+  margin-right: 10%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-shadow: 2px 2px 2px rgb(162, 162, 162);
+  background-color: rgb(205, 226, 251);
+  border-radius: 10px;
+  width: 80%;
+  max-width: 810px;
 }
 
 .registration-label {
@@ -118,12 +42,130 @@ code {
 }
 
 .input-username {
-  margin-left: 40px;
+  margin-left: 30px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 16px;
+  box-shadow: 2px 2px 2px rgb(162, 162, 162);
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+
+.avatar-select {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.avatar-item {
+  display: inline-block;
+  text-align: center;
+}
+
+/* invisible radio button: */
+.avatar-item input {
+  display: none;
+}
+
+.avatar-image {
+  margin: 7px;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s ease;
+  /* padding-top: 15px;
+  padding-bottom: 15px; */
+  border-radius: 50%;
+}
+
+/* avatar gets bigger when hover over */
+.avatar-image:hover {
+  transform: scale(1.1);
+}
+
+/* additional class for avatar-image, if selected by user (clicked): */
+.selected {
+  border: 3px solid rgb(141, 141, 158);
+  box-shadow: 0 0 10px rgba(108, 108, 116, 0.5);
+  transform: scale(1.15);
+}
+
+.messages-list {
+  list-style-type: none;
+  /* padding: 0;
+  margin: 0; */
+}
+
+/* textarea */
+.message-input {
+  margin-left: 2%;
+  margin-right: 2%;
+  /* padding-top: 20px;
+  padding-bottom: 20px; */
+  /* margin-bottom: 20px; */
+  padding: 10px;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-radius: 20px;
+  resize: vertical; /* user can scroll vertically, when more content */
+  min-height: 60px;
+  max-height: 500px;
+  width: 500px;
+  min-width: 200px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 16px;
+  box-shadow: 2px 2px 2px rgb(162, 162, 162);
+}
+
+.input-button, .registration-button {
+  margin: 30px 0;
+  padding: 10px 15px;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 1px;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  /* border-radius: 20px; */
+  background-color: rgb(115, 173, 243);
+  border-color: rgb(115, 173, 243);
+  box-shadow: 2px 2px 2px rgb(113, 112, 112);
+}
+
+.input-button:hover, .registration-button:hover {
+  transform: scale(1.1);
+  background-color: rgb(168, 203, 246);
+  /* font-weight: 600; */
+  font-size: 17px;
+}
+
+.registration-button{
+  margin: 30px;
+}
+
+.flex-registration,
+.flex-message {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.flex-registration {
+  justify-content: center;
+}
+
+.flex-message {
+  justify-content: left;
 }
 
 .user-joined {
   color: green;
   font-size: 15px;
+  margin-top: 25px;
   margin-bottom: 5px;
   margin-left: 25px;
 }
@@ -131,6 +173,7 @@ code {
 .user-left {
   color: red;
   font-size: 15px;
+  margin-top: 25px;
   margin-bottom: 5px;
   margin-left: 25px;
 }
