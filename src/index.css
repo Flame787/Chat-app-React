@@ -26,7 +26,7 @@ code {
     monospace;
 }
 
-.header1{
+.header1, .header2{
   display: flex;
   flex-direction: column;
   align-items: center;
