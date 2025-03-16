@@ -139,11 +139,7 @@ export default function ChatApp() {
   ) : !roomLoaded ? (
     <div>
       <HeaderChat />
-      // <Loader />
-      <div>
-        <img src="../public/loading_circles.jpg" alt="loading-icon" />
-        <div>Loading...</div>
-      </div>
+      <Loader />
     </div>
   ) : (
     <div>
