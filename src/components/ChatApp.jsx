@@ -12,7 +12,8 @@ import Messages from "./Messages";
 import Input from "./Input";
 import Loader from "./Loader";
 import Registration from "./Registration";
-import Header from "./Header";
+import HeaderRegistration from "./HeaderRegistration";
+import HeaderChat from "./HeaderChat";
 
 // Scaledrone channel:
 // const CHANNEL = `${process.env.CHANNEL_ID}` || "{YdfwYv0JH0iFXUck}";
@@ -132,21 +133,26 @@ export default function ChatApp() {
 
   return chat.member.username === "" ? (
     <div>
-      <Header />
+      <HeaderRegistration />
       <Registration onFormSubmit={handleRegistration} />
     </div>
   ) : !roomLoaded ? (
-    // <Loader />
     <div>
-      <img src="../public/loading_circles.jpg" alt="loading-icon" />
-      <div>Loading...</div>
+      <HeaderChat />
+      // <Loader />
+      <div>
+        <img src="../public/loading_circles.jpg" alt="loading-icon" />
+        <div>Loading...</div>
+      </div>
     </div>
   ) : (
     <div>
-      {/* <Header /> */}
-      <Messages messages={chat.messages} thisMember={chat.member} />
+      <div>
+        <HeaderChat />
+        <Messages messages={chat.messages} thisMember={chat.member} />
 
-      <Input sendMessage={sendMessage} />
+        <Input sendMessage={sendMessage} />
+      </div>
     </div>
   );
 }
