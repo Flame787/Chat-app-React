@@ -12,6 +12,7 @@ import Messages from "./Messages";
 import Input from "./Input";
 import Loader from "./Loader";
 import Registration from "./Registration";
+import Header from "./Header";
 
 // Scaledrone channel:
 // const CHANNEL = `${process.env.CHANNEL_ID}` || "{YdfwYv0JH0iFXUck}";
@@ -32,7 +33,7 @@ export default function ChatApp() {
 
   const [roomLoaded, setRoomLoaded] = useState(false);
 
-  // function for connecting to Scaledrone:
+  // function for connecting to Scaledrone - whenever new member comes, he gets connected to Scaledrone:
 
   useEffect(() => {
     if (chat.member.username !== "") {
@@ -116,8 +117,8 @@ export default function ChatApp() {
       room: "observable-room",
       message: {
         text: message,
-        type: "user-message"
-      }
+        type: "user-message",
+      },
     });
   }
 
@@ -130,7 +131,10 @@ export default function ChatApp() {
   }
 
   return chat.member.username === "" ? (
-    <Registration onFormSubmit={handleRegistration} />
+    <div>
+      <Header />
+      <Registration onFormSubmit={handleRegistration} />
+    </div>
   ) : !roomLoaded ? (
     // <Loader />
     <div>

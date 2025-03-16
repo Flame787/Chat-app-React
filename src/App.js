@@ -1,15 +1,16 @@
-
-import './App.css';
-import ChatApp from './components/ChatApp';
+import "./App.css";
+import ChatApp from "./components/ChatApp";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    
-    <ChatApp />
+    <div id="root">
+      <main>
+        <ChatApp />
+      </main>
+      <Footer />
+    </div>
   );
 }
 
 export default App;
-
-
-

@@ -1,10 +1,24 @@
 body {
+  height: 100%;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  letter-spacing: 0.3px;
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+    sans-serif; */
+  font-family: ReithSerif, Helvetica, Arial, freesans, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  
+}
+
+main {
+  flex-grow: 1; /* Glavni sadržaj se širi kako bi gurnuo footer na dno */
 }
 
 code {
@@ -12,15 +26,37 @@ code {
     monospace;
 }
 
+.header1{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+}
+
 .welcome-registration {
-  margin-left: 40px;
+  /* margin-left: 40px; */
   margin-bottom: 40px;
   font-weight: 600;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.3px;
+  font-size: 20px;
+  background-color: rgb(52, 131, 228);
+  color: white;
+}
+
+.flex-div-reg{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .registration-form {
-  margin-left: 5%;
-  margin-right: 10%;
+  /* margin-left: 5%;
+  margin-right: 10%; */
+
   padding-top: 20px;
   padding-bottom: 20px;
   box-shadow: 2px 2px 2px rgb(162, 162, 162);
@@ -53,7 +89,6 @@ code {
   margin-top: 15px;
   margin-bottom: 40px;
   border-radius: 10px;
- 
 }
 
 .avatar-select {
@@ -124,7 +159,8 @@ code {
   box-shadow: 2px 2px 2px rgb(162, 162, 162);
 }
 
-.input-button, .registration-button {
+.input-button,
+.registration-button {
   margin: 30px 0;
   padding: 10px 15px;
   font-weight: 600;
@@ -133,19 +169,22 @@ code {
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
   /* border-radius: 20px; */
-  background-color: rgb(115, 173, 243);
+  /* background-color: rgb(115, 173, 243); */
+  background-color: rgb(52, 131, 228);
+  color: white;
   border-color: rgb(115, 173, 243);
   box-shadow: 2px 2px 2px rgb(113, 112, 112);
 }
 
-.input-button:hover, .registration-button:hover {
+.input-button:hover,
+.registration-button:hover {
   transform: scale(1.1);
   background-color: rgb(168, 203, 246);
   /* font-weight: 600; */
   font-size: 17px;
 }
 
-.registration-button{
+.registration-button {
   margin: 30px;
 }
 
@@ -184,8 +223,9 @@ code {
 .user-message {
   display: inline-block;
   color: black;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  /* font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif; */
+  font-family: ReithSerif, Helvetica, Arial, freesans, sans-serif;
   background-color: rgba(168, 212, 250, 0.486);
   padding: 10px;
   margin-top: 5px;
@@ -193,4 +233,31 @@ code {
   border-top-left-radius: 10px;
   border-bottom-right-radius: 10px;
   box-shadow: 2px 2px 2px rgb(191, 191, 191);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: left;
+  background-color: rgb(52, 131, 228);
+  color: white;
+}
+
+.social-links {
+  display: flex;
+  margin: 10px;
+}
+.social-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+.social-links a:hover {
+  color: #ecf0f1;
 }
