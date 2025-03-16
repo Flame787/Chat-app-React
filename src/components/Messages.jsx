@@ -10,70 +10,71 @@ export default function Messages({ messages, thisMember }) {
   // empty div under all messages - when new message arrives, the page scrolls to the last message (= to this div)
 
   //NEW:
-  const sameMemberRef = useRef("");
+  // const sameMemberRef = useRef("");
 
   useEffect(() => {
-    bottomDiv.current.scrollIntoView(); // auto-scrolling to the last div, whenever messages-list changes
+    bottomDiv.current.scrollIntoView({ behavior: "smooth" }); // auto-scrolling to the last div, whenever messages-list changes
   }, [messages.length]);
+
+  let sameMember = "";
 
   function showMessage(message) {
     const { member, data, id } = message;
 
-    // const messageClass = messages.type === "user-joined" ? "user-joined" : "";
+    let listItem;
 
+    // css-classes for different types of messages in chat:
     const messageClass =
-      message.data.type === "user-joined"
+      data.type === "user-joined"
         ? "user-joined"
-        : message.data.type === "user-left"
+        : data.type === "user-left"
         ? "user-left"
-        : message.data.type === "user-message"
+        : data.type === "user-message"
         ? "user-message"
         : "";
 
-    // console.log("messageClass:", messageClass);
+    if (sameMember !== member.id) {
+      listItem = (
+        <li key={id} data-id={member.id}>
+          <div>
+            <img
+              src={`/avatars/${member.clientData.avatar}`}
+              alt="user-avatar"
+              className="avatar-image"
+            />
+            <div className="username">{member.clientData.username}</div>
+            <div className={messageClass}>{data.text}</div>
+          </div>
+        </li>
+      );
 
-    let listItem;
+      // sameMemberRef.current = member.id;  // NEEDED! - without it, it shows avatar for each message from SAME user
+    
+    } else {
+      listItem = (
+        <li key={id} data-id={member.id}>
+          <div>
+            <div className={messageClass}>{data.text}</div>
+          </div>
+        </li>
+      );
+    }
 
-    if (message.data.type === "user-left" || message.data.type === "user-joined")
-      { listItem = (
-          <li key={id} data-id={member.id}>
-            <div>
-              <div className={messageClass}>{data.text}</div>
-              <div></div>
-            </div>
-          </li>
-        )
-      } else if (sameMemberRef.current !== member.id) {
-       (listItem = (
-          <li key={id} data-id={member.id}>
-            <div>
-              <img
-                src={`/avatars/${member.clientData.avatar}`}
-                alt="user-avatar"
-                className="avatar-image"
-              />
-              <div className="username">{member.clientData.username}</div>
+    // rendering system-notifications (who has joined or left chat):
+    if (data.type === "user-left" || data.type === "user-joined") {
+      listItem = (
+        <li key={id} data-id={member.id}>
+          <div>
+            <div className={messageClass}>{data.text}</div>
+          </div>
+        </li>
+      );
+    }
 
-              <div className={messageClass}>{data.text}</div>
-              <div></div>
-            </div>
-          </li>
-          
-        ))
-      } else (listItem = (
-          <li key={id} data-id={member.id}>
-            <div>
-              <div className={messageClass}>{data.text}</div>
-              <div></div>
-            </div>
-          </li>
-        ));
-
-    // sameMember = member.id;
-
-    sameMemberRef.current = member.id; 
     return listItem;
   }
+
+  ///////
 
   return (
     <ul className="messages-list">

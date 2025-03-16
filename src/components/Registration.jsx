@@ -28,7 +28,7 @@ export default function Registration({ onFormSubmit }) {
   // };
 
   const selectAvatar = (avatar) => {
-    setSelectedAvatar(avatar); 
+    setSelectedAvatar(avatar);
   };
 
   const submitForm = (e) => {
@@ -41,13 +41,9 @@ export default function Registration({ onFormSubmit }) {
   };
 
   return (
-    <div>
-      <div className="welcome-registration">
-        <p>Welcome to the Chat App!</p>
-        <p>Please register:</p>
-      </div>
+    <div className="flex-div-reg">
       <form onSubmit={submitForm} name="reg-form" className="registration-form">
-      <label className="registration-label">Enter your username:</label>
+        <label className="registration-label">Enter your username:</label>
         <input
           className="input-username"
           type="text"
@@ -59,20 +55,25 @@ export default function Registration({ onFormSubmit }) {
         <div>
           <label className="registration-label">Select your avatar:</label>
           <div className="avatar-select flex-registration">
-            
             {avatars.map((avatar, index) => (
-            <img
-              key={index}
-              src={`/avatars/${avatar}`}
-              alt={`Avatar ${index + 1}`}
-              className={selectedAvatar === avatar ? "avatar-image selected" : "avatar-image"}
-              onClick={() => selectAvatar(avatar)}
-            />
-          ))}
+              <img
+                key={index}
+                src={`/avatars/${avatar}`}
+                alt={`Avatar ${index + 1}`}
+                className={
+                  selectedAvatar === avatar
+                    ? "avatar-image selected"
+                    : "avatar-image"
+                }
+                onClick={() => selectAvatar(avatar)}
+              />
+            ))}
           </div>
         </div>
 
-        <button className="registration-button" type="submit">Start chat</button>
+        <button className="registration-button" type="submit">
+          Start chat
+        </button>
       </form>
     </div>
   );
