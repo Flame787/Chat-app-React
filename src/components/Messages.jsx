@@ -69,10 +69,11 @@ export default function Messages({ messages, thisMember }) {
       );
       sameMember = ""; // this is correct, showing avatar and username of newcomer members
       // sameMember = member.id;  // this is not ok, then it's not showing avatar and username of newcomer members
-    }
-
-    // NEEDED! - without it, it shows avatar for each message from SAME user
+    } // NEEDED! - without it, it shows avatar for each message from SAME user
     // it sets member.id to be same as message author after each new message - the evaluation starts again
+
+    // console.log("listItem:", listItem);
+
     return listItem;
   }
 

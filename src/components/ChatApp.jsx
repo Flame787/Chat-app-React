@@ -25,8 +25,10 @@ export default function ChatApp() {
 
   const [roomLoaded, setRoomLoaded] = useState(false);
 
-  let lastMessage = chat.messages[chat.messages.length - 1];
-  console.log("lastMessage: ", lastMessage);
+  const [members, setMembers] = useState([]);
+
+  // let lastMessage = chat.messages[chat.messages.length - 1];
+  // console.log("lastMessage: ", lastMessage);
 
   // function for connecting to Scaledrone - whenever new member comes, he gets connected to Scaledrone:
 
@@ -68,26 +70,81 @@ export default function ChatApp() {
           }
         });
 
+        // List of currently online members, emitted once
+        room.on("members", (m) => {
+          setMembers(m);
+          console.log("All members of this chat:", members);
+        });
+
+        room.on("member_join", (newMember) => {
+          setMembers((prev) => [...prev, newMember]);
+        });
+
         room.on("message", (message) => {
           chat.messages.push(message);
           setChat({ ...chat }, chat.messages);
           console.log("all chat-messages:", chat.messages);
         });
 
-       
-
         // NEW:
+        // room.on("member_leave", (member) => {
+        //   setMembers((prev) => prev.filter((m) => m.id !== member.id));
+
+        //   console.log(`${member.clientData.username} has left the chat`);
+
+        //   // finding the member with smallest clientID among members of the room (so only he publishes the message):
+
+        //   const minClientId = Math.min(
+        //     ...members.map((m) => parseInt(m.id, 16))
+        //   ); // 16 - hexadecimal system
+
+        //   console.log(minClientId);
+
+        //   if (parseInt(drone.clientId, 16) === minClientId) {
+        //     drone.publish({
+        //       room: "observable-room",
+        //       message: {
+        //         text: `${member.clientData.username} has left the chat.`,
+        //         type: "user-left",
+        //       },
+        //     });
+        //   }
+
+        // });
+
         room.on("member_leave", (member) => {
-          console.log(`${member.clientData.username} has left the chat`);
-          drone.publish({
-            room: "observable-room",
-            message: {
-              text: `${member.clientData.username} has left the chat.`,
-              type: "user-left",
-            },
+          setMembers((prevMembers) => {
+            const updatedMembers = prevMembers.filter(
+              (m) => m.id !== member.id
+            );
+
+            console.log("Updated members list after leave:", updatedMembers);
+
+            // Sorting IDs alfanumerically:
+            const sortedMembers = updatedMembers.sort((a, b) =>
+              a.id.localeCompare(b.id)
+            );
+
+            // Minimal ID will be 1st in the sorted list:
+            const minClientId = sortedMembers[0].id;
+
+            console.log("Minimal client ID:", minClientId);
+
+            if (drone.clientId === minClientId) {
+              drone.publish({
+                room: "observable-room",
+                message: {
+                  text: `${member.clientData.username} has left the chat.`,
+                  type: "user-left",
+                },
+              });
+            }
+
+            return updatedMembers;
           });
         });
       });
+
       drone.on("error", (error) => console.log(error));
     }
   }, [chat, drone]);
@@ -97,6 +154,14 @@ export default function ChatApp() {
   // if connection was succesfull, roomloaded get's to 'true'.
   // Now the room can receive messages. When new message comes, it's added to chat.messages-list,
   // and chat-state is changed, and component re-renders.
+
+  // NEW 18.03.:
+  // Each user has their own drone instance and their own message list (chat.messages).
+  // This causes duplicate notifications because they are sent to all members,
+  // including the one who initiated the sending.
+  // Instead of relying solely on each user's message list, you can use filtering logic within the
+  // member_leave event. The key idea is that all members receive the message,
+  // but only ONE member actually sends the notification.
 
   function sendMessage(message) {
     drone.publish({
