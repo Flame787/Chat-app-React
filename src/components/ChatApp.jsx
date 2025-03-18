@@ -94,7 +94,8 @@ export default function ChatApp() {
         // Each user has their own drone instance and their own message list (chat.messages).This would cause
         // duplicate notifications on member_leave event, because notifications are sent from & to all members.
         // To avoid that EACH user sends a notification (duplicates), we are using filtering logic in the member_leave event.
-        // The idea: all members receive the message, but only ONE member actually sends the notification.
+        // The idea: the list of members updates (one who left is removed), all members receive the message on that, 
+        // but only ONE member actually sends this message/info - only the member with currently Minimal client ID.
 
         room.on("member_leave", (member) => {
           setMembers((prevMembers) => {
