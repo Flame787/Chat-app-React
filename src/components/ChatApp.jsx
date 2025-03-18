@@ -27,9 +27,6 @@ export default function ChatApp() {
 
   const [members, setMembers] = useState([]);
 
-  // let lastMessage = chat.messages[chat.messages.length - 1];
-  // console.log("lastMessage: ", lastMessage);
-
   // function for connecting to Scaledrone - whenever new member comes, he gets connected to Scaledrone:
 
   useEffect(() => {
@@ -40,8 +37,15 @@ export default function ChatApp() {
       setDrone(drone);
     }
   }, [chat.member]);
-  // when user enters/gets his username and avatar/color, a new Scaledrone instance of object is created.
+  // when user enters/gets his username and avatar, a new Scaledrone instance of object is created.
+  // When Scaledrone instance is created, it tries to connect to a chat-room.
   // This new instance becomes/sets new drone-state.
+  // When connection opens (drone.on("open")), a clientId for user is generated, user enters the room, and
+  // if connection was succesfull, roomloaded get's to 'true'.
+  // Then the room can receive messages. When new message comes, it's added to chat.messages-list,
+  // also chat-state is changed, and component re-renders.
+  // *Each user has it's own drone and it's own different (shorter/larger) chat.messages - list.
+  // *(by default: messages are not all visible for all members; users who join the room later don't see previous messages)
 
   useEffect(() => {
     if (drone && !chat.member.id) {
@@ -86,31 +90,11 @@ export default function ChatApp() {
           console.log("all chat-messages:", chat.messages);
         });
 
-        // NEW:
-        // room.on("member_leave", (member) => {
-        //   setMembers((prev) => prev.filter((m) => m.id !== member.id));
-
-        //   console.log(`${member.clientData.username} has left the chat`);
-
-        //   // finding the member with smallest clientID among members of the room (so only he publishes the message):
-
-        //   const minClientId = Math.min(
-        //     ...members.map((m) => parseInt(m.id, 16))
-        //   ); // 16 - hexadecimal system
-
-        //   console.log(minClientId);
-
-        //   if (parseInt(drone.clientId, 16) === minClientId) {
-        //     drone.publish({
-        //       room: "observable-room",
-        //       message: {
-        //         text: `${member.clientData.username} has left the chat.`,
-        //         type: "user-left",
-        //       },
-        //     });
-        //   }
-
-        // });
+        // NEW 18.03.:
+        // Each user has their own drone instance and their own message list (chat.messages).This would cause
+        // duplicate notifications on member_leave event, because notifications are sent from & to all members.
+        // To avoid that EACH user sends a notification (duplicates), we are using filtering logic in the member_leave event.
+        // The idea: all members receive the message, but only ONE member actually sends the notification.
 
         room.on("member_leave", (member) => {
           setMembers((prevMembers) => {
@@ -148,20 +132,6 @@ export default function ChatApp() {
       drone.on("error", (error) => console.log(error));
     }
   }, [chat, drone]);
-
-  // when Scaledrone instance is created, it tries to connect to a chat-room.
-  // When connection opens (drone.on("open")), a clientId for user is generated, user enters the room, and
-  // if connection was succesfull, roomloaded get's to 'true'.
-  // Now the room can receive messages. When new message comes, it's added to chat.messages-list,
-  // and chat-state is changed, and component re-renders.
-
-  // NEW 18.03.:
-  // Each user has their own drone instance and their own message list (chat.messages).
-  // This causes duplicate notifications because they are sent to all members,
-  // including the one who initiated the sending.
-  // Instead of relying solely on each user's message list, you can use filtering logic within the
-  // member_leave event. The key idea is that all members receive the message,
-  // but only ONE member actually sends the notification.
 
   function sendMessage(message) {
     drone.publish({
