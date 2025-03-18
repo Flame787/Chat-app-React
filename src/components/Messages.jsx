@@ -19,6 +19,18 @@ export default function Messages({ messages, thisMember }) {
   function showMessage(message) {
     const { member, data, id } = message;
 
+    if (!member) {
+      console.warn("Member is null or undefined:", message);
+      // Handle system messages / other cases where member is missing
+      return (
+        <li key={id}>
+          <div>
+            <div className={messageClass}>{data.text}</div>
+          </div>
+        </li>
+      );
+    }
+
     let listItem;
 
     // css-classes for different types of messages in chat:
