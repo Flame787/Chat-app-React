@@ -25,4 +25,9 @@
 
 // Koristimo prevMemberLeft da bismo sprečili dupliranje obaveštenja.
 // Proveravamo member.id, ne ceo member objekat jer je objekat referenca i može se promeniti čak i ako predstavlja istog člana.
-// Probaj ovu verziju i javi da li sada radi ispravno. 🚀
+// Probaj ovu verziju i javi da li sada radi ispravno. 🚀ž
+
+
+
+let lastMessage = chat.messages[chat.messages.length - 1];
+console.log("lastMessage: ", lastMessage);
