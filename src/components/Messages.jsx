@@ -21,9 +21,6 @@ export default function Messages({ messages, thisMember }) {
 
     let listItem;
 
-    // NEW:
-    let infoItem;
-
     // css-classes for different types of messages in chat:
     const messageClass =
       data.type === "user-joined"
@@ -48,7 +45,7 @@ export default function Messages({ messages, thisMember }) {
           </div>
         </li>
       );
-      sameMember = member.id;  // here needed to reset to the same value
+      sameMember = member.id; // here needed to reset to the same value
     } else {
       listItem = (
         <li key={id} data-id={member.id}>
@@ -57,27 +54,26 @@ export default function Messages({ messages, thisMember }) {
           </div>
         </li>
       );
-      sameMember = member.id;  // and here needed to reset to the same value
+      sameMember = member.id; // and here needed to reset to the same value
     }
 
     // rendering system-notifications (who has joined or left chat):
     if (data.type === "user-left" || data.type === "user-joined") {
-      infoItem = (
-        <li key={id} data-id={member.id}>
+      listItem = (
+        // <li key={id} data-id={member.id}>
+        <li key={id}>
           <div>
             <div className={messageClass}>{data.text}</div>
           </div>
         </li>
       );
-      sameMember = "";   // this is correct, showing avatar and username of newcomer members
+      sameMember = ""; // this is correct, showing avatar and username of newcomer members
       // sameMember = member.id;  // this is not ok, then it's not showing avatar and username of newcomer members
     }
 
-     // NEEDED! - without it, it shows avatar for each message from SAME user
+    // NEEDED! - without it, it shows avatar for each message from SAME user
     // it sets member.id to be same as message author after each new message - the evaluation starts again
     return listItem;
-
-    return infoItem;
   }
 
   ///////

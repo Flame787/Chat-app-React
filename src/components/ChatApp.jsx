@@ -9,7 +9,6 @@ import Registration from "./Registration";
 import HeaderRegistration from "./HeaderRegistration";
 import HeaderChat from "./HeaderChat";
 
-
 const CHANNEL = process.env.REACT_APP_CHANNEL_ID
   ? process.env.REACT_APP_CHANNEL_ID
   : "Enter your chat-channel ID";
@@ -25,6 +24,9 @@ export default function ChatApp() {
   const [drone, setDrone] = useState(null);
 
   const [roomLoaded, setRoomLoaded] = useState(false);
+
+  let lastMessage = chat.messages[chat.messages.length - 1];
+  console.log("lastMessage: ", lastMessage);
 
   // function for connecting to Scaledrone - whenever new member comes, he gets connected to Scaledrone:
 
@@ -72,6 +74,8 @@ export default function ChatApp() {
           console.log("all chat-messages:", chat.messages);
         });
 
+       
+
         // NEW:
         room.on("member_leave", (member) => {
           console.log(`${member.clientData.username} has left the chat`);
@@ -83,7 +87,6 @@ export default function ChatApp() {
             },
           });
         });
-
       });
       drone.on("error", (error) => console.log(error));
     }
