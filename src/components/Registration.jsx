@@ -43,17 +43,21 @@ export default function Registration({ onFormSubmit }) {
   return (
     <div className="flex-div-reg">
       <form onSubmit={submitForm} name="reg-form" className="registration-form">
-        <label className="registration-label">Enter your username:</label>
-        <input
-          className="input-username"
-          type="text"
-          placeholder=" Enter name..."
-          required
-          onChange={getUsername}
-        />
+        <div className="flexbox-baseline">
+          <label className="registration-label">Username:</label>
+          <input
+            className="input-username"
+            type="text"
+            placeholder="Enter name..."
+            required
+            onChange={getUsername}
+          />
+        </div>
 
         <div>
-          <label className="registration-label">Select your avatar:</label>
+          <div className="flexbox-baseline">
+            <label className="registration-label">Select your avatar:</label>
+          </div>
           <div className="avatar-select flex-registration">
             {avatars.map((avatar, index) => (
               <img
@@ -71,9 +75,11 @@ export default function Registration({ onFormSubmit }) {
           </div>
         </div>
 
-        <button className="registration-button" type="submit">
-          Start chat
-        </button>
+        <div className="flexbox-baseline">
+          <button className="registration-button" type="submit">
+            Start chat
+          </button>
+        </div>
       </form>
     </div>
   );
