@@ -1,13 +1,7 @@
-// main component, used for connection with Scaledrone chat-channel & starting chat
+// Main component, used for connection with Scaledrone chat-channel & starting chat
 
 import { useState, useEffect, useRef } from "react";
 
-// import MessagesList from "./MessagesList";
-// import MembersList from "./MembersList";
-// import TypingIndicator from "./TypingIndicator";
-
-// import Loader
-// import Header
 import Messages from "./Messages";
 import Input from "./Input";
 import Loader from "./Loader";
@@ -15,8 +9,6 @@ import Registration from "./Registration";
 import HeaderRegistration from "./HeaderRegistration";
 import HeaderChat from "./HeaderChat";
 
-// Scaledrone channel:
-// const CHANNEL = `${process.env.CHANNEL_ID}` || "{YdfwYv0JH0iFXUck}";
 
 const CHANNEL = process.env.REACT_APP_CHANNEL_ID
   ? process.env.REACT_APP_CHANNEL_ID
@@ -92,16 +84,6 @@ export default function ChatApp() {
           });
         });
 
-        //   room.on("member_leave", (member) => {
-        //    console.log(`${member.clientData.username} has left the chat`);
-        //    drone.publish({
-        //     room: "observable-room",
-        //     message: {
-        //       text: `${member.clientData.username} has left the chat.`,
-        //       username: member.clientData.username,
-        //       type: "user-left"
-        //   }
-        // });
       });
       drone.on("error", (error) => console.log(error));
     }
