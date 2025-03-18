@@ -21,6 +21,9 @@ export default function Messages({ messages, thisMember }) {
 
     let listItem;
 
+    // NEW:
+    let infoItem;
+
     // css-classes for different types of messages in chat:
     const messageClass =
       data.type === "user-joined"
@@ -59,7 +62,7 @@ export default function Messages({ messages, thisMember }) {
 
     // rendering system-notifications (who has joined or left chat):
     if (data.type === "user-left" || data.type === "user-joined") {
-      listItem = (
+      infoItem = (
         <li key={id} data-id={member.id}>
           <div>
             <div className={messageClass}>{data.text}</div>
@@ -73,6 +76,8 @@ export default function Messages({ messages, thisMember }) {
      // NEEDED! - without it, it shows avatar for each message from SAME user
     // it sets member.id to be same as message author after each new message - the evaluation starts again
     return listItem;
+
+    return infoItem;
   }
 
   ///////
