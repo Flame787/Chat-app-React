@@ -168,7 +168,7 @@ export default function ChatApp() {
         <HeaderChat />
         <Messages messages={chat.messages} thisMember={chat.member} />
 
-        <Input sendMessage={sendMessage} />
+        <Input sendMessage={sendMessage} thisMember={chat.member} />
       </div>
     </div>
   );

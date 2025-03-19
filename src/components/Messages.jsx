@@ -46,15 +46,16 @@ export default function Messages({ messages, thisMember }) {
     if (sameMember !== member.id) {
       listItem = (
         <li key={id} data-id={member.id}>
-          <div>
+          <div className="who-wrote">
             <img
               src={`/avatars/${member.clientData.avatar}`}
               alt="user-avatar"
+              title={`${member.clientData.username} (avatar)`}
               className="avatar-image"
             />
             <div className="username">{member.clientData.username}</div>
-            <div className={messageClass}>{data.text}</div>
           </div>
+          <div className={messageClass}>{data.text}</div>
         </li>
       );
       sameMember = member.id; // here needed to reset to the same value
@@ -92,9 +93,12 @@ export default function Messages({ messages, thisMember }) {
   ///////
 
   return (
+    <>
     <ul className="messages-list">
       {messages.map((message) => showMessage(message))}
       <div ref={bottomDiv}></div>
     </ul>
+    <hr />
+    </>
   );
 }
