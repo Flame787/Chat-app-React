@@ -38,23 +38,24 @@ export default function Input({ sendMessage, thisMember }) {
   }
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.preventDefault();
       publishInput(e);
     }
   };
 
   return (
-    <div >
+    <div className="input-down">
       <form onSubmit={publishInput} className="flex-message">
+        
         <div className="my-avatar-name">
-        <img
-              src={`/avatars/${thisMember.avatar}`}
-              alt="user-avatar"
-              title={`${thisMember.username} (me)`}
-              className="avatar-image"
-            />
-            <div className="input-name">{`${thisMember.username} (me)`}</div>
+          <img
+            src={`/avatars/${thisMember.avatar}`}
+            alt="user-avatar"
+            title={`${thisMember.username} (me)`}
+            className="avatar-image"
+          />
+          <div className="input-name">{`${thisMember.username} (me)`}</div>
         </div>
         <textarea
           className="message-input"
@@ -68,7 +69,11 @@ export default function Input({ sendMessage, thisMember }) {
           onChange={updateInput}
           onKeyDown={handleKeyDown}
         />
-        <button className="input-button" type="button" onMouseDown={publishInput}>
+        <button
+          className="input-button"
+          type="button"
+          onMouseDown={publishInput}
+        >
           Send
         </button>
       </form>
