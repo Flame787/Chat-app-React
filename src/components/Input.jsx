@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function Input({ sendMessage }) {
+export default function Input({ sendMessage, thisMember }) {
   const placeholder = [
     "Enter your message...",
     "You need to type something first...",
@@ -37,6 +37,15 @@ export default function Input({ sendMessage }) {
   return (
     <div >
       <form onSubmit={publishInput} className="flex-message">
+        <div className="my-avatar-name">
+        <img
+              src={`/avatars/${thisMember.avatar}`}
+              alt="user-avatar"
+              title={`${thisMember.username} (me)`}
+              className="avatar-image"
+            />
+            <div className="input-name">{`${thisMember.username} (me)`}</div>
+        </div>
         <textarea
           className="message-input"
           value={input.text}
