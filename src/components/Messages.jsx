@@ -17,7 +17,14 @@ export default function Messages({ messages, thisMember }) {
   }, [messages.length]);
 
   function showMessage(message) {
-    const { member, data, id } = message;
+    const { member, data, id, timestamp } = message;
+
+    function formatTime(timest) {
+      const date = new Date(timest * 1000); // to milisec.
+      const hours = date.getHours().toString().padStart(2, "0");
+      const minutes = date.getMinutes().toString().padStart(2, "0");
+      return `${hours}:${minutes}`;
+    }
 
     if (!member) {
       console.warn("Member is null or undefined:", message);
@@ -55,6 +62,7 @@ export default function Messages({ messages, thisMember }) {
             />
             <div className="username">{member.clientData.username}</div>
           </div>
+          <div className="timestamp">{formatTime(timestamp)}</div>
           <div className={messageClass}>{data.text}</div>
         </li>
       );
@@ -63,6 +71,7 @@ export default function Messages({ messages, thisMember }) {
       listItem = (
         <li key={id} data-id={member.id}>
           <div>
+            <div className="timestamp">{formatTime(timestamp)}</div>
             <div className={messageClass}>{data.text}</div>
           </div>
         </li>
@@ -94,11 +103,11 @@ export default function Messages({ messages, thisMember }) {
 
   return (
     <>
-    <ul className="messages-list">
-      {messages.map((message) => showMessage(message))}
-      <div ref={bottomDiv}></div>
-    </ul>
-    <hr />
+      <ul className="messages-list">
+        {messages.map((message) => showMessage(message))}
+        <div ref={bottomDiv}></div>
+      </ul>
+      <hr />
     </>
   );
 }
