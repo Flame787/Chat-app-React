@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 
 export default function Input({ sendMessage, thisMember }) {
+  // thisMember - me / the person from whose perspective we are currently seing the chat (user-perspective)
+  // = chat.member; has properties: username & avatar
+
   const placeholder = [
     "Enter your message...",
     "You need to type something first...",
@@ -34,6 +37,13 @@ export default function Input({ sendMessage, thisMember }) {
     }
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      publishInput(e);
+    }
+  };
+
   return (
     <div >
       <form onSubmit={publishInput} className="flex-message">
@@ -56,6 +66,7 @@ export default function Input({ sendMessage, thisMember }) {
           }}
           autoFocus={true}
           onChange={updateInput}
+          onKeyDown={handleKeyDown}
         />
         <button className="input-button" type="button" onMouseDown={publishInput}>
           Send
