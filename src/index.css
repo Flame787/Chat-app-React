@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-image: url("../public/Doodle4.jpg");
+  background-image: url("../public/Doodle8.jpg");
   background-position: center;
   background-repeat: repeat;
   /* background-size: cover; */
@@ -47,6 +47,7 @@ h1 {
   font-size: 1.8rem;
 }
 
+/* header */
 .welcome-registration {
   margin-bottom: 40px;
   font-weight: 600;
@@ -55,7 +56,11 @@ h1 {
   font-size: 18px;
   /* background-color: rgb(52, 131, 228);
   background-color: rgb(88, 167, 236); */
-  background-color: rgb(66, 142, 236);
+  /* background-color: rgb(66, 142, 236);
+  background-color: rgb(14, 75, 151);
+  background-color: rgb(52, 149, 151); */
+  background-color: rgb(52 149 203 / 84%);
+  background-color: rgba(52, 150, 203, 0.758);
   color: white;
 }
 
@@ -68,12 +73,15 @@ h1 {
 
 .registration-form {
   padding-top: 20px;
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
   margin-bottom: 40px;
   box-shadow: 2px 2px 2px rgb(162, 162, 162);
   /* background-color: rgb(205, 226, 251); */
   /* background-color: rgb(52, 131, 228); */
-  background-color: rgb(66, 142, 236);
+  /* background-color: rgb(66, 142, 236);
+  background-color: rgb(14, 75, 151); */
+  background-color: rgb(52 149 203 / 84%);
+  background-color: rgba(52, 150, 203, 0.758);
   /* background-color: rgb(88, 167, 236); */
   width: 50%;
   border-top-left-radius: 20px;
@@ -95,11 +103,13 @@ h1 {
     "Lucida Sans", Arial, sans-serif;
   font-size: 16px;
   font-size: 0.8rem;
-  box-shadow: 2px 2px 2px rgb(162, 162, 162);
+  /* box-shadow: 2px 2px 2px rgb(162, 162, 162); */
   padding: 5px;
   margin-top: 15px;
   margin-bottom: 40px;
-  border-radius: 10px;
+  border-radius: 5px;
+  border-style: none;
+  background-color: rgba(255, 255, 255, 0.715);
 }
 
 .avatar-select {
@@ -110,7 +120,8 @@ h1 {
   border-style: solid;
   border-width: 2px;
   border-color: white;
-  border-radius: 10px;
+  border-radius: 5px;
+  border-style: none;
   background-color: rgba(255, 255, 255, 0.715);
 }
 
@@ -134,11 +145,11 @@ h1 {
   border-radius: 50%;
 }
 
-.who-wrote .avatar-image{
+.who-wrote .avatar-image {
   width: 60px;
 }
 
-.flex-message .avatar-image{
+.flex-message .avatar-image {
   width: 60px;
 }
 
@@ -205,15 +216,18 @@ h1 {
   padding: 10px 15px;
   font-weight: 600;
   font-size: 16px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   letter-spacing: 1px;
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: rgb(52, 131, 228);
-  background-color: white;
-  color: white;
-  color: rgb(55, 131, 223);
-  border-color: rgb(115, 173, 243);
+  /* background-color: rgb(52, 131, 228);
+  background-color: white; */
+  background-color: rgba(255, 255, 255, 0.715);
+  /* color: white;
+  color: black; */
+  color: rgb(109, 108, 108);
+  /* color: rgb(55, 131, 223); */
+  border-color: rgb(116, 165, 193);
   box-shadow: 2px 2px 2px rgb(113, 112, 112);
 }
 
@@ -248,7 +262,6 @@ h1 {
   flex-wrap: wrap;
 }
 
-
 .flex-message {
   margin-left: 40px;
   margin-bottom: 10px;
@@ -273,35 +286,29 @@ h1 {
   color: rgb(109, 108, 108);
 }
 
-.user-joined {
-  color: green;
-  font-size: 0.85rem;
+.user-joined,
+.user-left {
+  font-size: 0.75rem;
+  font-weight: 600;
   margin-top: 25px;
   margin-bottom: 5px;
   margin-left: 30px;
-
+  padding: 5px 10px;
   /* makes the text-buble to fit the text, and not to be any wider than needed: */
-  display: inline-block;  
-  background-color: rgba(255, 255, 255, 0.575);
-  padding: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
+  display: inline-block;
+  background-color: rgb(255, 255, 255);
+  /* border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px; */
+  border-radius: 5px;
   box-shadow: 2px 2px 2px rgb(191, 191, 191);
+}
+
+.user-joined {
+  color: green;
 }
 
 .user-left {
   color: red;
-  font-size: 0.85rem;
-  margin-top: 25px;
-  margin-bottom: 5px;
-  margin-left: 30px;
-
-  display: inline-block;  
-  background-color: rgba(255, 255, 255, 0.575);
-  padding: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  box-shadow: 2px 2px 2px rgb(191, 191, 191);
 }
 
 .user-message {
@@ -333,7 +340,6 @@ h1 {
   border: 0;
 }
 
-
 .footer {
   display: flex;
   align-items: center;
@@ -344,7 +350,10 @@ h1 {
   padding-bottom: 10px;
   /* background-color: rgb(52, 131, 228);
   background-color: rgb(88, 167, 236); */
-  background-color: rgb(66, 142, 236);
+  /* background-color: rgb(66, 142, 236);
+  background-color: rgb(14, 75, 151); */
+  background-color: rgb(52 149 203 / 84%);
+  background-color: rgba(52, 150, 203, 0.758);
   color: white;
   font-size: 0.8em;
 }
@@ -402,14 +411,12 @@ h1 {
 }
 
 @media (max-width: 600px) {
-
   .avatar-image {
     width: 14%;
   }
 }
 
 @media (max-width: 400px) {
-
   .avatar-image {
     width: 18%;
   }

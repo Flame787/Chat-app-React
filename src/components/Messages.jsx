@@ -57,7 +57,7 @@ export default function Messages({ messages, thisMember }) {
             <img
               src={`/avatars/${member.clientData.avatar}`}
               alt="user-avatar"
-              title={`${member.clientData.username} (avatar)`}
+              title={` avatar: ${member.clientData.username}`}
               className="avatar-image"
             />
             <div className="username">{member.clientData.username}</div>
