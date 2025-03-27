@@ -210,6 +210,7 @@ h1 {
   /* border-color: 2px 2px 2px rgb(227, 226, 226); */
   /* box-shadow: 2px 2px 2px rgb(162, 162, 162); */
   border-style: solid;
+  border-width: 2px;
   color: rgba(52, 150, 203, 0.758);
 
   display: flex;
@@ -218,12 +219,12 @@ h1 {
   flex-wrap: wrap;
 }
 
-.input-text{
+.input-text {
   padding: 5px;
   border: none;
   background: transparent;
   width: 90%;
-  outline: none; 
+  outline: none;
 }
 
 hr {
@@ -254,7 +255,6 @@ hr {
   box-shadow: 2px 2px 2px rgb(113, 112, 112);
   background-color: rgb(25, 123, 180);
   color: white;
-  
 }
 
 .input-button:hover,
@@ -265,14 +265,32 @@ hr {
   font-size: 17px;
 }
 
-.send-button{
-  padding: 10px;
-  margin: 0;
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.send-button,
+.smiley-button {
+  padding: 5px;
+  margin: 10px 0 0 0;
   border-radius: 50%;
   background-color: rgb(25, 123, 180);
   box-shadow: none;
   border-color: rgba(116, 165, 193, 0);
+  /* max-width: 15%; */
+}
+
+.send-button {
   align-self: flex-end;
+}
+
+.smiley-button {
+  align-self: flex-start;
 }
 
 .input-name {
