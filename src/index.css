@@ -49,18 +49,20 @@ h1 {
 
 /* header */
 .welcome-registration {
-  margin-bottom: 40px;
+  margin-bottom: 100px;
   font-weight: 600;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   letter-spacing: 0.3px;
   font-size: 18px;
+  padding-bottom: 20px;
   /* background-color: rgb(52, 131, 228);
   background-color: rgb(88, 167, 236); */
   /* background-color: rgb(66, 142, 236);
   background-color: rgb(14, 75, 151);
   background-color: rgb(52, 149, 151); */
-  background-color: rgb(52 149 203 / 84%);
-  background-color: rgba(52, 150, 203, 0.758);
+  /* background-color: rgb(52 149 203 / 84%);
+  background-color: rgba(52, 150, 203, 0.758); */
+  background-color: rgb(25, 123, 180);
   color: white;
 }
 
@@ -73,19 +75,14 @@ h1 {
 
 .registration-form {
   padding-top: 20px;
-  /* padding-bottom: 20px; */
   margin-bottom: 40px;
   box-shadow: 2px 2px 2px rgb(162, 162, 162);
-  /* background-color: rgb(205, 226, 251); */
-  /* background-color: rgb(52, 131, 228); */
-  /* background-color: rgb(66, 142, 236);
-  background-color: rgb(14, 75, 151); */
-  background-color: rgb(52 149 203 / 84%);
-  background-color: rgba(52, 150, 203, 0.758);
+  background-color: rgb(25, 123, 180);
   /* background-color: rgb(88, 167, 236); */
   width: 50%;
-  border-top-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  /* border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px; */
+  border-radius: 10px;
 }
 
 .username {
@@ -104,25 +101,26 @@ h1 {
   font-size: 16px;
   font-size: 0.8rem;
   /* box-shadow: 2px 2px 2px rgb(162, 162, 162); */
-  padding: 5px;
+  padding: 7px;
   margin-top: 15px;
   margin-bottom: 40px;
   border-radius: 5px;
   border-style: none;
-  background-color: rgba(255, 255, 255, 0.715);
+  background-color: rgb(201, 234, 251);
 }
 
 .avatar-select {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   /* gap: 10px; */
   margin: 20px 20px 0 20px;
+  padding: 5px 0;
   border-style: solid;
   border-width: 2px;
   border-color: white;
   border-radius: 5px;
   border-style: none;
-  background-color: rgba(255, 255, 255, 0.715);
+  background-color: rgb(201, 234, 251);
 }
 
 .avatar-item {
@@ -196,7 +194,7 @@ h1 {
 /* div containig textarea for input and send-button: */
 .message-input {
   margin-left: 2%;
-  margin-right: 2%;
+  margin-right: 4%;
   padding: 10px;
   border-radius: 10px;
   resize: vertical; /* user can scroll vertically, when more content */
@@ -219,16 +217,23 @@ h1 {
   flex-wrap: wrap;
 }
 
+/* textarea: */
 .input-text {
+  width: 100%;
   padding: 5px;
+  margin-bottom: 5px;
   border: none;
   background: transparent;
-  width: 90%;
   outline: none;
+  font-size: 0.85rem;
+  font-family: ReithSerif, Helvetica, Arial, freesans, sans-serif;
+  resize: none;
+  /* Firefox style */
+  scrollbar-width: thin;
+  scrollbar-color: #197bb4 #fafafa90;
 }
 
 hr {
-  /* color: rgb(176, 169, 169); */
   color: rgba(52, 150, 203, 0.758);
   text-shadow: none;
   border-style: solid;
@@ -244,23 +249,25 @@ hr {
   letter-spacing: 1px;
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  /* background-color: rgb(52, 131, 228);
-  background-color: white; */
-  /* background-color: rgba(255, 255, 255, 0.715); */
-  /* color: white;
-  color: black; */
-  /* color: rgb(109, 108, 108); */
-  /* color: rgb(55, 131, 223); */
+  border-radius: 7px;
   border-color: rgb(116, 165, 193);
   box-shadow: 2px 2px 2px rgb(113, 112, 112);
   background-color: rgb(25, 123, 180);
   color: white;
 }
 
+.registration-button {
+  /* background-color: rgb(61, 170, 232); */
+  /* background-color: rgb(25, 167, 206); */
+  background-color: rgb(10, 161, 221);
+  border-color: rgb(156, 194, 216);
+  padding: 8px 15px;
+}
+
 .input-button:hover,
 .registration-button:hover {
   transform: scale(1.1);
-  background-color: rgb(103, 150, 177);
+  background-color: rgb(89, 190, 236);
   color: white;
   font-size: 17px;
 }
@@ -275,22 +282,46 @@ hr {
 }
 
 .send-button,
-.smiley-button {
+.smiley-button,
+.file-button {
   padding: 5px;
   margin: 10px 0 0 0;
   border-radius: 50%;
   background-color: rgb(25, 123, 180);
   box-shadow: none;
   border-color: rgba(116, 165, 193, 0);
-  /* max-width: 15%; */
+  /* width: 30px;     */
+  height: 30px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 100;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.file-button {
+  margin: 10px 0 0 10px;
 }
 
 .send-button {
   align-self: flex-end;
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
 }
 
 .smiley-button {
   align-self: flex-start;
+}
+
+.smiley-button:hover,
+.file-button:hover {
+  transform: scale(1.02);
+  font-size: 13px;
+}
+
+.send-button:hover {
+  transform: scale(1.1);
+  font-size: 14px;
 }
 
 .input-name {
@@ -379,6 +410,9 @@ hr {
   border-top-left-radius: 10px;
   border-bottom-right-radius: 10px;
   box-shadow: 2px 2px 2px rgb(191, 191, 191);
+  max-width: 80vw;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .who-wrote {
@@ -409,6 +443,7 @@ hr {
   background-color: rgb(14, 75, 151); */
   background-color: rgb(52 149 203 / 84%);
   background-color: rgba(52, 150, 203, 0.758);
+  background-color: rgb(25, 123, 180);
   color: white;
   font-size: 0.8em;
 }
@@ -432,11 +467,17 @@ hr {
   .avatar-image {
     width: 9%;
   }
+  .welcome-registration {
+    margin-bottom: 50px;
+  }
 }
 
 @media (max-width: 1250px) {
   .avatar-image {
     width: 12%;
+  }
+  .welcome-registration {
+    margin-bottom: 30px;
   }
 }
 
@@ -471,8 +512,20 @@ hr {
   }
 }
 
+@media (max-width: 500px) {
+  .buttons {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 400px) {
   .avatar-image {
     width: 18%;
+  }
+}
+
+@media (max-width: 291px) {
+  .file-button {
+    margin: 10px 0 0 5px;
   }
 }
