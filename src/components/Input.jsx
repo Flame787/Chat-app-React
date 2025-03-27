@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 
 export default function Input({ sendMessage, thisMember }) {
   // thisMember - me / the person from whose perspective we are currently seing the chat (user-perspective)
@@ -47,7 +49,6 @@ export default function Input({ sendMessage, thisMember }) {
   return (
     <div className="input-down">
       <form onSubmit={publishInput} className="flex-message">
-        
         <div className="my-avatar-name">
           <img
             src={`/avatars/${thisMember.avatar}`}
@@ -57,8 +58,9 @@ export default function Input({ sendMessage, thisMember }) {
           />
           <div className="input-name">{`${thisMember.username} (me)`}</div>
         </div>
-        <textarea
-          className="message-input"
+        <div className="message-input">
+        <input
+          className="input-text"
           value={input.text}
           type="text"
           placeholder={input.placeholder}
@@ -69,13 +71,24 @@ export default function Input({ sendMessage, thisMember }) {
           onChange={updateInput}
           onKeyDown={handleKeyDown}
         />
+        {/* <input
+          className="file-input"
+          type="file"
+          id="file-input"
+          multiple
+          accept="image/*,application/pdf,text/plain"
+          onChange={updateInput}
+          onKeyDown={handleKeyDown}
+        ></input> */}
         <button
-          className="input-button"
+          className="input-button send-button"
           type="button"
           onMouseDown={publishInput}
+          
         >
-          Send
+          <FontAwesomeIcon icon={faPaperPlane} />
         </button>
+        </div>
       </form>
     </div>
   );

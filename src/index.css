@@ -193,7 +193,7 @@ h1 {
   margin-bottom: 40px;
 }
 
-/* textarea */
+/* div containig textarea for input and send-button: */
 .message-input {
   margin-left: 2%;
   margin-right: 2%;
@@ -208,7 +208,22 @@ h1 {
     "Lucida Sans", Arial, sans-serif;
   font-size: 0.8rem;
   /* border-color: 2px 2px 2px rgb(227, 226, 226); */
-  box-shadow: 2px 2px 2px rgb(162, 162, 162);
+  /* box-shadow: 2px 2px 2px rgb(162, 162, 162); */
+  border-style: solid;
+  color: rgba(52, 150, 203, 0.758);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.input-text{
+  padding: 5px;
+  border: none;
+  background: transparent;
+  width: 90%;
+  outline: none; 
 }
 
 hr {
@@ -248,6 +263,16 @@ hr {
   background-color: rgb(103, 150, 177);
   color: white;
   font-size: 17px;
+}
+
+.send-button{
+  padding: 10px;
+  margin: 0;
+  border-radius: 50%;
+  background-color: rgb(25, 123, 180);
+  box-shadow: none;
+  border-color: rgba(116, 165, 193, 0);
+  align-self: flex-end;
 }
 
 .input-name {
