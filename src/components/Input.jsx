@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
+import { faFaceSmile } from "@fortawesome/free-solid-svg-icons";
 
 export default function Input({ sendMessage, thisMember }) {
   // thisMember - me / the person from whose perspective we are currently seing the chat (user-perspective)
@@ -59,19 +60,19 @@ export default function Input({ sendMessage, thisMember }) {
           <div className="input-name">{`${thisMember.username} (me)`}</div>
         </div>
         <div className="message-input">
-        <input
-          className="input-text"
-          value={input.text}
-          type="text"
-          placeholder={input.placeholder}
-          ref={(input) => {
-            nameInput = input;
-          }}
-          autoFocus={true}
-          onChange={updateInput}
-          onKeyDown={handleKeyDown}
-        />
-        {/* <input
+          <input
+            className="input-text"
+            value={input.text}
+            type="text"
+            placeholder={input.placeholder}
+            ref={(input) => {
+              nameInput = input;
+            }}
+            autoFocus={true}
+            onChange={updateInput}
+            onKeyDown={handleKeyDown}
+          />
+          {/* <input
           className="file-input"
           type="file"
           id="file-input"
@@ -80,14 +81,19 @@ export default function Input({ sendMessage, thisMember }) {
           onChange={updateInput}
           onKeyDown={handleKeyDown}
         ></input> */}
-        <button
-          className="input-button send-button"
-          type="button"
-          onMouseDown={publishInput}
-          
-        >
-          <FontAwesomeIcon icon={faPaperPlane} />
-        </button>
+
+          <div className="buttons">
+            <button className="input-button smiley-button" type="button">
+              <FontAwesomeIcon icon={faFaceSmile} />
+            </button>
+            <button
+              className="input-button send-button"
+              type="button"
+              onMouseDown={publishInput}
+            >
+              <FontAwesomeIcon icon={faPaperPlane} />
+            </button>
+          </div>
         </div>
       </form>
     </div>
