@@ -34,7 +34,17 @@ export default function Footer() {
         >
           <FontAwesomeIcon icon={faEnvelope} />
         </a>
+        
       </div>
+      <div className="scaledrone-link copyright">
+          Powered by:  
+          <a
+            href="https://www.scaledrone.com/"
+            target="_blank"
+            aria-label="Scaledrone"
+            title=" Scaledrone"
+          ><span className="scaledrone-title">Scaledrone</span></a>
+        </div>
     </div>
   );
 }

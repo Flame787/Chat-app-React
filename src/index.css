@@ -1,6 +1,12 @@
-body {
-  height: 100%;
+html, body {
   margin: 0;
+  padding: 0;
+  height: 100vh;
+  /* overflow: hidden; Sprječava scroll ako nije potreban */
+}
+
+body {
+  /* height: 100%; */
   letter-spacing: 0.3px;
   font-family: ReithSerif, Helvetica, Arial, freesans, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -10,13 +16,14 @@ body {
   background-position: center;
   background-repeat: repeat;
   /* background-size: cover; */
+  /* background-size: auto; */
   background-size: contain;
 }
 
 #root {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 main {
@@ -80,20 +87,17 @@ h1 {
 
 .flex-div-reg {
   display: flex;
+  /* flex-direction: row; */
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  min-height: 50vh;
 }
 
 .registration-form {
-  padding-top: 20px;
-  margin-bottom: 40px;
   box-shadow: 2px 2px 2px rgb(162, 162, 162);
   background-color: rgb(25, 123, 180);
-  /* background-color: rgb(88, 167, 236); */
   width: 50%;
-  /* border-top-left-radius: 20px;
-  border-bottom-right-radius: 20px; */
   border-radius: 10px;
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   /* font-family: "Inter", sans-serif; */
@@ -107,6 +111,14 @@ h1 {
   /* font-family: "Mulish", sans-serif; */
   /* font-family: "Heebo", sans-serif; */
   /* font-family: "Libre Franklin", sans-serif; */
+}
+
+.registration-label-a{
+  padding-top: 20px;
+}
+
+.registration-label-b{
+  padding-top: 0;
 }
 
 .username {
@@ -211,6 +223,19 @@ h1 {
   height: 20%;
   width: 20%;
 }
+
+/* .messages-input-div{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap; */
+  /* align-items: center;
+  justify-content: center; */
+  /* width: 100vw; */
+/* } */
+
+/* .input-down{
+  align-self: start;
+} */
 
 .messages-list {
   list-style-type: none;
@@ -482,12 +507,8 @@ hr {
   text-align: left;
   padding-top: 10px;
   padding-bottom: 10px;
-  /* background-color: rgb(52, 131, 228);
-  background-color: rgb(88, 167, 236); */
-  /* background-color: rgb(66, 142, 236);
-  background-color: rgb(14, 75, 151); */
-  background-color: rgb(52 149 203 / 84%);
-  background-color: rgba(52, 150, 203, 0.758);
+  /* background-color: rgb(52 149 203 / 84%);
+  background-color: rgba(52, 150, 203, 0.758); */
   background-color: rgb(25, 123, 180);
   color: white;
   font-size: 0.8em;
@@ -503,10 +524,35 @@ hr {
   text-decoration: none;
   margin: 0 10px;
   font-size: 1.2rem;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
+
 .social-links a:hover {
-  color: #ecf0f1;
+  /* color: #55bbd4; */
+  color: rgb(89, 190, 236);
+  transform: scale(1.1);
+}
+
+.scaledrone-link{
+  margin-left: 20px;
+}
+
+.scaledrone-link a {
+  font-size: 0.8rem;
+  text-decoration: none;
+  
+}
+
+.scaledrone-title{
+  padding-left: 10px;
+  color: white;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.scaledrone-title:hover{
+  /* color: #55bbd4; */
+  color: rgb(89, 190, 236);
+  transform: scale(1.1);
 }
 
 @media (max-width: 1450px) {
@@ -556,6 +602,9 @@ hr {
   .avatar-image {
     width: 14%;
   }
+  h1{
+    font-size: 1.6rem;
+  }
 }
 
 @media (max-width: 500px) {
@@ -567,6 +616,9 @@ hr {
 @media (max-width: 400px) {
   .avatar-image {
     width: 18%;
+  }
+  h1{
+    font-size: 1.4rem;
   }
 }
 

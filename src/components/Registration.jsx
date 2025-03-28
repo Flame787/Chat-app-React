@@ -44,7 +44,7 @@ export default function Registration({ onFormSubmit }) {
     <div className="flex-div-reg">
       <form onSubmit={submitForm} name="reg-form" className="registration-form">
         <div className="flexbox-baseline">
-          <label className="registration-label">Username:</label>
+          <label className="registration-label-a">Username:</label>
           <input
             className="input-username"
             type="text"
@@ -56,7 +56,7 @@ export default function Registration({ onFormSubmit }) {
 
         <div>
           <div className="flexbox-baseline">
-            <label className="registration-label">Select your avatar:</label>
+            <label className="registration-label-b">Select your avatar:</label>
           </div>
           <div className="avatar-select flex-registration">
             {avatars.map((avatar, index) => (
