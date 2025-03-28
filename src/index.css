@@ -51,7 +51,19 @@ h1 {
 .welcome-registration {
   margin-bottom: 100px;
   font-weight: 600;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  /* font-family: "Inter", sans-serif; */
+  /* font-family: "Montserrat", sans-serif; */
+  /* font-family: "Roboto", sans-serif; */
+  /* font-family: "Open Sans", sans-serif; */
+  /* font-family: "Poppins", sans-serif; */
+  /* font-family: "Noto Sans", sans-serif; */
+  /* font-family: "Rubik", sans-serif; */
+  /* font-family: "Nunito Sans", sans-serif; */
+  /* font-family: "Mulish", sans-serif; */
+  /* font-family: "Heebo", sans-serif; */
+  font-family: "Libre Franklin", sans-serif;
+
   letter-spacing: 0.3px;
   font-size: 18px;
   padding-bottom: 20px;
@@ -83,6 +95,18 @@ h1 {
   /* border-top-left-radius: 20px;
   border-bottom-right-radius: 20px; */
   border-radius: 10px;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  /* font-family: "Inter", sans-serif; */
+  /* font-family: "Montserrat", sans-serif; */
+  /* font-family: "Roboto", sans-serif; */
+  font-family: "Open Sans", sans-serif;
+  /* font-family: "Noto Sans", sans-serif; */
+  /* font-family: "Poppins", sans-serif; */
+  /* font-family: "Rubik", sans-serif; */
+  /* font-family: "Nunito Sans", sans-serif; */
+  /* font-family: "Mulish", sans-serif; */
+  /* font-family: "Heebo", sans-serif; */
+  /* font-family: "Libre Franklin", sans-serif; */
 }
 
 .username {
@@ -91,17 +115,19 @@ h1 {
   font-weight: 600;
   color: rgb(138, 138, 138);
   color: rgb(109, 108, 108);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 1rem;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 0.9rem;
 }
 
 .input-username {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  /* font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif; */
+  font-family: "Nunito Sans", sans-serif;
   font-size: 16px;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   /* box-shadow: 2px 2px 2px rgb(162, 162, 162); */
-  padding: 7px;
+  padding: 5px;
   margin-top: 15px;
   margin-bottom: 40px;
   border-radius: 5px;
@@ -226,7 +252,8 @@ h1 {
   background: transparent;
   outline: none;
   font-size: 0.85rem;
-  font-family: ReithSerif, Helvetica, Arial, freesans, sans-serif;
+  /* font-family: ReithSerif, Helvetica, Arial, freesans, sans-serif; */
+  font-family: "Rubik", sans-serif;
   resize: none;
   /* Firefox style */
   scrollbar-width: thin;
@@ -246,6 +273,7 @@ hr {
   font-weight: 600;
   font-size: 16px;
   font-size: 1rem;
+  /* font-family: "Nunito Sans", sans-serif; */
   letter-spacing: 1px;
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -328,8 +356,9 @@ hr {
   font-weight: 600;
   color: rgb(138, 138, 138);
   color: rgb(109, 108, 108);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  font-family: "Nunito Sans", sans-serif;
+  /* font-family: "Rubik", sans-serif; */
 }
 
 .my-avatar-name {
@@ -349,8 +378,9 @@ hr {
 }
 
 .flex-message {
+  margin-top: 20px;
   margin-left: 40px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .flex-message .avatar-image {
@@ -391,16 +421,31 @@ hr {
 
 .user-joined {
   color: green;
+  font-family: "Inter", sans-serif;
 }
 
 .user-left {
   color: red;
+  font-family: "Inter", sans-serif;
 }
 
 .user-message {
   display: inline-block;
   color: black;
-  font-family: ReithSerif, Helvetica, Arial, freesans, sans-serif;
+  /* font-family: ReithSerif, Helvetica, Arial, freesans, sans-serif; */
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  /* font-family: "Inter", sans-serif; */
+  /* font-family: "Montserrat", sans-serif; */
+  /* font-family: "Roboto", sans-serif; */
+  /* font-family: "Open Sans", sans-serif; */
+  /* font-family: "Noto Sans", sans-serif; */
+  /* font-family: "Poppins", sans-serif; */
+  font-family: "Rubik", sans-serif;
+  /* font-family: "Nunito Sans", sans-serif; */
+  /* font-family: "Mulish", sans-serif; */
+  /* font-family: "Heebo", sans-serif; */
+  /* font-family: "Libre Franklin", sans-serif; */
+
   font-size: 0.85rem;
   background-color: rgba(168, 212, 250, 0.486);
   background-color: white;
@@ -446,6 +491,7 @@ hr {
   background-color: rgb(25, 123, 180);
   color: white;
   font-size: 0.8em;
+  font-family: "Rubik", sans-serif;
 }
 
 .social-links {

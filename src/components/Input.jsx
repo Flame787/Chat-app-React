@@ -74,15 +74,7 @@ export default function Input({ sendMessage, thisMember }) {
             onChange={updateInput}
             onKeyDown={handleKeyDown}
           />
-          {/* <input
-          className="file-input"
-          type="file"
-          id="file-input"
-          multiple
-          accept="image/*,application/pdf,text/plain"
-          onChange={updateInput}
-          onKeyDown={handleKeyDown}
-        ></input> */}
+          
 
           <div className="buttons">
             <div left-buttons>
