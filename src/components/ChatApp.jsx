@@ -152,6 +152,8 @@ export default function ChatApp() {
     setChat({ ...chat }, chat.member);
   }
 
+  
+
   return chat.member.username === "" ? (
     <div>
       <HeaderRegistration />
