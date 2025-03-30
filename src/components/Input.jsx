@@ -5,9 +5,16 @@ import { faFaceSmile } from "@fortawesome/free-solid-svg-icons";
 import { faFilm } from "@fortawesome/free-solid-svg-icons";
 import { faFolderOpen } from "@fortawesome/free-regular-svg-icons";
 
+// NEW - EMOJIS:
+import Picker from "emoji-picker-react";
+
 export default function Input({ sendMessage, thisMember }) {
   // thisMember - me / the person from whose perspective we are currently seing the chat (user-perspective)
   // = chat.member; has properties: username & avatar
+
+  // Emoji access-key and emoji-uri:
+  // const EMOJI_KEY = process.env.REACT_APP_EMOJI_KEY;
+  // const EMOJI_URI = `https://emoji-api.com/emojis?access_key=${EMOJI_KEY}`;
 
   const placeholder = [
     "Enter your message...",
@@ -23,11 +30,26 @@ export default function Input({ sendMessage, thisMember }) {
 
   const [input, setInput] = useState(initialInput);
 
+  // NEW - EMOJIS:
+  const [showPicker, setShowPicker] = useState(false);
+
   let nameInput;
 
   function updateInput(e) {
     setInput({ ...input, text: e.target.value });
   }
+
+  // NEW - EMOJIS:
+  // const addEmoji = (emoji) => {
+  //   setInput((prev) => prev + emoji.native); // adds emoji to input
+  // };
+
+  const addEmoji = (emoji) => {
+    setInput((prev) => ({
+      ...prev,
+      text: prev.text + emoji.native,
+    }));
+  };
 
   function publishInput(e) {
     e.preventDefault();
@@ -74,13 +96,21 @@ export default function Input({ sendMessage, thisMember }) {
             onChange={updateInput}
             onKeyDown={handleKeyDown}
           />
-          
 
           <div className="buttons">
-            <div left-buttons>
-              <button className="input-button smiley-button" type="button">
+            <div className="left-buttons">
+              <button
+                className="input-button smiley-button"
+                type="button"
+                onClick={() => setShowPicker(!showPicker)}
+              >
                 <FontAwesomeIcon icon={faFaceSmile} /> emoji
               </button>
+              {showPicker && (
+                <div className="emoji-picker-container">
+                  <Picker onEmojiClick={addEmoji} />
+                </div>
+              )}
               <button className="input-button file-button" type="button">
                 <FontAwesomeIcon icon={faFilm} /> gif
               </button>
