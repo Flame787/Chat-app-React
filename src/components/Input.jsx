@@ -40,16 +40,20 @@ export default function Input({ sendMessage, thisMember }) {
   }
 
   // NEW - EMOJIS:
-  // const addEmoji = (emoji) => {
-  //   setInput((prev) => prev + emoji.native); // adds emoji to input
-  // };
 
-  const addEmoji = (emoji) => {
+  const addEmoji = (emojiObject, event) => {
     setInput((prev) => ({
       ...prev,
-      text: prev.text + emoji.native,
+      text: prev.text + (emojiObject?.emoji || ""),
     }));
   };
+
+  // Structure of each emoji in the emoji-picker-react library:
+  // {
+  //   emoji: "😊",
+  //   names: ["smiley"],
+  //   ...
+  // }
 
   function publishInput(e) {
     e.preventDefault();
