@@ -8,6 +8,7 @@ import Loader from "./Loader";
 import Registration from "./Registration";
 import HeaderRegistration from "./HeaderRegistration";
 import HeaderChat from "./HeaderChat";
+import ScrollToBottom from "./ScrollToBottom";
 
 const CHANNEL = process.env.REACT_APP_CHANNEL_ID
   ? process.env.REACT_APP_CHANNEL_ID
@@ -169,6 +170,7 @@ export default function ChatApp() {
       <div className="header-div">
         <HeaderChat />
       </div>
+      <ScrollToBottom />
       <div className="messages-input-div">
         <Messages messages={chat.messages} thisMember={chat.member} />
 

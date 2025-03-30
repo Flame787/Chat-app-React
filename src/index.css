@@ -69,7 +69,7 @@ h1 {
 
 /* header */
 .welcome-registration {
-  margin-bottom: 100px;
+  margin-bottom: 30px;
   font-weight: 600;
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   /* font-family: "Inter", sans-serif; */
@@ -523,7 +523,7 @@ hr {
   border: 0;
 }
 
-.scroll-to-top {
+.scroll-to-top, .scroll-to-bottom {
   text-align: center;
 }
 
@@ -629,7 +629,7 @@ hr {
     width: 9%;
   }
   .welcome-registration {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 }
 
