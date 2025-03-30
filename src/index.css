@@ -386,11 +386,16 @@ hr {
   font-size: 13px;
 }
 
+/* .left-buttons{
+  position: relative;
+} */
+
+/* .message-input{
+  position: relative;
+} */
+
 .emoji-picker-container {
-  position: absolute;
-  bottom: 60px;
-  left: 0;
-  z-index: 10;
+  margin-left: 150px; 
 }
 
 .send-button:hover {
@@ -675,9 +680,20 @@ hr {
   }
 }
 
+@media (max-width: 674px){
+  .emoji-picker-container {
+    margin-left: 100px; 
+  }
+}
+
 @media (max-width: 500px) {
   .buttons {
     flex-direction: column;
+  }
+  @media (max-width: 674px){
+    .emoji-picker-container {
+      margin-left: 10px; 
+    }
   }
 }
 
@@ -685,8 +701,12 @@ hr {
   .footer {
     flex-direction: column;
   }
-  .author {
-    margin-top: 10px;
+ 
+}
+
+@media (max-width: 450px) {
+  .emoji-picker-container {
+    margin-left: 30px; 
   }
 }
 
@@ -697,10 +717,20 @@ hr {
   h1 {
     font-size: 1.4rem;
   }
+  .author {
+    margin-top: 15px;
+  }
+  .file-button {
+    margin: 10px 0 0 5px;
+  }
+  .emoji-picker-container {
+    margin-left: 10px; 
+  }
 }
 
 @media (max-width: 291px) {
   .file-button {
     margin: 10px 0 0 5px;
   }
+
 }

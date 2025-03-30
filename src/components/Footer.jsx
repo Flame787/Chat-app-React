@@ -9,14 +9,13 @@ export default function Footer() {
       <div className="scaledrone-link copyright">
         Powered by:
         <div className="scaledrone-icon">
-          <a href="https://www.scaledrone.com/" target="_blank"
-              aria-label="Scaledrone"
-              title=" Scaledrone">
-            <img
-              src="/scaledrone-icon3.png"
-              alt="scaledrone"
-              
-            />
+          <a
+            href="https://www.scaledrone.com/"
+            target="_blank"
+            aria-label="Scaledrone"
+            title=" Scaledrone"
+          >
+            <img src="/scaledrone-icon3.png" alt="scaledrone" />
           </a>
         </div>
         <a

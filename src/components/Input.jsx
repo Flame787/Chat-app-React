@@ -110,11 +110,7 @@ export default function Input({ sendMessage, thisMember }) {
               >
                 <FontAwesomeIcon icon={faFaceSmile} /> emoji
               </button>
-              {showPicker && (
-                <div className="emoji-picker-container">
-                  <Picker onEmojiClick={addEmoji} />
-                </div>
-              )}
+
               <button className="input-button file-button" type="button">
                 <FontAwesomeIcon icon={faFilm} /> gif
               </button>
@@ -132,6 +128,11 @@ export default function Input({ sendMessage, thisMember }) {
           </div>
         </div>
       </form>
+      {showPicker && (
+        <div className="emoji-picker-container">
+          <Picker onEmojiClick={addEmoji} />
+        </div>
+      )}
     </div>
   );
 }
