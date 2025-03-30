@@ -153,8 +153,6 @@ export default function ChatApp() {
     setChat({ ...chat }, chat.member);
   }
 
-  
-
   return chat.member.username === "" ? (
     <div>
       <HeaderRegistration />
@@ -167,9 +165,8 @@ export default function ChatApp() {
     </div>
   ) : (
     <div>
-      <div className="header-div">
-        <HeaderChat />
-      </div>
+      <HeaderChat />
+
       <ScrollToBottom />
       <div className="messages-input-div">
         <Messages messages={chat.messages} thisMember={chat.member} />
