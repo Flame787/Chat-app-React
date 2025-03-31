@@ -63,7 +63,13 @@ export default function Messages({ messages, thisMember }) {
             <div className="username">{member.clientData.username}</div>
           </div>
           <div className="timestamp">{formatTime(timestamp)}</div>
-          <div className={messageClass}>{data.text}</div>
+
+          {/* Check if the message is a gif-URL */}
+          {data.text.startsWith("http") && data.text.includes(".gif") ? (
+            <img src={data.text} alt="GIF" className="gif-message" />
+          ) : (
+            <div className={messageClass}>{data.text}</div>
+          )}
         </li>
       );
       sameMember = member.id; // here needed to reset to the same value
@@ -72,7 +78,14 @@ export default function Messages({ messages, thisMember }) {
         <li key={id} data-id={member.id}>
           <div>
             <div className="timestamp">{formatTime(timestamp)}</div>
-            <div className={messageClass}>{data.text}</div>
+
+            {/* Check if the message is a gif URL */}
+            {data.text.startsWith("http") && data.text.includes(".gif") ? (
+              <img src={data.text} alt="GIF" className="gif-message" />
+            ) : (
+              <div className={messageClass}>{data.text}</div>
+            )}
+            
           </div>
         </li>
       );

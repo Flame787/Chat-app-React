@@ -7,6 +7,7 @@ import { faFolderOpen } from "@fortawesome/free-regular-svg-icons";
 
 // NEW - EMOJIS:
 import Picker from "emoji-picker-react";
+import Giphy from "./Giphy";
 
 export default function Input({ sendMessage, thisMember }) {
   // thisMember - me / the person from whose perspective we are currently seing the chat (user-perspective)
@@ -33,6 +34,9 @@ export default function Input({ sendMessage, thisMember }) {
   // NEW - EMOJIS:
   const [showPicker, setShowPicker] = useState(false);
 
+  // NEW - GIFS (API):
+  const [showGifPicker, setShowGifPicker] = useState(false);
+
   let nameInput;
 
   function updateInput(e) {
@@ -54,6 +58,11 @@ export default function Input({ sendMessage, thisMember }) {
   //   names: ["smiley"],
   //   ...
   // }
+
+  const handleGifSelect = (gifUrl) => {
+    sendMessage(gifUrl);
+    setShowGifPicker(false);
+  };
 
   function publishInput(e) {
     e.preventDefault();
@@ -111,7 +120,11 @@ export default function Input({ sendMessage, thisMember }) {
                 <FontAwesomeIcon icon={faFaceSmile} /> emoji
               </button>
 
-              <button className="input-button file-button" type="button">
+              <button
+                className="input-button file-button"
+                type="button"
+                onClick={() => setShowGifPicker(!showGifPicker)}
+              >
                 <FontAwesomeIcon icon={faFilm} /> gif
               </button>
               <button className="input-button file-button" type="button">
@@ -131,6 +144,11 @@ export default function Input({ sendMessage, thisMember }) {
       {showPicker && (
         <div className="emoji-picker-container">
           <Picker onEmojiClick={addEmoji} />
+        </div>
+      )}
+      {showGifPicker && (
+        <div className="gif-picker-container">
+          <Giphy onGifSelect={handleGifSelect} />
         </div>
       )}
     </div>
