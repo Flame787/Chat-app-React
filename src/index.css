@@ -421,6 +421,30 @@ hr {
   font-family: "Nunito Sans", sans-serif;
 }
 
+.gif-search-input{
+  width: 10%;
+  margin-left: 250px;
+  padding: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: rgba(165, 221, 249, 0.573) !important;
+  border-color: rgba(52, 150, 203, 0.758) !important;
+  font-size: 0.85rem;
+  font-family: "Rubik", sans-serif;
+}
+
+.giphy-grid {
+  margin-left: 150px;
+}
+
+.no-gifs-found{
+  margin-left: 250px;
+  font-size: 0.85rem;
+  font-family: "Rubik", sans-serif;
+  color: rgb(109, 108, 108);
+}
+
 .send-button:hover {
   transform: scale(1.1);
   font-size: 14px;
@@ -683,12 +707,32 @@ hr {
   }
 }
 
+@media (max-width: 800px) {
+  .gif-search-input{
+    width: 15%;
+    margin-left: 200px;
+  }
+  .giphy-grid {
+    margin-left: 150px;
+  }
+  
+  .no-gifs-found{
+    margin-left: 200px;
+  }
+}
+
 @media (max-width: 730px) {
   .message-input {
     margin-left: 0;
   }
   .avatar-image {
     width: 14%;
+  }
+}
+
+@media (max-width: 674px) {
+  .emoji-picker-container {
+    margin-left: 100px;
   }
 }
 
@@ -702,13 +746,26 @@ hr {
   .author {
     margin-left: 30px;
   }
-}
+  .gif-search-input{
+    width: 20%;
+    margin-left: 100px;
+  }
 
-@media (max-width: 674px) {
-  .emoji-picker-container {
+  .giphy-grid {
+    margin-left: 150px;
+  }
+  
+  .no-gifs-found{
     margin-left: 100px;
   }
 }
+
+@media (max-width: 575px) {
+  .footer {
+    flex-direction: column;
+  }
+}
+
 
 @media (max-width: 500px) {
   .buttons {
@@ -718,12 +775,6 @@ hr {
     .emoji-picker-container {
       margin-left: 10px;
     }
-  }
-}
-
-@media (max-width: 575px) {
-  .footer {
-    flex-direction: column;
   }
 }
 
@@ -748,6 +799,18 @@ hr {
   }
   .emoji-picker-container {
     margin-left: 10px;
+  }
+  .gif-search-input{
+    width: 25%;
+    margin-left: 50px;
+  }
+  .gif-search-input{
+    width: 20%;
+    margin-left: 100px;
+  }
+
+  .giphy-grid {
+    margin-left: 150px;
   }
 }
 
