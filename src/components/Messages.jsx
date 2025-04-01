@@ -3,6 +3,12 @@ import { useState, useEffect, useRef } from "react";
 export default function Messages({ messages, thisMember }) {
   //thisMember - the person from whose perspective we are currently seing the chat (user-perspective)
 
+  const supabaseUrl = process.env.REACT_APP_BASE_URL;
+  // const storageUrl = process.env.REACT_APP_STORAGE_URL;
+
+  console.log("supabaseUrl", supabaseUrl);
+  // console.log("storageUrl", storageUrl);
+
   let sameMember = "";
   // variable which tracks the ID of the member, who has last published a message in chat.
   // If another member with different ID publishes a message, then sameMember gets this new ID, and component also
@@ -65,10 +71,36 @@ export default function Messages({ messages, thisMember }) {
           <div className="timestamp">{formatTime(timestamp)}</div>
 
           {/* Check if the message is a gif-URL */}
-          {data.text.startsWith("http") && data.text.includes(".gif") ? (
+          {/* {data.text.startsWith("http") && data.text.includes(".gif") ? (
             <img src={data.text} alt="GIF" className="gif-message" />
           ) : (
             <div className={messageClass}>{data.text}</div>
+          )} */}
+          {typeof data.text === "string" && data.text.startsWith("http") ? (
+            data.text.includes(".gif") ? (
+              <img src={data.text} alt="GIF" className="gif-message" />
+            ) : (
+              <img
+                src={data.text}
+                alt="Uploaded file"
+                className="uploaded-file"
+              />
+            )
+          ) : data.path && data.path.startsWith("public/") ? (
+            <div>
+              <a
+                // src={`${storageUrl}/${data.path}`}   // Full URL for file
+                href={`${supabaseUrl}/storage/v1/object/mystorage/${data.path}`}
+                download
+                className="uploaded-file download-link"
+              >
+                Download File
+              </a>
+            </div>
+          ) : (
+            <div className={messageClass}>
+              {data.text || "No text available for this message"}
+            </div>
           )}
         </li>
       );
@@ -80,12 +112,43 @@ export default function Messages({ messages, thisMember }) {
             <div className="timestamp">{formatTime(timestamp)}</div>
 
             {/* Check if the message is a gif URL */}
-            {data.text.startsWith("http") && data.text.includes(".gif") ? (
+            {/* {data.text.startsWith("http") && data.text.includes(".gif") ? (
               <img src={data.text} alt="GIF" className="gif-message" />
             ) : (
               <div className={messageClass}>{data.text}</div>
+            )} */}
+
+            {typeof data.text === "string" && data.text.startsWith("http") ? (
+              data.text.includes(".gif") ? (
+                <img src={data.text} alt="GIF" className="gif-message" />
+              ) : (
+                <img
+                  src={data.text}
+                  alt="Uploaded file"
+                  className="uploaded-file"
+                />
+              )
+            ) : data.path && data.path.startsWith("public/") ? (
+              <div>
+                <a
+                  // src={`${storageUrl}/${data.path}`}   // Full URL for file
+                  href={`${supabaseUrl}/storage/v1/object/mystorage/${data.path}`}
+                  download
+                  className="uploaded-file download-link"
+                />
+              </div>
+            ) : (
+              <div className={messageClass}>
+                {/* {data.text || "No text available for this message"} */}
+
+                <a
+                  // src={`${storageUrl}/${data.path}`}   // Full URL for file
+                  href={`${supabaseUrl}/storage/v1/object/mystorage/${data.path}`}
+                  download
+                  className="uploaded-file download-link"
+                />
+              </div>
             )}
-            
           </div>
         </li>
       );

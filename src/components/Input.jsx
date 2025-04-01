@@ -5,6 +5,10 @@ import { faFaceSmile } from "@fortawesome/free-solid-svg-icons";
 import { faFilm } from "@fortawesome/free-solid-svg-icons";
 import { faFolderOpen } from "@fortawesome/free-regular-svg-icons";
 import FileUpload from "./FileUpload";
+import FileDownload from "./FileDownload";
+
+import { uploadFile } from "../supabaseClient";
+import { supabase } from "../supabaseClient"; 
 
 // NEW - EMOJIS:
 import Picker from "emoji-picker-react";
@@ -85,6 +89,25 @@ export default function Input({ sendMessage, thisMember }) {
     }
   };
 
+  // NEW: upload logic:
+  const handleFileUpload = async (file) => {
+    const uploadResult = await uploadFile(file);
+    console.log("Upload result:", uploadResult);
+    if (uploadResult) {
+      const filePath = uploadResult.Key || uploadResult.path;
+      // generate full path to the item in the base:
+      const { publicURL, error } = supabase.storage
+        .from("mystorage")
+        .getPublicUrl(filePath);
+
+      if (error) {
+        console.error("Error generating public URL:", error);
+      } else {
+        sendMessage(publicURL); // send link/id of the file in a message
+      }
+    }
+  };
+
   return (
     <div className="input-down">
       <form onSubmit={publishInput} className="flex-message">
@@ -133,10 +156,9 @@ export default function Input({ sendMessage, thisMember }) {
                 <FontAwesomeIcon icon={faFolderOpen} /> file/img
               </button> */}
 
-              <FileUpload />
-
+              <FileUpload onFileSelect={handleFileUpload} />
             </div>
-            
+
             <button
               className="input-button send-button"
               type="button"
