@@ -8,7 +8,7 @@ import FileUpload from "./FileUpload";
 import FileDownload from "./FileDownload";
 
 import { uploadFile } from "../supabaseClient";
-import { supabase } from "../supabaseClient"; 
+import { supabase } from "../supabaseClient";
 
 // NEW - EMOJIS:
 import Picker from "emoji-picker-react";
@@ -92,16 +92,23 @@ export default function Input({ sendMessage, thisMember }) {
   // NEW: upload logic:
   const handleFileUpload = async (file) => {
     const uploadResult = await uploadFile(file);
-    console.log("Upload result:", uploadResult);
+    console.log("Upload result:", uploadResult); // THIS SHOWS IN THE CONSOLE!
     if (uploadResult) {
       const filePath = uploadResult.Key || uploadResult.path;
       // generate full path to the item in the base:
       const { publicURL, error } = supabase.storage
         .from("mystorage")
         .getPublicUrl(filePath);
+      // NEW
 
       if (error) {
-        console.error("Error generating public URL:", error);
+        console.error("Error getting public URL:", error.message);
+      } else {
+        console.log("Public URL:", publicURL);
+      } // publicURL = UNDEFINED!
+
+      if (error) {
+        console.error("Error generating public URL:", error); // NO ERROR SHOWING UP THOUGH.
       } else {
         sendMessage(publicURL); // send link/id of the file in a message
       }

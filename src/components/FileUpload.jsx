@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolderOpen } from "@fortawesome/free-regular-svg-icons";
 
 export default function FileUpload({ onFileSelect }) {
-
   const [file, setFile] = useState(null);
 
   const fileInputRef = useRef(null);
@@ -18,20 +17,27 @@ export default function FileUpload({ onFileSelect }) {
     }
   };
 
+  const [uploadStatus, setUploadStatus] = useState("");
+
   const handleUpload = async () => {
     console.log("Upload button clicked");
     if (file) {
       const uploadedData = await uploadFile(file);
       if (uploadedData) {
-        console.log("File uploaded successfully:", uploadedData);
+        console.log("File uploaded successfully:", uploadedData);     
+        setUploadStatus("File uploaded successfully!");
+      } else {
+        setUploadStatus("File upload failed!");    
       }
     } else {
       console.log("No file selected");
+      setUploadStatus("No file selected.");
     }
   };
 
   const triggerFileInput = () => {
-    fileInputRef.current.click();
+    fileInputRef.current.click();    // THIS ACCTUALLY PUBLISHED THE FILE (NOT UPLOAD-FILE-BUTTON)
+    handleUpload();
   };
 
   return (
@@ -53,7 +59,7 @@ export default function FileUpload({ onFileSelect }) {
         <FontAwesomeIcon icon={faFolderOpen} /> file/img
       </button>
       {/* this renders only if user has selected a file for upload: */}
-      {file && (
+      {/* {file && (
         <button
           className="input-button upload-button"
           type="button"
@@ -61,7 +67,9 @@ export default function FileUpload({ onFileSelect }) {
         >
           Upload File
         </button>
-      )}
+      )} */}
+      {uploadStatus && <p>{uploadStatus}</p>}
+      {/* UPLOAD STATUS NOT SHOEING UP IN THE CONSOLE AT ALL, NO CONSOLE-MESSAGE FROM THIS COMPONENT! */}
     </>
   );
 }

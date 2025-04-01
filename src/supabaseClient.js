@@ -9,15 +9,15 @@ export const supabase = createClient(supabaseUrl, supabaseKey);
 export const uploadFile = async (file) => {
   const { data, error } = await supabase.storage
     .from("mystorage") // bucket name
-    .upload(`public/${file.name}`, file); // bucket path
+    .upload(`public/${Date.now()}_${file.name}`, file); // bucket path
 
   if (error) {
     console.error("Error uploading file:", error.message);
     return null;
   }
 
-  console.log("File uploaded:", data);
-  return data;
+  console.log("File uploaded:", data);   // THIS IS SUCCESFUL - FILE PICKED + ENTER, MESSAGE IS SHOWN IN THE CONSOLE.
+  return data;                         // THIS SHOWS EVEN BEFORE THE UPDATE-FILE-BUTTON WAS CLICKED.
 };
 
 // download data:

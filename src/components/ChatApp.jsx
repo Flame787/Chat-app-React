@@ -70,6 +70,7 @@ export default function ChatApp() {
               message: {
                 text: `${chat.member.username} has joined the chat.`,
                 type: "user-joined",
+                path: ""
               },
             });
           }
@@ -122,6 +123,7 @@ export default function ChatApp() {
                 message: {
                   text: `${member.clientData.username} has left the chat.`,
                   type: "user-left",
+                  path: ""
                 },
               });
             }
@@ -141,6 +143,7 @@ export default function ChatApp() {
       message: {
         text: message,
         type: "user-message",
+        path: "",
       },
     });
   }

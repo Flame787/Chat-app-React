@@ -80,23 +80,17 @@ export default function Messages({ messages, thisMember }) {
             data.text.includes(".gif") ? (
               <img src={data.text} alt="GIF" className="gif-message" />
             ) : (
-              <img
-                src={data.text}
-                alt="Uploaded file"
-                className="uploaded-file"
-              />
+              <div>
+                <a
+                  // src={`${storageUrl}/${data.path}`}   // Full URL for file
+                  href={`${supabaseUrl}/storage/v1/object/mystorage/${data.path}`}
+                  download
+                  className="uploaded-file download-link"
+                >
+                  Download File
+                </a>
+              </div>
             )
-          ) : data.path && data.path.startsWith("public/") ? (
-            <div>
-              <a
-                // src={`${storageUrl}/${data.path}`}   // Full URL for file
-                href={`${supabaseUrl}/storage/v1/object/mystorage/${data.path}`}
-                download
-                className="uploaded-file download-link"
-              >
-                Download File
-              </a>
-            </div>
           ) : (
             <div className={messageClass}>
               {data.text || "No text available for this message"}
@@ -122,33 +116,34 @@ export default function Messages({ messages, thisMember }) {
               data.text.includes(".gif") ? (
                 <img src={data.text} alt="GIF" className="gif-message" />
               ) : (
-                <img
-                  src={data.text}
-                  alt="Uploaded file"
-                  className="uploaded-file"
-                />
+                <div>
+                  <a
+                    // THIS HERE DOESN'T WORK:
+                    href={`${supabaseUrl}/storage/v1/object/mystorage/${data.path}`}  
+                    download
+                    className="uploaded-file download-link"
+                  >
+                    Download File
+                  </a>
+                </div>
               )
-            ) : data.path && data.path.startsWith("public/") ? (
-              <div>
-                <a
-                  // src={`${storageUrl}/${data.path}`}   // Full URL for file
-                  href={`${supabaseUrl}/storage/v1/object/mystorage/${data.path}`}
-                  download
-                  className="uploaded-file download-link"
-                />
-              </div>
             ) : (
               <div className={messageClass}>
-                {/* {data.text || "No text available for this message"} */}
-
+                {data.text || (
+              <div>
                 <a
-                  // src={`${storageUrl}/${data.path}`}   // Full URL for file
+                  // SHOWS ONLY UNTIL ...v1/object/mystorage/, then nothing, PATH MISSING! - cannot be downloaded
                   href={`${supabaseUrl}/storage/v1/object/mystorage/${data.path}`}
                   download
                   className="uploaded-file download-link"
-                />
+                >
+                  Download File
+                </a>
               </div>
             )}
+              </div>
+            )}
+
           </div>
         </li>
       );
