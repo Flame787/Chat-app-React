@@ -88,7 +88,7 @@ export default function Giphy({ onGifSelect }) {
       />
 
       {error && <p>{error}</p>}
-      {loading && <p>Loading...</p>}
+      {loading && <p className="gif-loading">Loading...</p>}
       {gifs.length === 0 && !loading && <p className="no-gifs-found">No GIFs found.</p>}
 
       <Grid

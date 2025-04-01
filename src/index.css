@@ -7,7 +7,7 @@ body {
 
 body {
   /* height: 100%; */
-  letter-spacing: 0.3px;
+  /* letter-spacing: 0.3px; */
   font-family: ReithSerif, Helvetica, Arial, freesans, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -311,22 +311,23 @@ hr {
   margin: 30px 0;
   padding: 10px 15px;
   font-weight: 600;
-  font-size: 16px;
+  /* font-size: 16px; */
   font-size: 1rem;
   font-family: "Open Sans", sans-serif;
-  letter-spacing: 1px;
+  /* letter-spacing: 1px; */
   /* border-top-left-radius: 15px;
   border-bottom-right-radius: 15px; */
-  border-radius: 3px;
-  border-color: rgb(138, 177, 199);
-  box-shadow: 2px 2px 2px rgb(84, 83, 83);
+  border-radius: 5px;
+  border-color: rgb(24, 79, 111);
+  box-shadow: 2px 2px 2px rgb(10, 59, 108);
   background-color: rgb(25, 123, 180);
   color: white;
 }
 
 .registration-button {
   background-color: rgb(10, 161, 221);
-  border-color: rgb(156, 194, 216);
+  border-color: rgb(99, 184, 234);
+  /* border-color: rgb(24, 79, 111); */
   padding: 3px 40px;
 }
 
@@ -438,11 +439,19 @@ hr {
   margin-left: 150px;
 }
 
+.gif-loading{
+  margin-left: 150px;
+}
+
 .no-gifs-found{
   margin-left: 250px;
   font-size: 0.85rem;
   font-family: "Rubik", sans-serif;
   color: rgb(109, 108, 108);
+}
+
+.add-files{
+  display: none;
 }
 
 .send-button:hover {
