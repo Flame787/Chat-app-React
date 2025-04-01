@@ -4,6 +4,7 @@ import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { faFaceSmile } from "@fortawesome/free-solid-svg-icons";
 import { faFilm } from "@fortawesome/free-solid-svg-icons";
 import { faFolderOpen } from "@fortawesome/free-regular-svg-icons";
+import FileUpload from "./FileUpload";
 
 // NEW - EMOJIS:
 import Picker from "emoji-picker-react";
@@ -127,10 +128,15 @@ export default function Input({ sendMessage, thisMember }) {
               >
                 <FontAwesomeIcon icon={faFilm} /> gif
               </button>
-              <button className="input-button file-button" type="button">
+
+              {/* <button className="input-button file-button" type="button">
                 <FontAwesomeIcon icon={faFolderOpen} /> file/img
-              </button>
+              </button> */}
+
+              <FileUpload />
+
             </div>
+            
             <button
               className="input-button send-button"
               type="button"
