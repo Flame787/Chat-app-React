@@ -89,7 +89,7 @@ export default function Input({ sendMessage, thisMember }) {
     }
   };
 
-  // NEW: upload logic:
+  // NEW: upload logic: 
   const handleFileUpload = async (file) => {
     const uploadResult = await uploadFile(file);
     console.log("Upload result:", uploadResult); // THIS SHOWS IN THE CONSOLE!
