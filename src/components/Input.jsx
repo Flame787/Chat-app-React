@@ -18,9 +18,7 @@ export default function Input({ sendMessage, thisMember }) {
   // thisMember - me / the person from whose perspective we are currently seing the chat (user-perspective)
   // = chat.member; has properties: username & avatar
 
-  // Emoji access-key and emoji-uri:
-  // const EMOJI_KEY = process.env.REACT_APP_EMOJI_KEY;
-  // const EMOJI_URI = `https://emoji-api.com/emojis?access_key=${EMOJI_KEY}`;
+  const storageUrl = process.env.REACT_APP_STORAGE_URL;
 
   const placeholder = [
     "Enter your message...",
@@ -41,6 +39,9 @@ export default function Input({ sendMessage, thisMember }) {
 
   // NEW - GIFS (API):
   const [showGifPicker, setShowGifPicker] = useState(false);
+
+  // NEW - FILES for upload:
+  const [fileName, setFileName] = useState("");
 
   let nameInput;
 
@@ -89,31 +90,54 @@ export default function Input({ sendMessage, thisMember }) {
     }
   };
 
-  // NEW: upload logic: 
+  // NEW: upload logic:
   const handleFileUpload = async (file) => {
     const uploadResult = await uploadFile(file);
+
     console.log("Upload result:", uploadResult); // THIS SHOWS IN THE CONSOLE!
+
+    if (!uploadResult || !uploadResult.path) {
+      console.error("Upload result is missing path!", uploadResult);
+      return;
+    }
+
+    const fileLink = `${storageUrl}/public/mystorage/${uploadResult.path}`;
+
     if (uploadResult) {
-      const filePath = uploadResult.Key || uploadResult.path;
-      // generate full path to the item in the base:
-      const { publicURL, error } = supabase.storage
-        .from("mystorage")
-        .getPublicUrl(filePath);
-      // NEW
+      // const filePath = uploadResult.Key || uploadResult.path;
+      console.log(
+        "Upload result - path (format: 'public/timestamp_name): ",
+        uploadResult.path
+      );
+      console.log("File link - complete:", fileLink);
 
-      if (error) {
-        console.error("Error getting public URL:", error.message);
-      } else {
-        console.log("Public URL:", publicURL);
-      } // publicURL = UNDEFINED!
+      // // generate full path to the item in the base:
+      // const { publicURL, error } = supabase.storage
+      //   .from("mystorage")
+      //   .getPublicUrl(filePath);
+      // // NEW
 
-      if (error) {
-        console.error("Error generating public URL:", error); // NO ERROR SHOWING UP THOUGH.
-      } else {
-        sendMessage(publicURL); // send link/id of the file in a message
-      }
+      // if (error) {
+      //   console.error("Error getting public URL:", error.message);
+      // } else {
+      //   console.log("Public URL:", publicURL);
+      //   console.log(
+      //     "Upload result - path (format: 'public/timestamp/name): ",
+      //     uploadResult.path
+      //   );
+      // } // publicURL = UNDEFINED!
+
+      // sendMessage(publicURL); // send link/id of the file in a message
+      setTimeout(() => {
+        console.log("Sending file link after delay:", fileLink);
+        sendMessage(fileLink);
+    }, 500);
     }
   };
+
+  // if (error) {
+  //   console.error("Error generating public URL:", error); // NO ERROR SHOWING UP THOUGH.
+  // }
 
   return (
     <div className="input-down">

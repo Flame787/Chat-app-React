@@ -10,10 +10,11 @@ export default function FileUpload({ onFileSelect }) {
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
+    console.log("selectedFile in FileUpload component: ", selectedFile);
     setFile(selectedFile);
 
     if (onFileSelect) {
-      onFileSelect(selectedFile); // calling the prop-function
+      onFileSelect(selectedFile); // calling the prop-function and passing the selectedFile
     }
   };
 
@@ -24,7 +25,7 @@ export default function FileUpload({ onFileSelect }) {
     if (file) {
       const uploadedData = await uploadFile(file);
       if (uploadedData) {
-        console.log("File uploaded successfully:", uploadedData);     
+        console.log("File uploaded successfully in FileUpload component:", uploadedData);     
         setUploadStatus("File uploaded successfully!");
       } else {
         setUploadStatus("File upload failed!");    
