@@ -3,9 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { faFaceSmile } from "@fortawesome/free-solid-svg-icons";
 import { faFilm } from "@fortawesome/free-solid-svg-icons";
-import { faFolderOpen } from "@fortawesome/free-regular-svg-icons";
 import FileUpload from "./FileUpload";
-import FileDownload from "./FileDownload";
 
 import { uploadFile } from "../supabaseClient";
 // import { supabase } from "../supabaseClient";
@@ -94,14 +92,14 @@ export default function Input({ sendMessage, thisMember }) {
   const handleFileUpload = async (file) => {
     const uploadResult = await uploadFile(file);
 
-    console.log("Upload result:", uploadResult); // THIS SHOWS IN THE CONSOLE!
+    console.log("Upload result:", uploadResult); 
 
     if (!uploadResult || !uploadResult.path) {
       console.error("Upload result is missing path!", uploadResult);
       return;
     }
 
-    const fileLink = `${storageUrl}/public/mystorage/${uploadResult.path}`;
+    const fileLink = `${storageUrl}public/mystorage/${uploadResult.path}`;
 
     if (uploadResult) {
       console.log(
@@ -110,13 +108,9 @@ export default function Input({ sendMessage, thisMember }) {
       );
       console.log("File link - complete:", fileLink);
 
-      // setTimeout(() => {
-      //   console.log("Sending file link after delay:", fileLink);
-      //   sendMessage(fileLink);
-      // }, 500);
-
       console.log("Sending file link:", fileLink);
-        sendMessage(fileLink);
+      // publishing message, which contains the file-link:
+        sendMessage(fileLink);      
 
     } else {
       console.error("Error generating public URL:", new Error("Upload failed"));

@@ -55,7 +55,7 @@ code {
 }
 
 .header-div:hover {
-  top: 0; 
+  top: 0;
 }
 
 .header1,
@@ -303,7 +303,7 @@ h1 {
 hr {
   border: none; /* Uklanja border */
   height: 1px;
-  background-color: rgba(52, 150, 203, 0.758); 
+  background-color: rgba(52, 150, 203, 0.758);
 }
 
 .input-button,
@@ -405,24 +405,24 @@ hr {
   border-color: rgba(52, 150, 203, 0.758) !important;
 }
 
-.epr-main input{
+.epr-main input {
   border-color: rgba(52, 150, 203, 0.758) !important;
   font-size: 0.8rem;
   font-family: "Nunito Sans", sans-serif;
 }
 
-.epr-main h2{
+.epr-main h2 {
   color: rgba(52, 150, 203, 0.758) !important;
   font-size: 0.8rem;
   font-family: "Nunito Sans", sans-serif;
 }
 
-.epr_-99h9r1.epr_-egzoqq{
+.epr_-99h9r1.epr_-egzoqq {
   font-size: 0.8rem;
   font-family: "Nunito Sans", sans-serif;
 }
 
-.gif-search-input{
+.gif-search-input {
   width: 10%;
   margin-left: 250px;
   padding: 8px;
@@ -439,19 +439,34 @@ hr {
   margin-left: 150px;
 }
 
-.gif-loading{
+.gif-loading {
   margin-left: 150px;
 }
 
-.no-gifs-found{
+.no-gifs-found {
   margin-left: 250px;
   font-size: 0.85rem;
   font-family: "Rubik", sans-serif;
   color: rgb(109, 108, 108);
 }
 
-.add-files{
+.add-files {
   display: none;
+}
+
+.file-link,
+.file-link-supabase {
+  text-decoration: none !important;
+  font-family: "Rubik", sans-serif;
+  color: rgb(25, 123, 180);
+}
+
+.file-link{
+  color: black;
+}
+
+.file-link-supabase:hover {
+  color: rgb(9, 62, 93);
 }
 
 .send-button:hover {
@@ -717,15 +732,15 @@ hr {
 }
 
 @media (max-width: 800px) {
-  .gif-search-input{
+  .gif-search-input {
     width: 15%;
     margin-left: 200px;
   }
   .giphy-grid {
     margin-left: 150px;
   }
-  
-  .no-gifs-found{
+
+  .no-gifs-found {
     margin-left: 200px;
   }
 }
@@ -755,7 +770,7 @@ hr {
   .author {
     margin-left: 30px;
   }
-  .gif-search-input{
+  .gif-search-input {
     width: 20%;
     margin-left: 100px;
   }
@@ -763,8 +778,8 @@ hr {
   .giphy-grid {
     margin-left: 150px;
   }
-  
-  .no-gifs-found{
+
+  .no-gifs-found {
     margin-left: 100px;
   }
 }
@@ -774,7 +789,6 @@ hr {
     flex-direction: column;
   }
 }
-
 
 @media (max-width: 500px) {
   .buttons {
@@ -809,11 +823,11 @@ hr {
   .emoji-picker-container {
     margin-left: 10px;
   }
-  .gif-search-input{
+  .gif-search-input {
     width: 25%;
     margin-left: 50px;
   }
-  .gif-search-input{
+  .gif-search-input {
     width: 20%;
     margin-left: 100px;
   }

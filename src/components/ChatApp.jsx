@@ -69,8 +69,8 @@ export default function ChatApp() {
               room: "observable-room",
               message: {
                 text: `${chat.member.username} has joined the chat.`,
-                type: "user-joined",
-                path: ""
+                type: "user-joined"
+                
               },
             });
           }
@@ -122,8 +122,8 @@ export default function ChatApp() {
                 room: "observable-room",
                 message: {
                   text: `${member.clientData.username} has left the chat.`,
-                  type: "user-left",
-                  path: ""
+                  type: "user-left"
+                  
                 },
               });
             }
@@ -143,7 +143,7 @@ export default function ChatApp() {
       message: {
         text: message,
         type: "user-message",
-        path: "",
+        
       },
     });
   }

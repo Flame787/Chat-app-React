@@ -27,7 +27,7 @@ export default function FileUpload({ onFileSelect }) {
       onFileSelect(selectedFile); // calling the prop-function and passing the selectedFile
     }
 
-    // start upload when file is selected:
+    // starts UPLOAD when file is selected:
     if (selectedFile) {
       handleUpload(selectedFile);
     }
@@ -39,7 +39,7 @@ export default function FileUpload({ onFileSelect }) {
       const uploadedData = await uploadFile(selectedFile);
       if (uploadedData) {
         console.log(
-          "File uploaded successfully in FileUpload component:",
+          "File uploaded successfully in FileUpload component:",  
           uploadedData
         );
         setUploadStatus("File uploaded successfully!");
@@ -50,7 +50,7 @@ export default function FileUpload({ onFileSelect }) {
       console.log("No file selected");
       setUploadStatus("No file selected.");
     }
-    // Reset uploadStatus after 5 seconds
+    // Reset uploadStatus after 3 seconds
     setTimeout(() => {
       setUploadStatus("");
     }, 3000);

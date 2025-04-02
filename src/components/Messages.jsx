@@ -65,11 +65,32 @@ export default function Messages({ messages, thisMember }) {
           <div className="timestamp">{formatTime(timestamp)}</div>
 
           {/* Check if the message is a gif-URL */}
-          {data.text.startsWith("http") && data.text.includes(".gif") ? (
+          {/* {data.text.startsWith("http") && data.text.includes(".gif") ? (
             <img src={data.text} alt="GIF" className="gif-message" />
           ) : (
             <div className={messageClass}>{data.text}</div>
-          )}
+          )} */}
+          {data.text.startsWith("http") && data.text.includes(".gif") ? (
+              <img src={data.text} alt="GIF" className="gif-message" />
+            ) : data.text.startsWith("http") &&
+              data.text.includes(".supabase.co") ? (
+              <div className={messageClass}>
+                <a
+                  href={data.text}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="file-link"
+                >
+                  Uploaded file:{" "}
+                  <span className="file-link-supabase">{data.text}</span>
+                </a>
+              </div>
+            ) : (
+              <div className={messageClass}>{data.text}</div>
+            )}
+
+
+
         </li>
       );
       sameMember = member.id; // here needed to reset to the same value
@@ -80,12 +101,31 @@ export default function Messages({ messages, thisMember }) {
             <div className="timestamp">{formatTime(timestamp)}</div>
 
             {/* Check if the message is a gif URL */}
-            {data.text.startsWith("http") && data.text.includes(".gif") ? (
+            {/* {data.text.startsWith("http") && data.text.includes(".gif") ? (
               <img src={data.text} alt="GIF" className="gif-message" />
             ) : (
               <div className={messageClass}>{data.text}</div>
+            )} */}
+            {data.text.startsWith("http") && data.text.includes(".gif") ? (
+              <img src={data.text} alt="GIF" className="gif-message" />
+            ) : data.text.startsWith("http") &&
+              data.text.includes(".supabase.co") ? (
+              <div className={messageClass}>
+                <a
+                  href={data.text}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="file-link"
+                >
+                  Uploaded file:{" "}
+                  <span className="file-link-supabase">{data.text}</span>
+                </a>
+              </div>
+            ) : (
+              <div className={messageClass}>{data.text}</div>
             )}
-            
+
+
           </div>
         </li>
       );
