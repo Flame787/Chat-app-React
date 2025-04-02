@@ -8,7 +8,7 @@ import FileUpload from "./FileUpload";
 import FileDownload from "./FileDownload";
 
 import { uploadFile } from "../supabaseClient";
-import { supabase } from "../supabaseClient";
+// import { supabase } from "../supabaseClient";
 
 // NEW - EMOJIS:
 import Picker from "emoji-picker-react";
@@ -41,7 +41,7 @@ export default function Input({ sendMessage, thisMember }) {
   const [showGifPicker, setShowGifPicker] = useState(false);
 
   // NEW - FILES for upload:
-  const [fileName, setFileName] = useState("");
+  // const [fileName, setFileName] = useState("");
 
   let nameInput;
 
@@ -104,40 +104,24 @@ export default function Input({ sendMessage, thisMember }) {
     const fileLink = `${storageUrl}/public/mystorage/${uploadResult.path}`;
 
     if (uploadResult) {
-      // const filePath = uploadResult.Key || uploadResult.path;
       console.log(
         "Upload result - path (format: 'public/timestamp_name): ",
         uploadResult.path
       );
       console.log("File link - complete:", fileLink);
 
-      // // generate full path to the item in the base:
-      // const { publicURL, error } = supabase.storage
-      //   .from("mystorage")
-      //   .getPublicUrl(filePath);
-      // // NEW
+      // setTimeout(() => {
+      //   console.log("Sending file link after delay:", fileLink);
+      //   sendMessage(fileLink);
+      // }, 500);
 
-      // if (error) {
-      //   console.error("Error getting public URL:", error.message);
-      // } else {
-      //   console.log("Public URL:", publicURL);
-      //   console.log(
-      //     "Upload result - path (format: 'public/timestamp/name): ",
-      //     uploadResult.path
-      //   );
-      // } // publicURL = UNDEFINED!
-
-      // sendMessage(publicURL); // send link/id of the file in a message
-      setTimeout(() => {
-        console.log("Sending file link after delay:", fileLink);
+      console.log("Sending file link:", fileLink);
         sendMessage(fileLink);
-    }, 500);
+
+    } else {
+      console.error("Error generating public URL:", new Error("Upload failed"));
     }
   };
-
-  // if (error) {
-  //   console.error("Error generating public URL:", error); // NO ERROR SHOWING UP THOUGH.
-  // }
 
   return (
     <div className="input-down">

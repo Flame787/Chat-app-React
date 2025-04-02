@@ -6,39 +6,59 @@ import { faFolderOpen } from "@fortawesome/free-regular-svg-icons";
 export default function FileUpload({ onFileSelect }) {
   const [file, setFile] = useState(null);
 
+  const [uploadStatus, setUploadStatus] = useState("");
+
   const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     console.log("selectedFile in FileUpload component: ", selectedFile);
+
+    // if no file selected (but cancelled instead):
+    if (!selectedFile) {
+      setFile(null);
+      setUploadStatus(""); 
+      return; 
+    }
+
     setFile(selectedFile);
 
     if (onFileSelect) {
       onFileSelect(selectedFile); // calling the prop-function and passing the selectedFile
     }
+
+    // start upload when file is selected:
+    if (selectedFile) {
+      handleUpload(selectedFile);
+    }
   };
 
-  const [uploadStatus, setUploadStatus] = useState("");
-
-  const handleUpload = async () => {
+  const handleUpload = async (selectedFile) => {
     console.log("Upload button clicked");
-    if (file) {
-      const uploadedData = await uploadFile(file);
+    if (selectedFile) {
+      const uploadedData = await uploadFile(selectedFile);
       if (uploadedData) {
-        console.log("File uploaded successfully in FileUpload component:", uploadedData);     
+        console.log(
+          "File uploaded successfully in FileUpload component:",
+          uploadedData
+        );
         setUploadStatus("File uploaded successfully!");
       } else {
-        setUploadStatus("File upload failed!");    
+        setUploadStatus("File upload failed!");
       }
     } else {
       console.log("No file selected");
       setUploadStatus("No file selected.");
     }
+    // Reset uploadStatus after 5 seconds
+    setTimeout(() => {
+      setUploadStatus("");
+    }, 3000);
   };
 
   const triggerFileInput = () => {
-    fileInputRef.current.click();    // THIS ACCTUALLY PUBLISHED THE FILE (NOT UPLOAD-FILE-BUTTON)
-    handleUpload();
+    fileInputRef.current.click();
+    // handleUpload();
   };
 
   return (
@@ -59,18 +79,8 @@ export default function FileUpload({ onFileSelect }) {
       >
         <FontAwesomeIcon icon={faFolderOpen} /> file/img
       </button>
-      {/* this renders only if user has selected a file for upload: */}
-      {/* {file && (
-        <button
-          className="input-button upload-button"
-          type="button"
-          onClick={handleUpload}
-        >
-          Upload File
-        </button>
-      )} */}
+
       {uploadStatus && <p>{uploadStatus}</p>}
-      {/* UPLOAD STATUS NOT SHOEING UP IN THE CONSOLE AT ALL, NO CONSOLE-MESSAGE FROM THIS COMPONENT! */}
     </>
   );
 }
