@@ -771,9 +771,13 @@ hr {
   }
 }
 
+
 @media (max-width: 674px) {
   .emoji-picker-container {
-    margin-left: 100px;
+    margin-left: 10px;
+  }
+  .giphy-grid {
+    margin-left: 40px;
   }
 }
 
@@ -792,10 +796,6 @@ hr {
     margin-left: 100px;
   }
 
-  .giphy-grid {
-    margin-left: 150px;
-  }
-
   .no-gifs-found {
     margin-left: 100px;
   }
@@ -809,13 +809,9 @@ hr {
 
 @media (max-width: 500px) {
   .buttons {
-    flex-direction: column;
+    flex-direction: row;
   }
-  @media (max-width: 674px) {
-    .emoji-picker-container {
-      margin-left: 10px;
-    }
-  }
+  
 }
 
 @media (max-width: 450px) {
@@ -849,9 +845,6 @@ hr {
     margin-left: 100px;
   }
 
-  .giphy-grid {
-    margin-left: 150px;
-  }
 }
 
 @media (max-width: 291px) {
