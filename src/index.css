@@ -469,6 +469,14 @@ hr {
   color: rgb(9, 62, 93);
 }
 
+.message-from-me .file-link{
+  color: white;
+}
+
+.message-from-me .file-link-supabase{
+  color: rgb(168, 217, 247);
+}
+
 .send-button:hover {
   transform: scale(1.1);
   font-size: 14px;
@@ -572,12 +580,21 @@ hr {
   padding: 10px;
   margin-top: 5px;
   margin-right: 40px;
-  border-top-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   box-shadow: 2px 2px 2px rgb(191, 191, 191);
   max-width: 80vw;
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+.message-from-me{
+  background-color: rgb(56, 146, 199);
+  color: white;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .who-wrote {

@@ -28,11 +28,18 @@ export default function Messages({ messages, thisMember }) {
 
     if (!member) {
       console.warn("Member is null or undefined:", message);
-      // Handle system messages / other cases where member is missing
+      // handle system messages / other cases where member is missing
       return (
         <li key={id}>
           <div>
-            <div className={messageClass}>{data.text}</div>
+            {/* <div className={messageClass}>{data.text}</div> */}
+            <div
+              className={`${messageClass} ${
+                member.id === thisMember.id ? "message-from-me" : ""
+              }`}
+            >
+              {data.text}
+            </div>
           </div>
         </li>
       );
@@ -49,6 +56,10 @@ export default function Messages({ messages, thisMember }) {
         : data.type === "user-message"
         ? "user-message"
         : "";
+
+    // NEW:
+
+    // if (member === thisMember)
 
     if (sameMember !== member.id) {
       listItem = (
@@ -71,29 +82,41 @@ export default function Messages({ messages, thisMember }) {
             <div className={messageClass}>{data.text}</div>
           )} */}
           {data.text.startsWith("http") && data.text.includes(".gif") ? (
-              <img src={data.text} alt="GIF" className="gif-message" />
-            ) : data.text.startsWith("http") &&
-              data.text.includes(".supabase.co") ? (
-              <div className={messageClass}>
-                <a
-                  href={data.text}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="file-link"
-                >
-                  Uploaded file:{" "}
-                  <span className="file-link-supabase">{data.text}</span>
-                </a>
-              </div>
-            ) : (
-              <div className={messageClass}>{data.text}</div>
-            )}
-
-
-
+            <img src={data.text} alt="GIF" className="gif-message" />
+          ) : data.text.startsWith("http") &&
+            data.text.includes(".supabase.co") ? (
+            // <div className={messageClass}>
+            <div
+              className={`${messageClass} ${
+                member.id === thisMember.id ? "message-from-me" : ""
+              }`}
+            >
+              <a
+                href={data.text}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="file-link"
+              >
+                Uploaded file:{" "}
+                <span className="file-link-supabase">{data.text}</span>
+              </a>
+            </div>
+          ) : (
+            // <div className={messageClass}>{data.text}</div>
+            <div
+              className={`${messageClass} ${
+                member.id === thisMember.id ? "message-from-me" : ""
+              }`}
+            >
+              {data.text}
+            </div>
+          )}
         </li>
       );
-      sameMember = member.id; // here needed to reset to the same value
+      sameMember = member.id;
+      // setting the 'sameMember' from initial "" to be the member who wrote this previous, 1st message
+      // next time, it will check if (sameMember !== member.id) -> it will be false (double negative),
+      // then it will jump to this 2nd, 'ELSE'-block (where it doesn't show avatar & usernama for each message):
     } else {
       listItem = (
         <li key={id} data-id={member.id}>
@@ -110,7 +133,12 @@ export default function Messages({ messages, thisMember }) {
               <img src={data.text} alt="GIF" className="gif-message" />
             ) : data.text.startsWith("http") &&
               data.text.includes(".supabase.co") ? (
-              <div className={messageClass}>
+              // <div className={messageClass}>
+              <div
+                className={`${messageClass} ${
+                  member.id === thisMember.id ? "message-from-me" : ""
+                }`}
+              >
                 <a
                   href={data.text}
                   target="_blank"
@@ -122,14 +150,20 @@ export default function Messages({ messages, thisMember }) {
                 </a>
               </div>
             ) : (
-              <div className={messageClass}>{data.text}</div>
+              // <div className={messageClass}>{data.text}</div>
+              <div
+                className={`${messageClass} ${
+                  member.id === thisMember.id ? "message-from-me" : ""
+                }`}
+              >
+                {data.text}
+              </div>
             )}
-
-
           </div>
         </li>
       );
-      sameMember = member.id; // and here needed to reset to the same value
+      sameMember = member.id;
+      // again, setting the 'sameMember' to be the member who wrote this previous message
     }
 
     // rendering system-notifications (who has joined or left chat):
@@ -139,15 +173,15 @@ export default function Messages({ messages, thisMember }) {
         <li key={id}>
           <div>
             <div className={messageClass}>{data.text}</div>
+            
           </div>
         </li>
       );
-      sameMember = ""; // this is correct, showing avatar and username of newcomer members
+      sameMember = "";
+      // reseting, to show avatar and username of members writing next message, including newcomer members
       // sameMember = member.id;  // this is not ok, then it's not showing avatar and username of newcomer members
     } // NEEDED! - without it, it shows avatar for each message from SAME user
-    // it sets member.id to be same as message author after each new message - the evaluation starts again
-
-    // console.log("listItem:", listItem);
+    // it sets member.id to be same as message-author after each new message - the evaluation starts again
 
     return listItem;
   }
