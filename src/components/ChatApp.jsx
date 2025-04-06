@@ -29,6 +29,67 @@ export default function ChatApp() {
 
   const [members, setMembers] = useState([]);
 
+  // function for saving messages to local history:
+
+  function saveMessages(message) {
+    const messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+    const exists = messages.some((msg) => msg.id === message.id);
+    if (!exists) {
+      const uniqueId = `${Date.now()}-${Math.random()
+        .toString(36)
+        .substr(2, 9)}`;
+      message.id = message.id || uniqueId;
+      messages.push(message);
+
+      if (messages.length > 20) {
+        messages.shift();
+      }
+
+      localStorage.setItem("chatMessages", JSON.stringify(messages));
+    }
+  }
+
+  // function for fetching previous 20 messages at loading the app:
+
+  // useEffect(() => {
+  //   const prevMessages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+  //   setChat((prevChat) => ({
+  //     ...prevChat,
+  //     messages: prevMessages,
+  //   }));
+  // }, []);
+
+  useEffect(() => {
+    const prevMessages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+    const filteredMessages = prevMessages.filter(
+      (msg, index, self) => self.findIndex((m) => m.id === msg.id) === index
+    );
+
+    setChat((prevChat) => ({
+      ...prevChat,
+      messages: [...prevChat.messages, ...filteredMessages],
+    }));
+  }, []);
+
+  // useEffect(() => {
+  //   const prevMessages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+  //   setChat((prevChat) => ({
+  //     ...prevChat,
+  //     messages: [...new Set([...prevChat.messages, ...prevMessages])], // Merge without duplicates
+  //   }));
+  // }, []);
+
+  // useEffect(() => {
+  //   if (message) {
+  //     const prevMessages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+  //     setChat((prevChat) => ({
+  //       ...prevChat,
+  //       messages: [...prevMessages, message],  // Appending new message
+  //     }));
+  //     saveMessages(message);  // Save message to localStorage
+  //   }
+  // }, [message]);
+
   // function for connecting to Scaledrone - whenever new member comes, he gets connected to Scaledrone:
 
   useEffect(() => {
@@ -86,10 +147,23 @@ export default function ChatApp() {
           setMembers((prev) => [...prev, newMember]);
         });
 
+        // room.on("message", (message) => {
+        //   chat.messages.push(message);
+        //   setChat({ ...chat }, chat.messages);
+        //   console.log("all chat-messages:", chat.messages);
+
+        //   saveMessages(message);
+        //   console.log("Message saved: ", message);
+        // });
+
         room.on("message", (message) => {
-          chat.messages.push(message);
-          setChat({ ...chat }, chat.messages);
-          console.log("all chat-messages:", chat.messages);
+          const exists = chat.messages.some((msg) => msg.id === message.id);
+
+          if (!exists) {
+            chat.messages.push(message);
+            setChat({ ...chat, messages: chat.messages });
+            saveMessages(message);
+          }
         });
 
         // NEW 18.03.:
@@ -140,6 +214,7 @@ export default function ChatApp() {
     drone.publish({
       room: "observable-room",
       message: {
+        // id: Date.now().toString(),
         text: message,
         type: "user-message",
       },

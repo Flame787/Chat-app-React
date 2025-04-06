@@ -18,6 +18,13 @@ export default function Messages({ messages, thisMember }) {
 
   // main function for showing all types of messages, emojis, gifs, files etc.:
   function showMessage(message) {
+
+    if (!message || !message.member) {
+      console.warn("Invalid message or member:", message);
+      return null; 
+    }
+// this is showing often
+
     const { member, data, id, timestamp } = message;
 
     function formatTime(timest) {
@@ -25,25 +32,6 @@ export default function Messages({ messages, thisMember }) {
       const hours = date.getHours().toString().padStart(2, "0");
       const minutes = date.getMinutes().toString().padStart(2, "0");
       return `${hours}:${minutes}`;
-    }
-
-    if (!member) {
-      console.warn("Member is null or undefined:", message);
-      // handle system messages / other cases where member is missing
-      return (
-        <li key={id}>
-          <div>
-            {/* <div className={messageClass}>{data.text}</div> */}
-            <div
-              className={`${messageClass} ${
-                member.id === thisMember.id ? "message-from-me" : ""
-              }`}
-            >
-              {data.text}
-            </div>
-          </div>
-        </li>
-      );
     }
 
     let listItem;
@@ -58,13 +46,32 @@ export default function Messages({ messages, thisMember }) {
         ? "user-message"
         : "";
 
+    // if (!member) {
+    //   console.warn("Member is null or undefined:", message);
+    //   // handle system messages / other cases where member is missing
+    //   return (
+    //     <li key={message.id || message.clientId || message.text}>
+    //       <div>
+    //         {/* <div className={messageClass}>{data.text}</div> */}
+    //         <div
+    //           className={`${messageClass} ${
+    //             member.id === thisMember.id ? "message-from-me" : ""
+    //           }`}
+    //         >
+    //           {data.text}
+    //         </div>
+    //       </div>
+    //     </li>
+    //   );
+    // }
+
     // NEW:
 
     // if (member === thisMember)
 
     if (sameMember !== member.id) {
       listItem = (
-        <li key={id} data-id={member.id}>
+        <li key={message.id} data-id={member.id}>
           <div className="who-wrote">
             <img
               src={`/avatars/${member.clientData.avatar}`}
@@ -120,7 +127,7 @@ export default function Messages({ messages, thisMember }) {
       // then it will jump to this 2nd, 'ELSE'-block (where it doesn't show avatar & usernama for each message):
     } else {
       listItem = (
-        <li key={id} data-id={member.id}>
+        <li key={message.id} data-id={member.id}>
           <div>
             <div className="timestamp">{formatTime(timestamp)}</div>
 
@@ -171,7 +178,7 @@ export default function Messages({ messages, thisMember }) {
     if (data.type === "user-left" || data.type === "user-joined") {
       listItem = (
         // <li key={id} data-id={member.id}>
-        <li key={id}>
+        <li key={message.id}>
           <div>
             <div className={messageClass}>{data.text}</div>
           </div>
@@ -191,7 +198,14 @@ export default function Messages({ messages, thisMember }) {
   return (
     <>
       <ul className="messages-list">
-        {messages.map((message) => showMessage(message))}
+        {/* {messages.map((message) => showMessage(message))} */}
+
+        {messages.length > 0 ? (
+          messages.map((message) => showMessage(message))
+        ) : (
+          <div>No messages to display</div>
+        )}
+
         <div ref={bottomDiv}></div>
       </ul>
       <hr />

@@ -274,7 +274,7 @@ h1 {
   justify-content: space-around;
   margin-bottom: 20px;
   padding: 0;
-  /* gap: 10px; */
+  gap: 10px;
 }
 
 .member-item{
