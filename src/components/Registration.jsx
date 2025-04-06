@@ -49,7 +49,7 @@ export default function Registration({ onFormSubmit }) {
             className="input-username"
             type="text"
             placeholder="Enter name..."
-            maxLength={25}
+            maxLength={15}
             required
             onChange={getUsername}
           />

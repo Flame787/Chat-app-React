@@ -16,6 +16,7 @@ export default function Messages({ messages, thisMember }) {
     bottomDiv.current.scrollIntoView({ behavior: "smooth" }); // auto-scrolling to the last div, whenever messages-list changes
   }, [messages.length]);
 
+  // main function for showing all types of messages, emojis, gifs, files etc.:
   function showMessage(message) {
     const { member, data, id, timestamp } = message;
 
@@ -173,7 +174,6 @@ export default function Messages({ messages, thisMember }) {
         <li key={id}>
           <div>
             <div className={messageClass}>{data.text}</div>
-            
           </div>
         </li>
       );

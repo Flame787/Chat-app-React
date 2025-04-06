@@ -44,7 +44,7 @@ code {
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
   background-color: rgb(25, 123, 180);
-  opacity: 0.9;
+  /* opacity: 0.9; */
   margin: 0;
   /* transition: top 0.3s; */
   transition: all 0.3s ease;
@@ -239,14 +239,63 @@ h1 {
   width: 20%;
 }
 
-/* .messages-input-div{
+
+.members-count-countainer{
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap; */
-/* align-items: center;
-  justify-content: center; */
-/* width: 100vw; */
-/* } */
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.members-count{
+  /* margin-left: 40px; */
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background-color: rgb(25, 123, 180);
+  color: white;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 10px 15px;
+  font-weight: 600;
+  text-align: center;
+  
+}
+
+.members-online-list{
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 0 20%;
+  margin-top: 10px;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  padding: 0;
+  /* gap: 10px; */
+}
+
+.member-item{
+  list-style: none;
+}
+
+.member-item .avatar-image{
+  width: 50px; 
+  height: 50px;
+}
+
+.list-username{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: rgb(109, 108, 108);
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
 
 .input-down {
   margin-bottom: 20px;
@@ -539,6 +588,7 @@ hr {
   margin-top: 25px;
   margin-bottom: 5px;
   margin-left: 60px;
+  margin-right: 40px;
   padding: 5px 10px;
   /* makes the text-buble to fit the text, and not to be any wider than needed: */
   display: inline-block;

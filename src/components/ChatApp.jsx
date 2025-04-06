@@ -9,6 +9,7 @@ import Registration from "./Registration";
 import HeaderRegistration from "./HeaderRegistration";
 import HeaderChat from "./HeaderChat";
 import ScrollToBottom from "./ScrollToBottom";
+import MembersCount from "./MembersCount";
 
 const CHANNEL = process.env.REACT_APP_CHANNEL_ID
   ? process.env.REACT_APP_CHANNEL_ID
@@ -69,8 +70,7 @@ export default function ChatApp() {
               room: "observable-room",
               message: {
                 text: `${chat.member.username} has joined the chat.`,
-                type: "user-joined"
-                
+                type: "user-joined",
               },
             });
           }
@@ -122,8 +122,7 @@ export default function ChatApp() {
                 room: "observable-room",
                 message: {
                   text: `${member.clientData.username} has left the chat.`,
-                  type: "user-left"
-                  
+                  type: "user-left",
                 },
               });
             }
@@ -143,7 +142,6 @@ export default function ChatApp() {
       message: {
         text: message,
         type: "user-message",
-        
       },
     });
   }
@@ -169,7 +167,7 @@ export default function ChatApp() {
   ) : (
     <div>
       <HeaderChat />
-
+      <MembersCount members={members} />
       <ScrollToBottom />
       <div className="messages-input-div">
         <Messages messages={chat.messages} thisMember={chat.member} />
