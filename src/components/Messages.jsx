@@ -71,7 +71,9 @@ export default function Messages({ messages, thisMember }) {
 
     if (sameMember !== member.id) {
       listItem = (
-        <li key={uniqueId} data-id={member.id}>
+        <li key={uniqueId} data-id={member.id} className={`${
+          member.id === thisMember.id ? "list-item-right" : ""
+        }`}>
           <div className="who-wrote">
             <img
               src={`/avatars/${member.clientData.avatar}`}
@@ -127,7 +129,9 @@ export default function Messages({ messages, thisMember }) {
       // then it will jump to this 2nd, 'ELSE'-block (where it doesn't show avatar & usernama for each message):
     } else {
       listItem = (
-        <li key={uniqueId} data-id={member.id}>
+        <li key={uniqueId} data-id={member.id} className={`${
+          member.id === thisMember.id ? "list-item-right" : ""
+        }`}>
           <div>
             <div className="timestamp">{formatTime(timestamp)}</div>
 
