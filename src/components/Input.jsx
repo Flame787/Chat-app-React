@@ -43,6 +43,12 @@ export default function Input({ sendMessage, thisMember }) {
 
   let nameInput;
 
+  // function handleEmojiPicker(){
+  //   if (showPicker === true){
+  //     setShowPicker(false)}
+  //   }
+  // }
+
   function updateInput(e) {
     setInput({ ...input, text: e.target.value });
   }
@@ -70,6 +76,10 @@ export default function Input({ sendMessage, thisMember }) {
 
   function publishInput(e) {
     e.preventDefault();
+    if (showPicker) {
+      setShowPicker(false);
+    }
+    
     if (input.text === "") {
       setInput({
         ...input,
@@ -82,10 +92,12 @@ export default function Input({ sendMessage, thisMember }) {
   }
 
   const handleKeyDown = (e) => {
+    
     if (e.key === "Enter") {
       e.preventDefault();
       publishInput(e);
     }
+    
   };
 
   // NEW: upload logic:
