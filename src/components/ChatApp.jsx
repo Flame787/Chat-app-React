@@ -29,47 +29,50 @@ export default function ChatApp() {
 
   const [members, setMembers] = useState([]);
 
-  // function for saving messages to local history:
+  // function for saving messages to local storage:
 
   function saveMessages(message) {
+    // fetching all messages in local storage:
     const messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+    // checking if message with the same id already exists (prevents duplicates):
     const exists = messages.some((msg) => msg.id === message.id);
+    // if no other message with the same id, pushing new message to the list:
     if (!exists) {
+      // formula for creating a unique id, if the message doesn't have it already:
       const uniqueId = `${Date.now()}-${Math.random()
         .toString(36)
         .substr(2, 9)}`;
+        // result example: "1712500123456-4fzyo82gp"
       message.id = message.id || uniqueId;
       messages.push(message);
-
+      // limited to previous 20 messages (if total number of messages exceeds 20, 1st message in array is removed):
       if (messages.length > 20) {
         messages.shift();
       }
-
+      // saving new messages-array into local storage, under the name "chatMessages":
       localStorage.setItem("chatMessages", JSON.stringify(messages));
     }
   }
 
-  // function for fetching previous 20 messages at loading the app:
-
-  // useEffect(() => {
-  //   const prevMessages = JSON.parse(localStorage.getItem("chatMessages")) || [];
-  //   setChat((prevChat) => ({
-  //     ...prevChat,
-  //     messages: prevMessages,
-  //   }));
-  // }, []);
+  // function for fetching previous 20 messages when loading the chat-room (when user enters chat):
 
   useEffect(() => {
+    // fetching previous messages from local storage:
     const prevMessages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+    // filtering messages based on unique id, to remove duplicates (if message accidentally gets saved 2x):
     const filteredMessages = prevMessages.filter(
       (msg, index, self) => self.findIndex((m) => m.id === msg.id) === index
     );
 
+    // updating chat-state - adding filtered messages from local storage:
     setChat((prevChat) => ({
       ...prevChat,
       messages: [...prevChat.messages, ...filteredMessages],
     }));
   }, []);
+  // effect takes place once - when component is mounted (when new user loggs into chat-room for the 1st time),
+  // has no other dependencies
+
 
   // useEffect(() => {
   //   const prevMessages = JSON.parse(localStorage.getItem("chatMessages")) || [];
