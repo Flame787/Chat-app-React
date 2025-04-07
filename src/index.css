@@ -411,26 +411,48 @@ hr {
 
 .input-button,
 .registration-button {
-  margin: 30px 0;
   padding: 10px 15px;
+  margin: 30px 0;
   font-weight: 600;
   font-size: 1rem;
   font-family: "Open Sans", sans-serif;
   border-radius: 5px;
-  border-color: rgb(24, 79, 111);
   box-shadow: 2px 2px 2px rgb(10, 59, 108);
-  background-color: rgb(25, 123, 180);
+  border-color: rgb(24, 79, 111);
+  /* background-color: rgb(25, 123, 180); */
+  border: none;
   color: white;
 }
 
-.registration-button {
+.registration-button, .logout-button {
   background-color: rgb(10, 161, 221);
-  border-color: rgb(99, 184, 234);
+  /* border-color: rgb(99, 184, 234); */
+  border: none;
   padding: 3px 40px;
 }
 
+.logout-div{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.logout-button{
+  margin-right: 30px;
+  margin-bottom: 10px;;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgb(10, 59, 108);
+  color: white;
+  align-self: flex-end;
+}
+
 .input-button:hover,
-.registration-button:hover {
+.registration-button:hover, .logout-button:hover {
   transform: scale(1.1);
   background-color: rgb(89, 190, 236);
   color: white;
@@ -626,7 +648,7 @@ text-align: center;
 .timestamp {
   font-size: 0.7rem;
   margin-top: 10px;
-  margin-left: 15px;
+  /* margin-left: 15px; */
   color: rgb(138, 138, 138);
   color: rgb(109, 108, 108);
 }

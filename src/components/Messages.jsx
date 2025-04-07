@@ -21,7 +21,7 @@ export default function Messages({ messages, thisMember }) {
     const uniqueId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
     if (!message || !message.member) {
-      console.warn("Invalid message or member:", message);
+      console.log("Invalid message or member:", message);
       return null;
     }
 

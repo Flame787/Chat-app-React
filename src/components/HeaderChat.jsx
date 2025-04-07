@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import Logout from "./Logout";
 
-export default function HeaderChat() {
+export default function HeaderChat({ onLogout }) {
   const [isScrolled, setIsScrolled] = useState(false); // Praćenje pozicije skrolanja
 
   useEffect(() => {
@@ -25,6 +26,7 @@ export default function HeaderChat() {
       <div className="header2 welcome-registration">
         <h1>Chat App</h1>
         <h3>Make new connections, stay in touch</h3>
+        <Logout onLogout={onLogout} />
       </div>
     </div>
   );

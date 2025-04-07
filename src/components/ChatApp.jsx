@@ -11,6 +11,7 @@ import HeaderChat from "./HeaderChat";
 import ScrollToBottom from "./ScrollToBottom";
 import MembersCount from "./MembersCount";
 
+
 const CHANNEL = process.env.REACT_APP_CHANNEL_ID
   ? process.env.REACT_APP_CHANNEL_ID
   : "Enter your chat-channel ID";
@@ -42,7 +43,7 @@ export default function ChatApp() {
       const uniqueId = `${Date.now()}-${Math.random()
         .toString(36)
         .substr(2, 9)}`;
-        // result example: "1712500123456-4fzyo82gp"
+      // result example: "1712500123456-4fzyo82gp"
       message.id = message.id || uniqueId;
       messages.push(message);
       // limited to previous 20 messages (if total number of messages exceeds 20, 1st message in array is removed):
@@ -72,26 +73,6 @@ export default function ChatApp() {
   }, []);
   // effect takes place once - when component is mounted (when new user loggs into chat-room for the 1st time),
   // has no other dependencies
-
-
-  // useEffect(() => {
-  //   const prevMessages = JSON.parse(localStorage.getItem("chatMessages")) || [];
-  //   setChat((prevChat) => ({
-  //     ...prevChat,
-  //     messages: [...new Set([...prevChat.messages, ...prevMessages])], // Merge without duplicates
-  //   }));
-  // }, []);
-
-  // useEffect(() => {
-  //   if (message) {
-  //     const prevMessages = JSON.parse(localStorage.getItem("chatMessages")) || [];
-  //     setChat((prevChat) => ({
-  //       ...prevChat,
-  //       messages: [...prevMessages, message],  // Appending new message
-  //     }));
-  //     saveMessages(message);  // Save message to localStorage
-  //   }
-  // }, [message]);
 
   // function for connecting to Scaledrone - whenever new member comes, he gets connected to Scaledrone:
 
@@ -207,6 +188,7 @@ export default function ChatApp() {
             return updatedMembers;
           });
         });
+
       });
 
       drone.on("error", (error) => console.log(error));
@@ -232,6 +214,55 @@ export default function ChatApp() {
     setChat({ ...chat }, chat.member);
   }
 
+
+  function handleLogout() {
+    if (drone) {
+      const member = members.find((m) => m.id === drone.clientId);
+
+      if (!member || !member.id) {
+        console.error("Member ID is undefined. Unable to proceed with logout.");
+        return; // exit if no valid member found
+      }
+  
+      setMembers((prevMembers) => {
+        const updatedMembers = prevMembers.filter(
+          (m) => m.id !== member.id
+        );
+  
+        // sort IDs alphanumerically:
+        const sortedMembers = updatedMembers.sort((a, b) =>
+          a.id.localeCompare(b.id)
+        );
+  
+        // minimal ID will be 1st in the sorted list:
+        const minClientId = sortedMembers[0]?.id;
+  
+        if (drone.clientId === minClientId) {
+          drone.publish({
+            room: "observable-room",
+            message: {
+              text: `${member.clientData.username} has left the chat.`,
+              type: "user-left",
+            },
+          });
+        }
+  
+        return updatedMembers;
+      });
+  
+      // Disconnect the user from the drone instance
+      drone.close();
+  
+      // Clear the chat state for the current user
+      setChat({
+        member: { username: "", avatar: "" },
+        messages: [],
+      });
+  
+      console.log("User has logged out.");
+    }
+  }
+
   return chat.member.username === "" ? (
     <div>
       <HeaderRegistration />
@@ -244,8 +275,9 @@ export default function ChatApp() {
     </div>
   ) : (
     <div>
-      <HeaderChat />
+      <HeaderChat onLogout={handleLogout} />
       <MembersCount members={members} />
+
       <ScrollToBottom />
       <div className="messages-input-div">
         <Messages messages={chat.messages} thisMember={chat.member} />
