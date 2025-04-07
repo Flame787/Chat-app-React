@@ -16,17 +16,13 @@ export default function Messages({ messages, thisMember }) {
     bottomDiv.current.scrollIntoView({ behavior: "smooth" }); // auto-scrolling to the last div, whenever messages-list changes
   }, [messages.length]);
 
-  
-
   // main function for showing all types of messages, emojis, gifs, files etc.:
   function showMessage(message) {
-    const uniqueId = `${Date.now()}-${Math.random()
-      .toString(36)
-      .substr(2, 9)}`;
+    const uniqueId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
     if (!message || !message.member) {
       console.warn("Invalid message or member:", message);
-      return null; 
+      return null;
     }
 
     const { member, data, id, timestamp } = message;
@@ -212,7 +208,9 @@ export default function Messages({ messages, thisMember }) {
 
         <div ref={bottomDiv}></div>
       </ul>
-      <hr />
+    
+        <hr />
+     
     </>
   );
 }

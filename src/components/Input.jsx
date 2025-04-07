@@ -118,6 +118,7 @@ export default function Input({ sendMessage, thisMember }) {
   };
 
   return (
+    
     <div className="input-down">
       <form onSubmit={publishInput} className="flex-message">
         <div className="my-avatar-name">

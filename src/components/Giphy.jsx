@@ -18,23 +18,23 @@ export default function Giphy({ onGifSelect }) {
     setLoading(true);
     setError(""); // reset prev. errors
 
-    console.log("Fetching GIFs for:", searchWord);
+    // console.log("Fetching GIFs for:", searchWord);
 
     try {
      
       let response;
       if (searchWord.trim() === "") {
-        console.log("Fetching trending GIFs...");
+        // console.log("Fetching trending GIFs...");
         response = await gf.trending({ offset, limit: 10 });
-        console.log("Trending GIFs response:", response);
+        // console.log("Trending GIFs response:", response);
 
       } else {
-        console.log(`Fetching GIFs for search: ${searchWord}`);
+        // console.log(`Fetching GIFs for search: ${searchWord}`);
         response = await gf.search(searchWord, {
           offset,
           limit: 10,
         });
-        console.log("Search response:", response);
+        // console.log("Search response:", response);
 
       }
 
@@ -74,7 +74,7 @@ export default function Giphy({ onGifSelect }) {
     }
   }, [searchWord]);
 
-  console.log("Current gifs state:", gifs);
+  // console.log("Current gifs state:", gifs);
 
   return (
     <div className="search-gifs">

@@ -239,8 +239,7 @@ h1 {
   width: 20%;
 }
 
-
-.members-count-countainer{
+.members-count-countainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -248,7 +247,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-.members-count{
+.members-count {
   /* margin-left: 40px; */
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
@@ -260,10 +259,9 @@ h1 {
   padding: 10px 15px;
   font-weight: 600;
   text-align: center;
-  
 }
 
-.members-online-list{
+.members-online-list {
   text-align: center;
   display: flex;
   flex-wrap: wrap;
@@ -277,53 +275,81 @@ h1 {
   gap: 10px;
 }
 
-.member-item{
+.member-item {
   list-style: none;
 }
 
-.member-item .avatar-image{
-  width: 50px; 
+.member-item .avatar-image {
+  width: 50px;
   height: 50px;
 }
 
-.list-username{
+.list-username {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   font-weight: 600;
   color: rgb(109, 108, 108);
   font-family: "Nunito Sans", sans-serif;
   font-size: 0.9rem;
-  flex-wrap: wrap;
 }
 
 .input-down {
+  margin-right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   margin-bottom: 20px;
+  width: 40%;
+}
+
+.messages-input-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .messages-list {
   list-style-type: none;
   margin-bottom: 40px;
+  padding-bottom: 50px;
+  max-width: 40%;
+  background-color: rgba(165, 221, 249, 0.573);
+  flex-wrap: wrap;
+  /* border-style: solid; */
+  /* border-width: 1px; */
+  border-radius: 10px;
+  /* border-color: rgb(25, 123, 180); */
+  /* border-color: rgba(52, 150, 203, 0.758); */
+  box-shadow: 0.3em 0.3em 1em rgba(83, 80, 80, 0.6);
 }
+
+/* .messages-list li {
+  margin-bottom: 40px;
+} */
 
 /* div containig textarea for input and send-button: */
 .message-input {
-  margin-left: 2%;
-  margin-right: 4%;
+  /* margin-left: 2%;
+  margin-right: 2%; */
   padding: 10px;
   border-radius: 10px;
   resize: vertical; /* user can scroll vertically, when more content */
   min-height: 60px;
   max-height: 500px;
-  width: 500px;
   min-width: 100px;
+  max-width: 100%;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   font-size: 0.8rem;
   /* border-color: 2px 2px 2px rgb(227, 226, 226); */
   /* box-shadow: 2px 2px 2px rgb(162, 162, 162); */
-  border-style: solid;
-  border-width: 1px;
+  /* border-style: solid;
+  border-width: 1px; */
+  box-shadow: 0.3em 0.3em 1em rgba(83, 80, 80, 0.6);
   color: rgba(52, 150, 203, 0.758);
   background-color: rgba(165, 221, 249, 0.573);
   display: flex;
@@ -341,7 +367,6 @@ h1 {
   background: transparent;
   outline: none;
   font-size: 0.85rem;
-  /* font-family: ReithSerif, Helvetica, Arial, freesans, sans-serif; */
   font-family: "Rubik", sans-serif;
   resize: none;
   /* Firefox style */
@@ -350,9 +375,12 @@ h1 {
 }
 
 hr {
-  border: none; /* Uklanja border */
+  border: none;
   height: 1px;
   background-color: rgba(52, 150, 203, 0.758);
+  /* height: 2px; */
+  /* margin: 20px 0;  */
+  width: 100%;
 }
 
 .input-button,
@@ -360,12 +388,8 @@ hr {
   margin: 30px 0;
   padding: 10px 15px;
   font-weight: 600;
-  /* font-size: 16px; */
   font-size: 1rem;
   font-family: "Open Sans", sans-serif;
-  /* letter-spacing: 1px; */
-  /* border-top-left-radius: 15px;
-  border-bottom-right-radius: 15px; */
   border-radius: 5px;
   border-color: rgb(24, 79, 111);
   box-shadow: 2px 2px 2px rgb(10, 59, 108);
@@ -376,7 +400,6 @@ hr {
 .registration-button {
   background-color: rgb(10, 161, 221);
   border-color: rgb(99, 184, 234);
-  /* border-color: rgb(24, 79, 111); */
   padding: 3px 40px;
 }
 
@@ -424,6 +447,8 @@ hr {
   width: 35px;
   height: 35px;
   margin-right: 10px;
+  margin-left: 10px;
+  padding: 2px;
 }
 
 .smiley-button {
@@ -436,20 +461,11 @@ hr {
   font-size: 13px;
 }
 
-/* .left-buttons{
-  position: relative;
-} */
-
-/* .message-input{
-  position: relative;
-} */
-
 .emoji-picker-container {
   margin-left: 150px;
 }
 
 .epr-main {
-  /* background-color: rgba(192, 224, 240, 0.758) !important; */
   background-color: rgba(165, 221, 249, 0.573) !important;
   border-color: rgba(52, 150, 203, 0.758) !important;
 }
@@ -472,7 +488,7 @@ hr {
 }
 
 .gif-search-input {
-  width: 10%;
+  width: 20%;
   margin-left: 250px;
   padding: 8px;
   margin-bottom: 20px;
@@ -510,7 +526,7 @@ hr {
   color: rgb(25, 123, 180);
 }
 
-.file-link{
+.file-link {
   color: black;
 }
 
@@ -518,11 +534,11 @@ hr {
   color: rgb(9, 62, 93);
 }
 
-.message-from-me .file-link{
+.message-from-me .file-link {
   color: white;
 }
 
-.message-from-me .file-link-supabase{
+.message-from-me .file-link-supabase {
   color: rgb(168, 217, 247);
 }
 
@@ -541,6 +557,8 @@ hr {
 }
 
 .my-avatar-name {
+text-align: center;
+  /* margin-left: 20px; */
   margin-bottom: 20px;
 }
 
@@ -548,8 +566,15 @@ hr {
   margin: 30px;
 }
 
-.flex-registration,
+/* .flex-registration,
 .flex-message {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+} */
+
+.flex-registration {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -558,8 +583,10 @@ hr {
 
 .flex-message {
   margin-top: 20px;
-  margin-left: 40px;
+  /* margin-left: 40px; */
   margin-bottom: 20px;
+  justify-content: center;
+  width: 100%;
 }
 
 .flex-message .avatar-image {
@@ -570,13 +597,10 @@ hr {
   justify-content: center;
 }
 
-.flex-message {
-  justify-content: left;
-}
-
 .timestamp {
   font-size: 0.7rem;
   margin-top: 10px;
+  margin-left: 15px;
   color: rgb(138, 138, 138);
   color: rgb(109, 108, 108);
 }
@@ -587,7 +611,7 @@ hr {
   font-weight: 600;
   margin-top: 25px;
   margin-bottom: 5px;
-  margin-left: 60px;
+  margin-left: 40px;
   margin-right: 40px;
   padding: 5px 10px;
   /* makes the text-buble to fit the text, and not to be any wider than needed: */
@@ -623,22 +647,28 @@ hr {
   /* font-family: "Mulish", sans-serif; */
   /* font-family: "Heebo", sans-serif; */
   /* font-family: "Libre Franklin", sans-serif; */
-
   font-size: 0.85rem;
   background-color: rgba(168, 212, 250, 0.486);
   background-color: white;
   padding: 10px;
   margin-top: 5px;
   margin-right: 40px;
+  margin-left: 40px;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   box-shadow: 2px 2px 2px rgb(191, 191, 191);
   max-width: 80vw;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  word-break: break-all;
 }
 
-.message-from-me{
+.gif-message {
+  margin-left: 40px;
+  max-width: 50%;
+}
+
+.message-from-me {
   background-color: rgb(56, 146, 199);
   color: white;
   border-top-right-radius: 0px;
@@ -770,20 +800,23 @@ hr {
   .welcome-registration {
     margin-bottom: 30px;
   }
-}
-
-@media (max-width: 1250px) {
-  .avatar-image {
-    width: 12%;
-  }
-  .welcome-registration {
-    margin-bottom: 30px;
+  .messages-list {
+    max-width: 50%;
   }
 }
 
 @media (max-width: 1250px) {
   .avatar-image {
     width: 10%;
+  }
+  .welcome-registration {
+    margin-bottom: 30px;
+  }
+  .messages-list {
+    max-width: 60%;
+  }
+  .input-down {
+    width: 50%;
   }
 }
 
@@ -795,6 +828,13 @@ hr {
   .registration-form {
     width: 80%;
     margin-bottom: 30px;
+  }
+
+  .messages-list {
+    max-width: 70%;
+  }
+  .input-down {
+    width: 60%;
   }
 }
 
@@ -814,13 +854,15 @@ hr {
 
 @media (max-width: 730px) {
   .message-input {
-    margin-left: 0;
+    margin-right: 0;
   }
   .avatar-image {
     width: 14%;
   }
+  .input-down {
+    width: 70%;
+  }
 }
-
 
 @media (max-width: 674px) {
   .emoji-picker-container {
@@ -855,13 +897,15 @@ hr {
   .footer {
     flex-direction: column;
   }
+  .input-down {
+    width: 80%;
+  }
 }
 
 @media (max-width: 500px) {
   .buttons {
     flex-direction: row;
   }
-  
 }
 
 @media (max-width: 450px) {
@@ -894,7 +938,9 @@ hr {
     width: 20%;
     margin-left: 100px;
   }
-
+  .input-down {
+    width: 90%;
+  }
 }
 
 @media (max-width: 291px) {
