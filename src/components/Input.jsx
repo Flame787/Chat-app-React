@@ -113,6 +113,8 @@ export default function Input({ sendMessage, thisMember }) {
 
     const fileLink = `${storageUrl}public/mystorage/${uploadResult.path}`;
 
+    const shortenedLink = `${uploadResult.path}`;
+
     if (uploadResult) {
       console.log(
         "Upload result - path (format: 'public/timestamp_name): ",
