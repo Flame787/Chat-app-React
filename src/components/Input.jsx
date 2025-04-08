@@ -121,10 +121,12 @@ export default function Input({ sendMessage, thisMember }) {
         uploadResult.path
       );
       console.log("File link - complete:", fileLink);
+      // console.log("Sending file link:", fileLink);
+      console.log("Shortened link:", shortenedLink);
 
-      console.log("Sending file link:", fileLink);
       // publishing message, which contains the file-link:
-        sendMessage(fileLink);      
+        // sendMessage(fileLink);   
+        sendMessage(`${fileLink},${shortenedLink}`);   
 
     } else {
       console.error("Error generating public URL:", new Error("Upload failed"));

@@ -71,9 +71,11 @@ export default function Messages({ messages, thisMember }) {
 
     if (sameMember !== member.id) {
       listItem = (
-        <li key={uniqueId} data-id={member.id} className={`${
-          member.id === thisMember.id ? "list-item-right" : ""
-        }`}>
+        <li
+          key={uniqueId}
+          data-id={member.id}
+          className={`${member.id === thisMember.id ? "list-item-right" : ""}`}
+        >
           <div className="who-wrote">
             <img
               src={`/avatars/${member.clientData.avatar}`}
@@ -101,15 +103,36 @@ export default function Messages({ messages, thisMember }) {
                 member.id === thisMember.id ? "message-from-me" : ""
               }`}
             >
-              <a
-                href={data.text}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="file-link"
-              >
-                Uploaded file:{" "}
-                <span className="file-link-supabase">{data.text}</span>
-              </a>
+              {data.text.includes(",") ? (
+                (() => {
+                  const [fileLink, shortenedLink] = data.text.split(",");
+                  return (
+                    <>
+                      <a
+                        href={fileLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="file-link"
+                      >
+                        Uploaded file:{" "}
+                        <span className="file-link-supabase">
+                          {shortenedLink}
+                        </span>
+                      </a>
+                    </>
+                  );
+                })()
+              ) : (
+                <a
+                  href={data.text}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="file-link"
+                >
+                  Uploaded file:{" "}
+                  <span className="file-link-supabase">{data.text}</span>
+                </a>
+              )}
             </div>
           ) : (
             // <div className={messageClass}>{data.text}</div>
@@ -129,9 +152,11 @@ export default function Messages({ messages, thisMember }) {
       // then it will jump to this 2nd, 'ELSE'-block (where it doesn't show avatar & usernama for each message):
     } else {
       listItem = (
-        <li key={uniqueId} data-id={member.id} className={`${
-          member.id === thisMember.id ? "list-item-right" : ""
-        }`}>
+        <li
+          key={uniqueId}
+          data-id={member.id}
+          className={`${member.id === thisMember.id ? "list-item-right" : ""}`}
+        >
           <div>
             <div className="timestamp">{formatTime(timestamp)}</div>
 
@@ -145,21 +170,41 @@ export default function Messages({ messages, thisMember }) {
               <img src={data.text} alt="GIF" className="gif-message" />
             ) : data.text.startsWith("http") &&
               data.text.includes(".supabase.co") ? (
-              // <div className={messageClass}>
               <div
                 className={`${messageClass} ${
                   member.id === thisMember.id ? "message-from-me" : ""
                 }`}
               >
-                <a
-                  href={data.text}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="file-link"
-                >
-                  Uploaded file:{" "}
-                  <span className="file-link-supabase">{data.text}</span>
-                </a>
+                {data.text.includes(",") ? (
+                  (() => {
+                    const [fileLink, shortenedLink] = data.text.split(",");
+                    return (
+                      <>
+                        <a
+                          href={fileLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="file-link"
+                        >
+                          Uploaded file:{" "}
+                          <span className="file-link-supabase">
+                            {shortenedLink}
+                          </span>
+                        </a>
+                      </>
+                    );
+                  })()
+                ) : (
+                  <a
+                    href={data.text}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="file-link"
+                  >
+                    Uploaded file:{" "}
+                    <span className="file-link-supabase">{data.text}</span>
+                  </a>
+                )}
               </div>
             ) : (
               // <div className={messageClass}>{data.text}</div>
@@ -212,9 +257,8 @@ export default function Messages({ messages, thisMember }) {
 
         <div ref={bottomDiv}></div>
       </ul>
-    
-        <hr />
-     
+
+      <hr />
     </>
   );
 }
