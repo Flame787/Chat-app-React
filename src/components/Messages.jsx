@@ -12,6 +12,14 @@ export default function Messages({ messages, thisMember }) {
   const bottomDiv = useRef();
   // empty div under all messages - when new message arrives, the page scrolls to the last message (= to this div)
 
+  let headerDisplayed = false; 
+  let lastDate = "";
+
+  // state for tracking today's message header:
+  // const [lastDate, setLastDate] = useState("");
+  // const [dateHeaderShown, setDateHeaderShown] = useState(false);
+  // let lastDate = "";
+
   useEffect(() => {
     bottomDiv.current.scrollIntoView({ behavior: "smooth" }); // auto-scrolling to the last div, whenever messages-list changes
   }, [messages.length]);
@@ -27,6 +35,7 @@ export default function Messages({ messages, thisMember }) {
 
     const { member, data, id, timestamp } = message;
 
+    // format time: HH:MM
     function formatTime(timest) {
       const date = new Date(timest * 1000); // to milisec.
       const hours = date.getHours().toString().padStart(2, "0");
@@ -34,7 +43,55 @@ export default function Messages({ messages, thisMember }) {
       return `${hours}:${minutes}`;
     }
 
+    // format date: DD.MM.YYYY
+    function formatDate(timest) {
+      const date = new Date(timest * 1000);
+      const day = date.getDate().toString().padStart(2, "0");
+      const month = (date.getMonth() + 1).toString().padStart(2, "0");
+      const year = date.getFullYear();
+      return `${day}.${month}.${year}`;
+    }
+
+    // function formatDate(timest) {
+    //   const date = new Date(timest * 1000);
+    //   return date.toLocaleDateString('en-GB');
+    // }
+
+    // check if a message was sent today:
+    function isToday(timest) {
+      const messageDate = new Date(timest * 1000);
+      const today = new Date();
+      return (
+        messageDate.getDate() === today.getDate() &&
+        messageDate.getMonth() === today.getMonth() &&
+        messageDate.getFullYear() === today.getFullYear()
+      );
+    }
+
+    let dateHeader = null;
+    const messageDate = formatDate(timestamp);
+
     let listItem;
+
+
+    // only show 'Today' header once:
+    // if (isToday(timestamp) && !dateHeaderShown) {
+    //   dateHeader = <li key="today"><div className="date-header">Today</div></li>;
+    //   setDateHeaderShown(true);
+    // } else if (!isToday(timestamp) && lastDate !== messageDate) {
+    //   dateHeader = <li key={messageDate}><div className="date-header">{messageDate}</div></li>;
+    //   setLastDate(messageDate); 
+    // }
+
+    if (isToday(timestamp) && !headerDisplayed) {
+      dateHeader = <li key={`header-today-${uniqueId}`}><div className="date-header">Today {messageDate}</div></li>;
+      headerDisplayed = true;
+    }
+    // Render date header for previous days
+    else if (!isToday(timestamp) && lastDate !== messageDate) {
+      dateHeader = <li key={`header-today-${uniqueId}`}><div className="date-header">{messageDate}</div></li>;
+      lastDate = messageDate;
+    }
 
     // css-classes for different types of messages in chat:
     const messageClass =
@@ -45,6 +102,7 @@ export default function Messages({ messages, thisMember }) {
         : data.type === "user-message"
         ? "user-message"
         : "";
+
 
     if (!member) {
       console.warn("Member is null or undefined:", message);
@@ -170,7 +228,7 @@ export default function Messages({ messages, thisMember }) {
               <img src={data.text} alt="GIF" className="gif-message" />
             ) : data.text.startsWith("http") &&
               data.text.includes(".supabase.co") ? (
-              <div 
+              <div
                 className={`${messageClass} ${
                   member.id === thisMember.id ? "message-from-me" : ""
                 }`}
@@ -239,7 +297,13 @@ export default function Messages({ messages, thisMember }) {
     } // NEEDED! - without it, it shows avatar for each message from SAME user
     // it sets member.id to be same as message-author after each new message - the evaluation starts again
 
-    return listItem;
+    // return listItem;
+    return (
+      <>
+        {dateHeader}
+        {listItem}
+      </>
+    );
   }
 
   ///////

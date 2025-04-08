@@ -140,7 +140,7 @@ h1 {
   display: flex;
   align-items: center;
   font-weight: 600;
-  color: rgb(138, 138, 138);
+  /* color: rgb(138, 138, 138); */
   color: rgb(109, 108, 108);
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   font-family: "Nunito Sans", sans-serif;
@@ -282,6 +282,17 @@ h1 {
 .member-item .avatar-image {
   width: 50px;
   height: 50px;
+}
+
+.date-header{
+  margin-left: 40px;
+  margin-top: 20px;
+  font-weight: 600;
+  color: rgb(109, 108, 108);
+  /* color: rgb(25, 123, 180); */
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 0.8rem;
+  
 }
 
 .list-username {
@@ -667,9 +678,9 @@ hr {
   padding: 5px 10px;
   /* makes the text-buble to fit the text, and not to be any wider than needed: */
   display: inline-block;
-  background-color: rgba(255, 255, 255, 0.505);
+  /* background-color: rgba(255, 255, 255, 0.505); */
+  /* box-shadow: 2px 2px 2px rgb(191, 191, 191); */
   border-radius: 5px;
-  box-shadow: 2px 2px 2px rgb(191, 191, 191);
 }
 
 .user-joined {
