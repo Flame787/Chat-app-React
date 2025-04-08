@@ -319,7 +319,8 @@ h1 {
   list-style-type: none;
   margin-bottom: 40px;
   padding-bottom: 50px;
-  max-width: 40%;
+  min-width: 40%;
+  max-width: 60%;
   background-color: rgba(165, 221, 249, 0.573);
   flex-wrap: wrap;
   /* border-style: solid; */
@@ -328,10 +329,9 @@ h1 {
   /* border-color: rgb(25, 123, 180); */
   /* border-color: rgba(52, 150, 203, 0.758); */
   box-shadow: 0.3em 0.3em 1em rgba(83, 80, 80, 0.6);
-
 }
 
-.list-item-right{
+.list-item-right {
   align-self: flex-end;
   text-align: right;
   margin-right: 40px;
@@ -340,11 +340,11 @@ h1 {
   align-items: flex-end;
 }
 
-.list-item-right .gif-message{
+.list-item-right .gif-message {
   margin-right: 40px;
 }
 
-.list-item-right .who-wrote{
+.list-item-right .who-wrote {
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;
@@ -354,6 +354,9 @@ h1 {
   text-align: right; */
 }
 
+.list-item-right .avatar-image {
+  margin: 7px 0 7px 7px;
+}
 
 /* div containig textarea for input and send-button: */
 .message-input {
@@ -381,8 +384,6 @@ h1 {
   align-items: center;
   flex-wrap: wrap;
 }
-
-
 
 /* textarea: */
 .input-text {
@@ -424,14 +425,15 @@ hr {
   color: white;
 }
 
-.registration-button, .logout-button {
+.registration-button,
+.logout-button {
   background-color: rgb(10, 161, 221);
   /* border-color: rgb(99, 184, 234); */
   border: none;
   padding: 3px 40px;
 }
 
-.logout-div{
+.logout-div {
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -439,9 +441,9 @@ hr {
   align-items: center;
 }
 
-.logout-button{
+.logout-button {
   margin-right: 30px;
-  margin-bottom: 10px;;
+  margin-bottom: 10px;
   font-weight: 600;
   font-size: 1rem;
   font-family: "Open Sans", sans-serif;
@@ -452,7 +454,8 @@ hr {
 }
 
 .input-button:hover,
-.registration-button:hover, .logout-button:hover {
+.registration-button:hover,
+.logout-button:hover {
   transform: scale(1.1);
   background-color: rgb(89, 190, 236);
   color: white;
@@ -605,7 +608,7 @@ hr {
 }
 
 .my-avatar-name {
-text-align: center;
+  text-align: center;
   /* margin-left: 20px; */
   margin-bottom: 20px;
 }
@@ -723,7 +726,6 @@ text-align: center;
   border-bottom-left-radius: 0px;
   border-top-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  
 }
 
 .who-wrote {

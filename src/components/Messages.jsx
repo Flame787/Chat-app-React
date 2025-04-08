@@ -170,7 +170,7 @@ export default function Messages({ messages, thisMember }) {
               <img src={data.text} alt="GIF" className="gif-message" />
             ) : data.text.startsWith("http") &&
               data.text.includes(".supabase.co") ? (
-              <div
+              <div 
                 className={`${messageClass} ${
                   member.id === thisMember.id ? "message-from-me" : ""
                 }`}
