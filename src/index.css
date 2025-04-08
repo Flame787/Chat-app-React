@@ -297,7 +297,7 @@ h1 {
 }
 
 .date-header{
-  margin-left: 40px;
+  margin-left: 35px;
   margin-top: 20px;
   font-weight: 600;
   color: rgb(109, 108, 108);
@@ -353,7 +353,8 @@ h1 {
   border-radius: 10px;
   /* border-color: rgb(25, 123, 180); */
   /* border-color: rgba(52, 150, 203, 0.758); */
-  box-shadow: 0.3em 0.3em 1em rgba(83, 80, 80, 0.6);
+  /* box-shadow: 0.2em 0.2em 0.2em rgba(132, 132, 132, 0.6); */
+  box-shadow: 0.3em 0.3em 0.7em rgba(83, 80, 80, 0.6);
 }
 
 .list-item-right {
@@ -859,9 +860,7 @@ hr {
 }
 
 .scaledrone-title:hover {
-  /* color: #55bbd4; */
-  color: rgb(89, 190, 236);
-  color: rgb(119, 25, 126);
+  color: rgb(123, 204, 242);
   transform: scale(1.1);
 }
 
@@ -880,7 +879,7 @@ hr {
 
 .social-links a:hover {
   /* color: #55bbd4; */
-  color: rgb(89, 190, 236);
+  color: rgb(123, 204, 242);
   transform: scale(1.1);
 }
 
