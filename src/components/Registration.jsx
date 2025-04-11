@@ -5,7 +5,8 @@ export default function Registration({ onFormSubmit }) {
 
   const [selectedAvatar, setSelectedAvatar] = useState("");
 
-  //   const [room, setRoom] = useState("");
+  // NEW - different chat-rooms:
+  const [room, setRoom] = useState("");
 
   // list of avatars from public/avatars folder:
   const avatars = [
@@ -23,13 +24,16 @@ export default function Registration({ onFormSubmit }) {
     setUsername(e.target.value);
   };
 
-  // const getAvatar = (e) => {
-  //   setAvatar(e.target.value);
-  // };
 
   const selectAvatar = (avatar) => {
     setSelectedAvatar(avatar);
   };
+
+  // NEW:
+  const getRoom = (e) => {
+    setRoom(e.target.value);
+  };
+
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -37,7 +41,8 @@ export default function Registration({ onFormSubmit }) {
       alert("Please select an avatar!");
       return;
     }
-    onFormSubmit(username, selectedAvatar); // register with username and also send avatar
+    // onFormSubmit(username, selectedAvatar);
+    onFormSubmit(username, selectedAvatar, room);
   };
 
   return (
@@ -75,6 +80,25 @@ export default function Registration({ onFormSubmit }) {
             ))}
           </div>
         </div>
+
+        <select
+          className="reg-form__room-select"
+          name="room"
+          required
+          value={room}
+          onChange={getRoom}
+        >
+           <option value="" disabled>
+            Choose a chatroom
+          </option>
+          <option value="education">Education</option>
+          <option value="job">Job</option>
+          <option value="tech">Tech</option>
+          <option value="travel">Travel</option>
+          <option value="music">Music</option>
+          <option value="sports">Sports</option>
+          <option value="chill-zone">Chill zone</option>
+        </select>
 
         <div className="flexbox-baseline">
           <button className="registration-button" type="submit">

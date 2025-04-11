@@ -20,7 +20,8 @@ export default function ChatApp() {
   // States:
 
   const [chat, setChat] = useState({
-    member: { username: "", avatar: "" },
+    // member: { username: "", avatar: "" },
+    member: { username: "", avatar: "", room: "" },
     messages: [],
   });
 
@@ -30,11 +31,18 @@ export default function ChatApp() {
 
   const [members, setMembers] = useState([]);
 
+  const [activeRoom, setActiveRoom] = useState(null);
+
   // function for saving messages to local storage:
 
   function saveMessages(message) {
     // fetching all messages in local storage:
-    const messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+
+    // const messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+    const roomKey = `chatMessages-${chat.member.room}`;
+    const messages = JSON.parse(localStorage.getItem(roomKey)) || [];
+
+
     // checking if message with the same id already exists (prevents duplicates):
     const exists = messages.some((msg) => msg.id === message.id);
     // if no other message with the same id, pushing new message to the list:
@@ -51,7 +59,8 @@ export default function ChatApp() {
         messages.shift();
       }
       // saving new messages-array into local storage, under the name "chatMessages":
-      localStorage.setItem("chatMessages", JSON.stringify(messages));
+      // localStorage.setItem("chatMessages", JSON.stringify(messages));
+      localStorage.setItem(roomKey, JSON.stringify(messages));
     }
   }
 
@@ -59,7 +68,11 @@ export default function ChatApp() {
 
   useEffect(() => {
     // fetching previous messages from local storage:
-    const prevMessages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+    // const prevMessages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+
+    const roomKey = `chatMessages-${chat.member.room}`;
+    const prevMessages = JSON.parse(localStorage.getItem(roomKey)) || [];
+
     // filtering messages based on unique id, to remove duplicates (if message accidentally gets saved 2x):
     const filteredMessages = prevMessages.filter(
       (msg, index, self) => self.findIndex((m) => m.id === msg.id) === index
@@ -70,9 +83,10 @@ export default function ChatApp() {
       ...prevChat,
       messages: [...prevChat.messages, ...filteredMessages],
     }));
-  }, []);
+  }, [chat.member.room]);
   // effect takes place once - when component is mounted (when new user loggs into chat-room for the 1st time),
   // has no other dependencies
+  // Corrected -> effect takes place each time a room changes. 
 
   // function for connecting to Scaledrone - whenever new member comes, he gets connected to Scaledrone:
 
@@ -103,7 +117,9 @@ export default function ChatApp() {
         chat.member.id = drone.clientId;
         setChat({ ...chat }, chat.member);
 
-        const room = drone.subscribe("observable-room");
+        // const room = drone.subscribe("observable-room");
+        const room = drone.subscribe(`observable-${chat.member.room}`);
+        setActiveRoom(room);
 
         room.on("open", (error) => {
           if (error) {
@@ -112,7 +128,8 @@ export default function ChatApp() {
             console.log("Connected to room");
             setRoomLoaded(true);
             drone.publish({
-              room: "observable-room",
+              // room: "observable-room",
+              room: `observable-${chat.member.room}`,
               message: {
                 text: `${chat.member.username} has joined the chat.`,
                 type: "user-joined",
@@ -177,7 +194,8 @@ export default function ChatApp() {
 
             if (drone.clientId === minClientId) {
               drone.publish({
-                room: "observable-room",
+                // room: "observable-room",
+                room: `observable-${chat.member.room}`,
                 message: {
                   text: `${member.clientData.username} has left the chat.`,
                   type: "user-left",
@@ -197,7 +215,8 @@ export default function ChatApp() {
 
   function sendMessage(message) {
     drone.publish({
-      room: "observable-room",
+      // room: "observable-room",
+      room: `observable-${chat.member.room}`,
       message: {
         // id: Date.now().toString(),
         text: message,
@@ -206,17 +225,18 @@ export default function ChatApp() {
     });
   }
 
-  function handleRegistration(username, selectedAvatar) {
+  function handleRegistration(username, selectedAvatar, selectedRoom) {
     chat.member = {
       username: username,
       avatar: selectedAvatar,
+      room: selectedRoom
     };
     setChat({ ...chat }, chat.member);
   }
 
 
   function handleLogout() {
-    if (drone) {
+    if (drone && activeRoom) {
       const member = members.find((m) => m.id === drone.clientId);
 
       if (!member || !member.id) {
@@ -239,7 +259,8 @@ export default function ChatApp() {
   
         if (drone.clientId === minClientId) {
           drone.publish({
-            room: "observable-room",
+            // room: "observable-room",
+            room: `observable-${chat.member.room}`,
             message: {
               text: `${member.clientData.username} has left the chat.`,
               type: "user-left",
@@ -252,6 +273,8 @@ export default function ChatApp() {
   
       // disconnect the user from the drone-instance:
       drone.close();
+
+      // activeRoom.unsubscribe();  // this would just disconnect the user from the room
   
       // clear the chat-state for the current user:
       setChat({
@@ -259,6 +282,10 @@ export default function ChatApp() {
         messages: [],
       });
   
+      setRoomLoaded(false);
+      setActiveRoom(null);
+      setDrone(null);
+
       console.log("User has logged out.");
     }
   }
@@ -275,7 +302,7 @@ export default function ChatApp() {
     </div>
   ) : (
     <div>
-      <HeaderChat onLogout={handleLogout} />
+      <HeaderChat onLogout={handleLogout} room={chat.member.room} />
       <MembersCount members={members} />
 
       <ScrollToBottom />
