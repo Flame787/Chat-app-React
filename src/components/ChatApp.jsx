@@ -121,7 +121,7 @@ export default function ChatApp() {
           }
         });
 
-        // List of currently online members, emitted once
+        // list of currently online members:
         room.on("members", (m) => {
           setMembers(m);
           console.log("All members of this chat:", members);
@@ -250,10 +250,10 @@ export default function ChatApp() {
         return updatedMembers;
       });
   
-      // Disconnect the user from the drone instance
+      // disconnect the user from the drone-instance:
       drone.close();
   
-      // Clear the chat state for the current user
+      // clear the chat-state for the current user:
       setChat({
         member: { username: "", avatar: "" },
         messages: [],

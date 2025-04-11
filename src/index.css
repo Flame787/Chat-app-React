@@ -297,7 +297,7 @@ h1 {
 }
 
 .date-header{
-  margin-left: 35px;
+  /* margin-left: 35px; */
   margin-top: 20px;
   font-weight: 600;
   color: rgb(109, 108, 108);
