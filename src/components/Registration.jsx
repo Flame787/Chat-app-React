@@ -91,13 +91,13 @@ export default function Registration({ onFormSubmit }) {
            <option value="" disabled>
             Choose a chatroom
           </option>
-          <option value="education">Education</option>
-          <option value="job">Job</option>
-          <option value="tech">Tech</option>
-          <option value="travel">Travel</option>
-          <option value="music">Music</option>
-          <option value="sports">Sports</option>
-          <option value="chill-zone">Chill zone</option>
+          <option value="Education">Education</option>
+          <option value="Job">Job</option>
+          <option value="Tech">Tech</option>
+          <option value="Travel">Travel</option>
+          <option value="Music">Music</option>
+          <option value="Sports">Sports</option>
+          <option value="Chill-zone">Chill zone</option>
         </select>
 
         <div className="flexbox-baseline">

@@ -26,8 +26,8 @@ export default function HeaderChat({ onLogout, room }) {
       <div className="header2 welcome-registration">
         <h1>Chat App</h1>
         <h3>Make new connections, stay in touch</h3>
-        <span className="header-room">{room}</span>
-        <Logout onLogout={onLogout} />
+
+        <Logout onLogout={onLogout} room={room} />
       </div>
     </div>
   );

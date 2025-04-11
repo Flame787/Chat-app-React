@@ -44,7 +44,11 @@ code {
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
   /* background-color: rgb(25, 123, 180); */
-  background: linear-gradient(to top, rgba(38, 124, 171, 0.9), rgba(52, 150, 203, 0.8));
+  background: linear-gradient(
+    to top,
+    rgba(38, 124, 171, 0.9),
+    rgba(52, 150, 203, 0.8)
+  );
   background-blend-mode: overlay;
   margin: 0;
   /* transition: top 0.3s; */
@@ -108,14 +112,16 @@ h1 {
   justify-content: center;
   flex-wrap: wrap;
   min-height: 50vh;
-  
-
 }
 
 .registration-form {
   box-shadow: 2px 2px 2px rgb(162, 162, 162);
   /* background-color: rgb(25, 123, 180); */
-  background: linear-gradient(to top, rgba(38, 124, 171, 0.9), rgba(52, 150, 203, 0.8));
+  background: linear-gradient(
+    to top,
+    rgba(38, 124, 171, 0.9),
+    rgba(52, 150, 203, 0.8)
+  );
   background-blend-mode: overlay;
   width: 50%;
   border-radius: 5px;
@@ -166,7 +172,11 @@ h1 {
   border-radius: 3px;
   border-style: none;
   background-color: rgb(201, 234, 251);
-  background: linear-gradient(to top, rgba(158, 215, 245, 0.9), rgba(233, 243, 251, 0.8));
+  background: linear-gradient(
+    to top,
+    rgba(158, 215, 245, 0.9),
+    rgba(233, 243, 251, 0.8)
+  );
   background-blend-mode: overlay;
 }
 
@@ -182,7 +192,11 @@ h1 {
   border-radius: 3px;
   border-style: none;
   /* background-color: rgb(201, 234, 251); */
-  background: linear-gradient(to top, rgba(158, 215, 245, 0.9), rgba(233, 243, 251, 0.8));
+  background: linear-gradient(
+    to top,
+    rgba(158, 215, 245, 0.9),
+    rgba(233, 243, 251, 0.8)
+  );
   background-blend-mode: overlay;
 }
 
@@ -263,7 +277,11 @@ h1 {
   font-size: 0.9rem;
   font-weight: 600;
   /* background-color: rgb(25, 123, 180); */
-  background: linear-gradient(to top, rgba(38, 124, 171, 0.9), rgba(52, 150, 203, 0.8));
+  background: linear-gradient(
+    to top,
+    rgba(38, 124, 171, 0.9),
+    rgba(52, 150, 203, 0.8)
+  );
   background-blend-mode: overlay;
   color: white;
   border-radius: 10px;
@@ -296,7 +314,7 @@ h1 {
   height: 50px;
 }
 
-.date-header{
+.date-header {
   /* margin-left: 35px; */
   margin-top: 20px;
   font-weight: 600;
@@ -304,7 +322,6 @@ h1 {
   /* color: rgb(25, 123, 180); */
   font-family: "Nunito Sans", sans-serif;
   font-size: 0.8rem;
-  
 }
 
 .list-username {
@@ -345,7 +362,11 @@ h1 {
   min-width: 40%;
   max-width: 60%;
   background-color: rgba(165, 221, 249, 0.573);
-  background: linear-gradient(to right, rgba(246, 249, 250, 0.381), rgba(188, 227, 248, 0.432));
+  background: linear-gradient(
+    to right,
+    rgba(246, 249, 250, 0.381),
+    rgba(188, 227, 248, 0.432)
+  );
   background-blend-mode: overlay;
   flex-wrap: wrap;
   /* border-style: solid; */
@@ -405,7 +426,11 @@ h1 {
   box-shadow: 0.3em 0.3em 1em rgba(83, 80, 80, 0.6);
   color: rgba(52, 150, 203, 0.758);
   background-color: rgba(165, 221, 249, 0.573);
-  background: linear-gradient(to right, rgba(246, 249, 250, 0.381), rgba(188, 227, 248, 0.432));
+  background: linear-gradient(
+    to right,
+    rgba(246, 249, 250, 0.381),
+    rgba(188, 227, 248, 0.432)
+  );
   background-blend-mode: overlay;
   display: flex;
   flex-direction: column;
@@ -456,11 +481,23 @@ hr {
 .registration-button,
 .logout-button {
   background-color: rgb(10, 161, 221);
-  background: linear-gradient(to top, rgba(57, 180, 205, 0.9), rgba(138, 205, 241, 0.8));
+  background: linear-gradient(
+    to top,
+    rgba(57, 180, 205, 0.9),
+    rgba(138, 205, 241, 0.8)
+  );
   background-blend-mode: overlay;
   /* border-color: rgb(99, 184, 234); */
   border: none;
   padding: 3px 40px;
+}
+
+.room-logout-div {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .logout-div {
@@ -483,12 +520,24 @@ hr {
   align-self: flex-end;
 }
 
+.room-button {
+  margin-left: 30px;
+}
+
+.room-button span {
+  color: rgba(21, 94, 133, 0.9);
+}
+
 .input-button:hover,
 .registration-button:hover,
 .logout-button:hover {
   transform: scale(1.1);
   background-color: rgb(89, 190, 236);
-  background: linear-gradient(to top, rgba(31, 180, 207, 0.9), rgba(189, 235, 248, 0.8));
+  background: linear-gradient(
+    to top,
+    rgba(31, 180, 207, 0.9),
+    rgba(189, 235, 248, 0.8)
+  );
   background-blend-mode: overlay;
   color: white;
   font-size: 17px;
@@ -511,7 +560,11 @@ hr {
   margin: 10px 0 0 0;
   border-radius: 50%;
   background-color: rgb(25, 123, 180);
-  background: linear-gradient(to top, rgba(30, 111, 155, 0.9), rgba(52, 150, 203, 0.8));
+  background: linear-gradient(
+    to top,
+    rgba(30, 111, 155, 0.9),
+    rgba(52, 150, 203, 0.8)
+  );
   background-blend-mode: overlay;
   box-shadow: none;
   border-color: rgba(116, 165, 193, 0);
@@ -707,12 +760,15 @@ hr {
 }
 
 .user-joined {
-  color: green;
+  /* color: green; */
+  color: rgb(0, 128, 96);
   font-family: "Inter", sans-serif;
 }
 
 .user-left {
-  color: red;
+  /* color: red;
+  color: rgb(230, 86, 86); */
+  color: rgb(172, 55, 55);
   font-family: "Inter", sans-serif;
 }
 
@@ -758,7 +814,11 @@ hr {
 
 .message-from-me {
   /* background-color: rgb(56, 146, 199); */
-  background: linear-gradient(to top, rgba(38, 124, 171, 0.9), rgba(69, 170, 224, 0.8));
+  background: linear-gradient(
+    to top,
+    rgba(38, 124, 171, 0.9),
+    rgba(69, 170, 224, 0.8)
+  );
   background-blend-mode: overlay;
   color: white;
   border-top-right-radius: 0px;
@@ -789,7 +849,11 @@ hr {
 .scroll-button {
   background-color: rgb(25, 123, 180);
   /* background: linear-gradient(to top, rgba(38, 124, 171, 0.9), rgba(52, 150, 203, 0.8)); */
-  background: linear-gradient(to top, rgba(30, 111, 155, 0.9), rgba(52, 150, 203, 0.8));
+  background: linear-gradient(
+    to top,
+    rgba(30, 111, 155, 0.9),
+    rgba(52, 150, 203, 0.8)
+  );
   background-blend-mode: overlay;
   color: white;
   border-color: white;
@@ -804,7 +868,11 @@ hr {
 .scroll-button:hover {
   cursor: pointer;
   background-color: rgb(89, 190, 236);
-  background: linear-gradient(to top, rgba(31, 180, 207, 0.9), rgba(189, 235, 248, 0.8));
+  background: linear-gradient(
+    to top,
+    rgba(31, 180, 207, 0.9),
+    rgba(189, 235, 248, 0.8)
+  );
   background-blend-mode: overlay;
 }
 
@@ -822,7 +890,11 @@ hr {
   /* background-color: rgb(52 149 203 / 84%);
   background-color: rgba(52, 150, 203, 0.758); */
   background-color: rgb(25, 123, 180);
-  background: linear-gradient(to top, rgba(38, 124, 171, 0.9), rgba(52, 150, 203, 0.8));
+  background: linear-gradient(
+    to top,
+    rgba(38, 124, 171, 0.9),
+    rgba(52, 150, 203, 0.8)
+  );
   background-blend-mode: overlay;
   color: white;
   font-size: 0.8rem;

@@ -7,6 +7,7 @@ export default function MembersCount({ members }) {
 
   return (
     <div className="members-count-countainer">
+      
       <div className="members-count">
         Currently online: {membersCount} {membersCount === 1 ? "user" : "users"}
       </div>

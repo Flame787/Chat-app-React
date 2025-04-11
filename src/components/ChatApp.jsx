@@ -11,7 +11,6 @@ import HeaderChat from "./HeaderChat";
 import ScrollToBottom from "./ScrollToBottom";
 import MembersCount from "./MembersCount";
 
-
 const CHANNEL = process.env.REACT_APP_CHANNEL_ID
   ? process.env.REACT_APP_CHANNEL_ID
   : "Enter your chat-channel ID";
@@ -41,7 +40,6 @@ export default function ChatApp() {
     // const messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
     const roomKey = `chatMessages-${chat.member.room}`;
     const messages = JSON.parse(localStorage.getItem(roomKey)) || [];
-
 
     // checking if message with the same id already exists (prevents duplicates):
     const exists = messages.some((msg) => msg.id === message.id);
@@ -86,7 +84,7 @@ export default function ChatApp() {
   }, [chat.member.room]);
   // effect takes place once - when component is mounted (when new user loggs into chat-room for the 1st time),
   // has no other dependencies
-  // Corrected -> effect takes place each time a room changes. 
+  // Corrected -> effect takes place each time a room changes.
 
   // function for connecting to Scaledrone - whenever new member comes, he gets connected to Scaledrone:
 
@@ -206,7 +204,6 @@ export default function ChatApp() {
             return updatedMembers;
           });
         });
-
       });
 
       drone.on("error", (error) => console.log(error));
@@ -229,11 +226,10 @@ export default function ChatApp() {
     chat.member = {
       username: username,
       avatar: selectedAvatar,
-      room: selectedRoom
+      room: selectedRoom,
     };
     setChat({ ...chat }, chat.member);
   }
-
 
   function handleLogout() {
     if (drone && activeRoom) {
@@ -243,20 +239,18 @@ export default function ChatApp() {
         console.error("Member ID is undefined. Unable to proceed with logout.");
         return; // exit if no valid member found
       }
-  
+
       setMembers((prevMembers) => {
-        const updatedMembers = prevMembers.filter(
-          (m) => m.id !== member.id
-        );
-  
+        const updatedMembers = prevMembers.filter((m) => m.id !== member.id);
+
         // sort IDs alphanumerically:
         const sortedMembers = updatedMembers.sort((a, b) =>
           a.id.localeCompare(b.id)
         );
-  
+
         // minimal ID will be 1st in the sorted list:
         const minClientId = sortedMembers[0]?.id;
-  
+
         if (drone.clientId === minClientId) {
           drone.publish({
             // room: "observable-room",
@@ -267,21 +261,21 @@ export default function ChatApp() {
             },
           });
         }
-  
+
         return updatedMembers;
       });
-  
+
       // disconnect the user from the drone-instance:
       drone.close();
 
       // activeRoom.unsubscribe();  // this would just disconnect the user from the room
-  
+
       // clear the chat-state for the current user:
       setChat({
         member: { username: "", avatar: "" },
         messages: [],
       });
-  
+
       setRoomLoaded(false);
       setActiveRoom(null);
       setDrone(null);
