@@ -84,7 +84,7 @@ h1 {
 
 /* header */
 .welcome-registration {
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   font-weight: 600;
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   /* font-family: "Inter", sans-serif; */
@@ -111,7 +111,8 @@ h1 {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  min-height: 50vh;
+  height: 100%;
+
 }
 
 .registration-form {
@@ -122,6 +123,7 @@ h1 {
     rgba(38, 124, 171, 0.9),
     rgba(52, 150, 203, 0.8)
   );
+  margin: 100px 0 100px 0;
   background-blend-mode: overlay;
   width: 50%;
   border-radius: 5px;
@@ -250,6 +252,76 @@ h1 {
   font-size: 1rem;
   color: rgb(20, 94, 185);
   color: white;
+}
+
+.chatroom-label {
+  margin-top: 20px;
+}
+
+.room-select {
+  margin-top: 20px;
+  font-family: "Open Sans", sans-serif;
+  background: linear-gradient(
+    to top,
+    rgba(158, 215, 245, 0.9),
+    rgba(233, 243, 251, 0.8)
+  );
+}
+
+.room-select option {
+  background: linear-gradient(
+    to top,
+    rgba(158, 215, 245, 0.9),
+    rgba(233, 243, 251, 0.8)
+  );
+}
+
+.custom-select .custom-select-prefix__control {
+  background: linear-gradient(
+    to top,
+    rgba(158, 215, 245, 0.9),
+    rgba(233, 243, 251, 0.8)
+  );
+  font-family: "Open Sans", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 0px;
+}
+
+/* dropdown style */
+.custom-select .custom-select-prefix__menu {
+  background: #e9f3fb;
+  font-size: 14px;
+  /* border-radius: 10px; */
+}
+
+/* options */
+.custom-select .custom-select-prefix__option {
+  background-color: rgba(183, 227, 248, 0.9);
+  font-family: "Nunito Sans", sans-serif;
+  color: #333;
+  padding: 5px;
+  font-size: 14px;
+  font-size: 0.8rem;
+  /* border-radius: 5px; */
+}
+
+/* focused option */
+.custom-select .custom-select-prefix__option--is-focused {
+  background-color: #a8d0e6;
+  color: #333;
+}
+
+.custom-select .custom-select-prefix__value-container {
+  padding: 0px 3px;
+}
+
+.custom-select .custom-select-prefix__input-container {
+  margin: 0;
+  padding: 0;
 }
 
 .loader-animation {
@@ -964,9 +1036,9 @@ hr {
   .avatar-image {
     width: 9%;
   }
-  .welcome-registration {
+  /* .welcome-registration {
     margin-bottom: 30px;
-  }
+  } */
   .messages-list {
     max-width: 50%;
   }
@@ -978,6 +1050,9 @@ hr {
   }
   .welcome-registration {
     margin-bottom: 30px;
+  }
+  .registration-form {
+    margin: 30px 0 100px 0;
   }
   .messages-list {
     max-width: 60%;
@@ -994,7 +1069,8 @@ hr {
 
   .registration-form {
     width: 80%;
-    margin-bottom: 30px;
+
+    margin: 50px 0 100px 0;
   }
 
   .messages-list {

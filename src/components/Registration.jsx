@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Select from "react-select";
 
 export default function Registration({ onFormSubmit }) {
   const [username, setUsername] = useState("");
@@ -20,27 +21,41 @@ export default function Registration({ onFormSubmit }) {
     "avatar8.png",
   ];
 
+  const roomOptions = [
+    { value: "Tech", label: "Tech" },
+    { value: "Travel", label: "Travel" },
+    { value: "Music", label: "Music" },
+    { value: "Sports", label: "Sports" },
+    { value: "Business", label: "Business" },
+    { value: "Education", label: "Education" },
+    { value: "Chill-zone", label: "Chill zone" },
+  ];
+
   const getUsername = (e) => {
     setUsername(e.target.value);
   };
-
 
   const selectAvatar = (avatar) => {
     setSelectedAvatar(avatar);
   };
 
   // NEW:
-  const getRoom = (e) => {
-    setRoom(e.target.value);
+  const getRoom = (selectedOption) => {
+    setRoom(selectedOption.value);
   };
-
 
   const submitForm = (e) => {
     e.preventDefault();
     if (!selectedAvatar) {
-      alert("Please select an avatar!");
+      alert("Please select an avatar.");
       return;
     }
+
+    if (!room) {
+      alert("Please select a chat room.");
+      return;
+    }
+
     // onFormSubmit(username, selectedAvatar);
     onFormSubmit(username, selectedAvatar, room);
   };
@@ -80,25 +95,21 @@ export default function Registration({ onFormSubmit }) {
             ))}
           </div>
         </div>
+        <div className="flexbox-baseline">
+          <label className="registration-label-b chatroom-label">
+            Join a room:
+          </label>
+          
 
-        <select
-          className="reg-form__room-select"
-          name="room"
-          required
-          value={room}
-          onChange={getRoom}
-        >
-           <option value="" disabled>
-            Choose a chatroom
-          </option>
-          <option value="Education">Education</option>
-          <option value="Business">Business</option>
-          <option value="Tech">Tech</option>
-          <option value="Travel">Travel</option>
-          <option value="Music">Music</option>
-          <option value="Sports">Sports</option>
-          <option value="Chill-zone">Chill zone</option>
-        </select>
+          <Select
+            options={roomOptions}
+            value={roomOptions.find((option) => option.value === room)}
+            onChange={getRoom}
+            placeholder="Select your topic"
+            className="custom-select"
+            classNamePrefix="custom-select-prefix"
+          />
+        </div>
 
         <div className="flexbox-baseline">
           <button className="registration-button" type="submit">
