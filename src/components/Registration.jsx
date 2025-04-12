@@ -92,7 +92,7 @@ export default function Registration({ onFormSubmit }) {
             Choose a chatroom
           </option>
           <option value="Education">Education</option>
-          <option value="Job">Job</option>
+          <option value="Business">Business</option>
           <option value="Tech">Tech</option>
           <option value="Travel">Travel</option>
           <option value="Music">Music</option>
