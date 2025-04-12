@@ -22,13 +22,13 @@ export default function Registration({ onFormSubmit }) {
   ];
 
   const roomOptions = [
-    { value: "Tech", label: "Tech" },
-    { value: "Travel", label: "Travel" },
-    { value: "Music", label: "Music" },
-    { value: "Sports", label: "Sports" },
-    { value: "Business", label: "Business" },
-    { value: "Education", label: "Education" },
-    { value: "Chill-zone", label: "Chill zone" },
+    { value: "💻 Tech", label: "💻 Tech" },
+    { value: "🏝️ Travel", label: "🏝️ Travel" },
+    { value: "🎵 Music", label: "🎵 Music" },
+    { value: "⚽️ Sports", label: "⚽️ Sports" },
+    { value: "👨‍💼 Business", label: "👨‍💼 Business" },
+    { value: "📖 Education", label: "📖 Education" },
+    { value: "😎 Chill-zone", label: "😎 Chill zone" },
   ];
 
   const getUsername = (e) => {
@@ -68,7 +68,7 @@ export default function Registration({ onFormSubmit }) {
           <input
             className="input-username"
             type="text"
-            placeholder="Enter name..."
+            placeholder="Enter username..."
             maxLength={15}
             required
             onChange={getUsername}

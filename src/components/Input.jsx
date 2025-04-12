@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { faFaceSmile } from "@fortawesome/free-solid-svg-icons";
@@ -38,8 +38,22 @@ export default function Input({ sendMessage, thisMember }) {
   // NEW - GIFS (API):
   const [showGifPicker, setShowGifPicker] = useState(false);
 
-  // NEW - FILES for upload:
-  // const [fileName, setFileName] = useState("");
+
+  // refs for storing the emoji- and gif-picker containers:
+  const emojiPickerRef = useRef(null);
+  const gifPickerRef = useRef(null);
+
+  useEffect(() => {
+    // Focus the picker container when it's shown
+    if (showPicker && emojiPickerRef.current) {
+      emojiPickerRef.current.focus();
+    } else if (showGifPicker && gifPickerRef.current) {
+      gifPickerRef.current.focus();
+    }
+  }, [showPicker, showGifPicker]);
+
+
+
 
   let nameInput;
 
@@ -196,12 +210,12 @@ export default function Input({ sendMessage, thisMember }) {
         </div>
       </form>
       {showPicker && (
-        <div className="emoji-picker-container">
+        <div className="emoji-picker-container" ref={emojiPickerRef} tabIndex={-1}>
           <Picker onEmojiClick={addEmoji} />
         </div>
       )}
       {showGifPicker && (
-        <div className="gif-picker-container">
+        <div className="gif-picker-container" ref={gifPickerRef} tabIndex={-1}>
           <Giphy onGifSelect={handleGifSelect} />
         </div>
       )}

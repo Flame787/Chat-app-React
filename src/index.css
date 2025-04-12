@@ -154,9 +154,7 @@ h1 {
   display: flex;
   align-items: center;
   font-weight: 600;
-  /* color: rgb(138, 138, 138); */
   color: rgb(109, 108, 108);
-  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   font-family: "Nunito Sans", sans-serif;
   font-size: 0.9rem;
 }
@@ -168,7 +166,7 @@ h1 {
   font-size: 16px;
   font-size: 0.9rem;
   /* box-shadow: 2px 2px 2px rgb(162, 162, 162); */
-  padding: 5px;
+  padding: 8px;
   margin-top: 15px;
   margin-bottom: 40px;
   border-radius: 3px;
@@ -180,6 +178,8 @@ h1 {
     rgba(233, 243, 251, 0.8)
   );
   background-blend-mode: overlay;
+  width: 145px;
+
 }
 
 .avatar-select {
@@ -287,7 +287,7 @@ h1 {
   font-size: 14px;
   font-weight: 400;
   margin-top: 20px;
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 0px;
 }
 
@@ -322,6 +322,10 @@ h1 {
 .custom-select .custom-select-prefix__input-container {
   margin: 0;
   padding: 0;
+}
+/* arrow-down */
+.css-1xc3v61-indicatorContainer {
+  color: #908f8fd6;
 }
 
 .loader-animation {
