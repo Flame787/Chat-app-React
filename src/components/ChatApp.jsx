@@ -87,7 +87,6 @@ export default function ChatApp() {
   // Corrected -> effect takes place each time a room changes.
 
   // function for connecting to Scaledrone - whenever new member comes, he gets connected to Scaledrone:
-
   useEffect(() => {
     if (chat.member.username !== "") {
       const drone = new window.Scaledrone(CHANNEL, {
