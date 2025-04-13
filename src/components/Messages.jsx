@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import { Fragment } from "react";
 
 export default function Messages({ messages, thisMember }) {
   //thisMember - the person from whose perspective we are currently seing the chat (user-perspective)
@@ -19,9 +20,16 @@ export default function Messages({ messages, thisMember }) {
     bottomDiv.current.scrollIntoView({ behavior: "smooth" }); // auto-scrolling to the last div, whenever messages-list changes
   }, [messages.length]);
 
+  // Generate a unique ID based on Math.random() without using Date
+  function generateUniqueId() {
+    const randomPart = Math.random().toString(36).substr(2, 9); // Generate random string of 9 characters
+    const randomSuffix = Math.random().toString(36).substr(2, 9); // Add another random part for uniqueness
+    return `${randomPart}-${randomSuffix}`; // Combine the two parts
+  }
+
   // main function for showing all types of messages, emojis, gifs, files etc.:
   function showMessage(message) {
-    const uniqueId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    const uniqueId = generateUniqueId();
 
     if (!message || !message.member) {
       console.log("Invalid message or member:", message);
@@ -267,12 +275,11 @@ export default function Messages({ messages, thisMember }) {
     } // NEEDED! - without it, it shows avatar for each message from the SAME user
     // it sets member.id to be same as message-author after each new message - the evaluation starts again
 
-    // return listItem;
     return (
-      <>
+      <Fragment key={uniqueId}>
         {dateHeader}
         {listItem}
-      </>
+      </Fragment>
     );
   }
 

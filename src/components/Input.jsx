@@ -118,7 +118,7 @@ export default function Input({ sendMessage, thisMember }) {
   const handleFileUpload = async (file) => {
     const uploadResult = await uploadFile(file);
 
-    console.log("Upload result:", uploadResult); 
+    // console.log("Upload result:", uploadResult); 
 
     if (!uploadResult || !uploadResult.path) {
       console.error("Upload result is missing path!", uploadResult);
@@ -130,13 +130,13 @@ export default function Input({ sendMessage, thisMember }) {
     const shortenedLink = `${uploadResult.path}`;
 
     if (uploadResult) {
-      console.log(
-        "Upload result - path (format: 'public/timestamp_name): ",
-        uploadResult.path
-      );
-      console.log("File link - complete:", fileLink);
+      // console.log(
+      //   "Upload result - path (format: 'public/timestamp_name): ",
+      //   uploadResult.path
+      // );
+      // console.log("File link - complete:", fileLink);
       // console.log("Sending file link:", fileLink);
-      console.log("Shortened link:", shortenedLink);
+      // console.log("Shortened link:", shortenedLink);
 
       // publishing message, which contains the file-link:
         // sendMessage(fileLink);   

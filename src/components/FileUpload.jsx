@@ -12,7 +12,7 @@ export default function FileUpload({ onFileSelect }) {
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    console.log("selectedFile in FileUpload component: ", selectedFile);
+    // console.log("selectedFile in FileUpload component: ", selectedFile);
 
     // if no file selected (but cancelled instead):
     if (!selectedFile) {
@@ -34,14 +34,14 @@ export default function FileUpload({ onFileSelect }) {
   };
 
   const handleUpload = async (selectedFile) => {
-    console.log("Upload button clicked");
+    // console.log("Upload button clicked");
     if (selectedFile) {
       const uploadedData = await uploadFile(selectedFile);
       if (uploadedData) {
-        console.log(
-          "File uploaded successfully in FileUpload component:",  
-          uploadedData
-        );
+        // console.log(
+        //   "File uploaded successfully in FileUpload component:",  
+        //   uploadedData
+        // );
         setUploadStatus("File uploaded successfully!");
       } else {
         setUploadStatus("File upload failed!");

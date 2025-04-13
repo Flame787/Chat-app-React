@@ -6,17 +6,12 @@ body {
 }
 
 body {
-  /* height: 100%; */
-  /* letter-spacing: 0.3px; */
   font-family: ReithSerif, Helvetica, Arial, freesans, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   background-image: url("../public/Doodle8.jpg");
   background-position: center;
   background-repeat: repeat;
-  /* background-size: cover; */
-  /* background-size: auto; */
   background-size: contain;
 }
 
@@ -43,7 +38,6 @@ code {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
-  /* background-color: rgb(25, 123, 180); */
   background: linear-gradient(
     to top,
     rgba(38, 124, 171, 0.9),
@@ -51,7 +45,6 @@ code {
   );
   background-blend-mode: overlay;
   margin: 0;
-  /* transition: top 0.3s; */
   transition: all 0.3s ease;
 }
 
@@ -84,7 +77,6 @@ h1 {
 
 /* header */
 .welcome-registration {
-  /* margin-bottom: 30px; */
   font-weight: 600;
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   /* font-family: "Inter", sans-serif; */
@@ -101,23 +93,19 @@ h1 {
   letter-spacing: 0.3px;
   font-size: 18px;
   padding-bottom: 20px;
-  /* background-color: rgb(25, 123, 180); */
   color: white;
 }
 
 .flex-div-reg {
   display: flex;
-  /* flex-direction: row; */
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   height: 100%;
-
 }
 
 .registration-form {
   box-shadow: 2px 2px 2px rgb(162, 162, 162);
-  /* background-color: rgb(25, 123, 180); */
   background: linear-gradient(
     to top,
     rgba(38, 124, 171, 0.9),
@@ -127,7 +115,6 @@ h1 {
   background-blend-mode: overlay;
   width: 50%;
   border-radius: 5px;
-  /* background: linear-gradient(to top, rgba(52, 150, 203, 0.9), rgba(52, 150, 203, 0.758)); */
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   /* font-family: "Inter", sans-serif; */
   /* font-family: "Montserrat", sans-serif; */
@@ -160,12 +147,9 @@ h1 {
 }
 
 .input-username {
-  /* font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif; */
   font-family: "Nunito Sans", sans-serif;
   font-size: 16px;
   font-size: 0.9rem;
-  /* box-shadow: 2px 2px 2px rgb(162, 162, 162); */
   padding: 8px;
   margin-top: 15px;
   margin-bottom: 40px;
@@ -179,13 +163,11 @@ h1 {
   );
   background-blend-mode: overlay;
   width: 145px;
-
 }
 
 .avatar-select {
   display: flex;
   justify-content: space-between;
-  /* gap: 10px; */
   margin: 20px 20px 0 20px;
   padding: 5px 0;
   border-style: solid;
@@ -193,7 +175,6 @@ h1 {
   border-color: white;
   border-radius: 3px;
   border-style: none;
-  /* background-color: rgb(201, 234, 251); */
   background: linear-gradient(
     to top,
     rgba(158, 215, 245, 0.9),
@@ -214,8 +195,6 @@ h1 {
 .avatar-image {
   margin: 7px;
   width: 60px;
-  /* width: 8%; */
-  /* height: 60px; */
   cursor: pointer;
   border: 2px solid transparent;
   transition: border 0.3s ease;
@@ -295,7 +274,6 @@ h1 {
 .custom-select .custom-select-prefix__menu {
   background: #e9f3fb;
   font-size: 14px;
-  /* border-radius: 10px; */
 }
 
 /* options */
@@ -306,7 +284,6 @@ h1 {
   padding: 5px;
   font-size: 14px;
   font-size: 0.8rem;
-  /* border-radius: 5px; */
 }
 
 /* focused option */
@@ -344,15 +321,14 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .members-count {
-  /* margin-left: 40px; */
   font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
-  /* background-color: rgb(25, 123, 180); */
   background: linear-gradient(
     to top,
     rgba(38, 124, 171, 0.9),
@@ -391,11 +367,9 @@ h1 {
 }
 
 .date-header {
-  /* margin-left: 35px; */
   margin-top: 20px;
   font-weight: 600;
   color: rgb(109, 108, 108);
-  /* color: rgb(25, 123, 180); */
   font-family: "Nunito Sans", sans-serif;
   font-size: 0.8rem;
 }
@@ -445,12 +419,7 @@ h1 {
   );
   background-blend-mode: overlay;
   flex-wrap: wrap;
-  /* border-style: solid; */
-  /* border-width: 1px; */
   border-radius: 10px;
-  /* border-color: rgb(25, 123, 180); */
-  /* border-color: rgba(52, 150, 203, 0.758); */
-  /* box-shadow: 0.2em 0.2em 0.2em rgba(132, 132, 132, 0.6); */
   box-shadow: 0.3em 0.3em 0.7em rgba(83, 80, 80, 0.6);
 }
 
@@ -473,8 +442,6 @@ h1 {
   justify-content: flex-end;
   align-items: center;
   gap: 7px;
-  /* align-self: auto;
-  text-align: right; */
 }
 
 .list-item-right .avatar-image {
@@ -483,8 +450,6 @@ h1 {
 
 /* div containig textarea for input and send-button: */
 .message-input {
-  /* margin-left: 2%;
-  margin-right: 2%; */
   padding: 10px;
   border-radius: 10px;
   resize: vertical; /* user can scroll vertically, when more content */
@@ -495,10 +460,6 @@ h1 {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   font-size: 0.8rem;
-  /* border-color: 2px 2px 2px rgb(227, 226, 226); */
-  /* box-shadow: 2px 2px 2px rgb(162, 162, 162); */
-  /* border-style: solid;
-  border-width: 1px; */
   box-shadow: 0.3em 0.3em 1em rgba(83, 80, 80, 0.6);
   color: rgba(52, 150, 203, 0.758);
   background-color: rgba(165, 221, 249, 0.573);
@@ -524,6 +485,8 @@ h1 {
   outline: none;
   font-size: 0.85rem;
   font-family: "Rubik", sans-serif;
+  font-family: "Rubik", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "EmojiOne Color", "Android Emoji", sans-serif;
+
   resize: none;
   /* Firefox style */
   scrollbar-width: thin;
@@ -534,8 +497,6 @@ hr {
   border: none;
   height: 1px;
   background-color: rgba(52, 150, 203, 0.758);
-  /* height: 2px; */
-  /* margin: 20px 0;  */
   width: 100%;
 }
 
@@ -549,7 +510,6 @@ hr {
   border-radius: 5px;
   box-shadow: 2px 2px 2px rgb(10, 59, 108);
   border-color: rgb(24, 79, 111);
-  /* background-color: rgb(25, 123, 180); */
   border: none;
   color: white;
 }
@@ -563,7 +523,6 @@ hr {
     rgba(138, 205, 241, 0.8)
   );
   background-blend-mode: overlay;
-  /* border-color: rgb(99, 184, 234); */
   border: none;
   padding: 3px 40px;
 }
@@ -644,7 +603,6 @@ hr {
   background-blend-mode: overlay;
   box-shadow: none;
   border-color: rgba(116, 165, 193, 0);
-  /* width: 30px;     */
   height: 30px;
   border-radius: 10px;
   font-size: 12px;
@@ -767,26 +725,16 @@ hr {
   color: rgb(109, 108, 108);
   font-size: 0.9rem;
   font-family: "Nunito Sans", sans-serif;
-  /* font-family: "Rubik", sans-serif; */
 }
 
 .my-avatar-name {
   text-align: center;
-  /* margin-left: 20px; */
   margin-bottom: 20px;
 }
 
 .registration-button {
   margin: 30px;
 }
-
-/* .flex-registration,
-.flex-message {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-} */
 
 .flex-registration {
   display: flex;
@@ -797,7 +745,6 @@ hr {
 
 .flex-message {
   margin-top: 20px;
-  /* margin-left: 40px; */
   margin-bottom: 20px;
   justify-content: center;
   width: 100%;
@@ -814,7 +761,6 @@ hr {
 .timestamp {
   font-size: 0.7rem;
   margin-top: 10px;
-  /* margin-left: 15px; */
   color: rgb(138, 138, 138);
   color: rgb(109, 108, 108);
 }
@@ -830,20 +776,15 @@ hr {
   padding: 5px 10px;
   /* makes the text-buble to fit the text, and not to be any wider than needed: */
   display: inline-block;
-  /* background-color: rgba(255, 255, 255, 0.505); */
-  /* box-shadow: 2px 2px 2px rgb(191, 191, 191); */
   border-radius: 5px;
 }
 
 .user-joined {
-  /* color: green; */
   color: rgb(0, 128, 96);
   font-family: "Inter", sans-serif;
 }
 
 .user-left {
-  /* color: red;
-  color: rgb(230, 86, 86); */
   color: rgb(172, 55, 55);
   font-family: "Inter", sans-serif;
 }
@@ -859,7 +800,8 @@ hr {
   /* font-family: "Open Sans", sans-serif; */
   /* font-family: "Noto Sans", sans-serif; */
   /* font-family: "Poppins", sans-serif; */
-  font-family: "Rubik", sans-serif;
+  /* font-family: "Rubik", sans-serif; */
+  font-family: "Rubik", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "EmojiOne Color", "Android Emoji", sans-serif;
   /* font-family: "Nunito Sans", sans-serif; */
   /* font-family: "Mulish", sans-serif; */
   /* font-family: "Heebo", sans-serif; */
@@ -867,8 +809,6 @@ hr {
   font-size: 0.85rem;
   background-color: rgba(168, 212, 250, 0.486);
   background: linear-gradient(to bottom, white, rgba(194, 228, 247, 0.8));
-  /* background-blend-mode: overlay; */
-  /* background-color: white; */
   padding: 10px;
   margin-top: 5px;
   margin-right: 40px;
@@ -889,7 +829,6 @@ hr {
 }
 
 .message-from-me {
-  /* background-color: rgb(56, 146, 199); */
   background: linear-gradient(
     to top,
     rgba(38, 124, 171, 0.9),
@@ -924,7 +863,6 @@ hr {
 
 .scroll-button {
   background-color: rgb(25, 123, 180);
-  /* background: linear-gradient(to top, rgba(38, 124, 171, 0.9), rgba(52, 150, 203, 0.8)); */
   background: linear-gradient(
     to top,
     rgba(30, 111, 155, 0.9),
@@ -963,8 +901,6 @@ hr {
   text-align: left;
   padding-top: 10px;
   padding-bottom: 10px;
-  /* background-color: rgb(52 149 203 / 84%);
-  background-color: rgba(52, 150, 203, 0.758); */
   background-color: rgb(25, 123, 180);
   background: linear-gradient(
     to top,
@@ -980,7 +916,6 @@ hr {
 .scaledrone-icon {
   margin-left: 5px;
   display: inline-block;
-  /* align-self: baseline; */
 }
 
 .scaledrone-icon img {
@@ -1015,8 +950,8 @@ hr {
 .social-links {
   display: inline-block;
   margin: 10px;
-  /* align-self: flex-end; */
 }
+
 .social-links a {
   color: white;
   text-decoration: none;
@@ -1026,23 +961,18 @@ hr {
 }
 
 .social-links a:hover {
-  /* color: #55bbd4; */
   color: rgb(123, 204, 242);
   transform: scale(1.1);
 }
 
 .author {
   margin-left: 100px;
-  /* align-self: flex-end; */
 }
 
 @media (max-width: 1450px) {
   .avatar-image {
     width: 9%;
   }
-  /* .welcome-registration {
-    margin-bottom: 30px;
-  } */
   .messages-list {
     max-width: 50%;
   }

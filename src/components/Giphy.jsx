@@ -39,7 +39,7 @@ export default function Giphy({ onGifSelect }) {
       }
 
       if (response && response.data) {
-        console.log("Fetched GIFs:", response.data);
+        // console.log("Fetched GIFs:", response.data);
         setGifs(response.data);
       } else {
         console.log("No GIFs found");
