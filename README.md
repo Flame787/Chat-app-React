@@ -1,3 +1,5 @@
+Chat App is a demo React application that enables real-time message exchange between multiple users in separate chat rooms using the WebSocket service Scaledrone. It supports adding emojis and GIFs via external APIs, as well as uploading images, videos, and other files through Supabase storage.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
