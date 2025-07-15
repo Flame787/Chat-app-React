@@ -38,7 +38,6 @@ export default function Input({ sendMessage, thisMember }) {
   // NEW - GIFS (API):
   const [showGifPicker, setShowGifPicker] = useState(false);
 
-
   // refs for storing the emoji- and gif-picker containers:
   const emojiPickerRef = useRef(null);
   const gifPickerRef = useRef(null);
@@ -52,10 +51,8 @@ export default function Input({ sendMessage, thisMember }) {
     }
   }, [showPicker, showGifPicker]);
 
-
-
-
-  let nameInput;
+  // let nameInput;
+  const nameInput = useRef(null);
 
   // function handleEmojiPicker(){
   //   if (showPicker === true){
@@ -93,7 +90,7 @@ export default function Input({ sendMessage, thisMember }) {
     if (showPicker) {
       setShowPicker(false);
     }
-    
+
     if (input.text === "") {
       setInput({
         ...input,
@@ -106,19 +103,17 @@ export default function Input({ sendMessage, thisMember }) {
   }
 
   const handleKeyDown = (e) => {
-    
     if (e.key === "Enter") {
       e.preventDefault();
       publishInput(e);
     }
-    
   };
 
   // NEW: upload logic:
   const handleFileUpload = async (file) => {
     const uploadResult = await uploadFile(file);
 
-    // console.log("Upload result:", uploadResult); 
+    // console.log("Upload result:", uploadResult);
 
     if (!uploadResult || !uploadResult.path) {
       console.error("Upload result is missing path!", uploadResult);
@@ -139,16 +134,14 @@ export default function Input({ sendMessage, thisMember }) {
       // console.log("Shortened link:", shortenedLink);
 
       // publishing message, which contains the file-link:
-        // sendMessage(fileLink);   
-        sendMessage(`${fileLink},${shortenedLink}`);   
-
+      // sendMessage(fileLink);
+      sendMessage(`${fileLink},${shortenedLink}`);
     } else {
       console.error("Error generating public URL:", new Error("Upload failed"));
     }
   };
 
   return (
-    
     <div className="input-down">
       <form onSubmit={publishInput} className="flex-message">
         <div className="my-avatar-name">
@@ -166,9 +159,10 @@ export default function Input({ sendMessage, thisMember }) {
             value={input.text}
             type="text"
             placeholder={input.placeholder}
-            ref={(input) => {
-              nameInput = input;
-            }}
+            // ref={(input) => {
+            //   nameInput = input;
+            // }}
+            ref={nameInput}
             autoFocus={true}
             onChange={updateInput}
             onKeyDown={handleKeyDown}
@@ -210,7 +204,11 @@ export default function Input({ sendMessage, thisMember }) {
         </div>
       </form>
       {showPicker && (
-        <div className="emoji-picker-container" ref={emojiPickerRef} tabIndex={-1}>
+        <div
+          className="emoji-picker-container"
+          ref={emojiPickerRef}
+          tabIndex={-1}
+        >
           <Picker onEmojiClick={addEmoji} />
         </div>
       )}

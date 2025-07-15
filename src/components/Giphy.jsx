@@ -60,11 +60,13 @@ export default function Giphy({ onGifSelect }) {
   };
 
   // fetch some trending gifs each time when component was mounted, before any search-word has been entered:
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchGifs(0);
   }, []);
 
   // fetch GIFs on each searchWord-change:
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (searchWord !== "") {
       const delayDebounce = setTimeout(() => {

@@ -12,6 +12,7 @@ export default function Footer() {
           <a
             href="https://www.scaledrone.com/"
             target="_blank"
+            rel="noopener noreferrer"
             aria-label="Scaledrone"
             title=" Scaledrone"
           >
@@ -21,6 +22,7 @@ export default function Footer() {
         <a
           href="https://www.scaledrone.com/"
           target="_blank"
+          rel="noopener noreferrer"
           aria-label="Scaledrone"
           title=" Scaledrone"
         >
@@ -33,6 +35,7 @@ export default function Footer() {
           <a
             href="https://github.com/Flame787"
             target="_blank"
+            rel="noopener noreferrer"
             aria-label="GitHub"
             title="Github"
           >
@@ -41,6 +44,7 @@ export default function Footer() {
           <a
             href="https://www.linkedin.com/in/marina-brezovic-210b583b"
             target="_blank"
+            rel="noopener noreferrer"
             aria-label="LinkedIn"
             title="Linkedin"
           >
@@ -49,6 +53,7 @@ export default function Footer() {
           <a
             href="mailto:mbrezovic77@gmail.com"
             target="_blank"
+            rel="noopener noreferrer"
             aria-label="Email"
             title="Email"
           >

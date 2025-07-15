@@ -36,7 +36,7 @@ export default function Messages({ messages, thisMember }) {
       return null;
     }
 
-    const { member, data, id, timestamp } = message;
+    const { member, data, timestamp } = message;
 
     // format time: HH:MM
     function formatTime(timest) {

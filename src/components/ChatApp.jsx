@@ -1,6 +1,6 @@
 // Main component, used for connection with Scaledrone chat-channel & starting chat
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 import Messages from "./Messages";
 import Input from "./Input";
@@ -207,7 +207,8 @@ export default function ChatApp() {
 
       drone.on("error", (error) => console.log(error));
     }
-  }, [chat, drone]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chat, drone]); 
 
   function sendMessage(message) {
     drone.publish({
