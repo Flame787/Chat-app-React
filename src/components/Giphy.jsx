@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import { Grid } from "@giphy/react-components";
 import { GiphyFetch } from "@giphy/js-fetch-api";
@@ -14,7 +14,7 @@ export default function Giphy({ onGifSelect }) {
   const [error, setError] = useState("");
 
   // configure your fetch: fetch 10 gifs at a time as the user scrolls (offset is handled by the grid):
-  const fetchGifs = async (offset) => {
+  const fetchGifs = useCallback(async (offset) => {
     setLoading(true);
     setError(""); // reset prev. errors
 
@@ -52,7 +52,7 @@ export default function Giphy({ onGifSelect }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [searchWord]);
 
   // handler-function:
   const handleSearchWord = (e) => {
@@ -60,13 +60,13 @@ export default function Giphy({ onGifSelect }) {
   };
 
   // fetch some trending gifs each time when component was mounted, before any search-word has been entered:
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     fetchGifs(0);
-  }, []);
+  }, [fetchGifs]);
 
   // fetch GIFs on each searchWord-change:
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     if (searchWord !== "") {
       const delayDebounce = setTimeout(() => {
@@ -74,9 +74,9 @@ export default function Giphy({ onGifSelect }) {
       }, 500); // delay 0.5 sec - debounce effect to prevent too many API-calls
       return () => clearTimeout(delayDebounce); // cancel timeout if user continues typing
     }
-  }, [searchWord]);
+  }, [searchWord, fetchGifs]);
 
-  // console.log("Current gifs state:", gifs);
+  // console.log("Current gifs state:", gifs); //
 
   return (
     <div className="search-gifs">
