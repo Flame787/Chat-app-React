@@ -16,27 +16,55 @@ export default function Input({ sendMessage, thisMember }) {
   // thisMember - me / the person from whose perspective we are currently seing the chat (user-perspective)
   // = chat.member; has properties: username & avatar
 
-  const storageUrl = process.env.REACT_APP_STORAGE_URL;
+  // const storageUrl = process.env.REACT_APP_STORAGE_URL;
 
-  const placeholder = [
-    "Enter your message...",
-    "You need to type something first...",
-  ];
-
-  const initialInput = {
+  // using Netlify serverless functions to fetch secret storage_url:
+  const [input, setInput] = useState({
     text: "",
-    placeholder: placeholder[0],
-  };
+    placeholder: "Enter your message...",
+  });
+
+  // const placeholder = [
+  //   "Enter your message...",
+  //   "You need to type something first...",
+  // ];
+
+  // const initialInput = {
+  //   text: "",
+  //   placeholder: placeholder[0],
+  // };
 
   // states:
 
-  const [input, setInput] = useState(initialInput);
+  // const [input, setInput] = useState(initialInput);
 
   // NEW - EMOJIS:
   const [showPicker, setShowPicker] = useState(false);
 
   // NEW - GIFS (API):
   const [showGifPicker, setShowGifPicker] = useState(false);
+
+  // NEW - fetching secret variable via serverless functions:
+  const [storageUrl, setStorageUrl] = useState("");
+
+  useEffect(() => {
+    const getSecrets = async () => {
+      try {
+        const response = await fetch("/.netlify/functions/useKeys");
+        const data = await response.json();
+
+        if (data?.supabaseStorageKey) {
+          setStorageUrl(data.supabaseStorageKey);
+        } else {
+          console.error("storageUrl not found.");
+        }
+      } catch (err) {
+        console.error("Error while fetching storageUrl:", err);
+      }
+    };
+
+    getSecrets();
+  }, []);
 
   // refs for storing the emoji- and gif-picker containers:
   const emojiPickerRef = useRef(null);
@@ -60,9 +88,13 @@ export default function Input({ sendMessage, thisMember }) {
   //   }
   // }
 
-  function updateInput(e) {
+  // function updateInput(e) {
+  //   setInput({ ...input, text: e.target.value });
+  // }
+
+  const updateInput = (e) => {
     setInput({ ...input, text: e.target.value });
-  }
+  };
 
   // NEW - EMOJIS:
 
@@ -91,14 +123,23 @@ export default function Input({ sendMessage, thisMember }) {
       setShowPicker(false);
     }
 
-    if (input.text === "") {
+    // if (input.text === "") {
+    //   setInput({
+    //     ...input,
+    //     placeholder: placeholder[1],
+    //   });
+    // } else {
+    //   sendMessage(input.text);
+    //   setInput({ text: "", placeholder: placeholder[0] });
+    // }
+    if (input.text.trim() === "") {
       setInput({
         ...input,
-        placeholder: placeholder[1],
+        placeholder: "You need to type something first...",
       });
     } else {
-      sendMessage(input.text);
-      setInput({ text: "", placeholder: placeholder[0] });
+      sendMessage(input.text.trim());
+      setInput({ text: "", placeholder: "Enter your message..." });
     }
   }
 
@@ -115,7 +156,7 @@ export default function Input({ sendMessage, thisMember }) {
 
     // console.log("Upload result:", uploadResult);
 
-    if (!uploadResult || !uploadResult.path) {
+    if (!uploadResult || !uploadResult.path || !storageUrl) {
       console.error("Upload result is missing path!", uploadResult);
       return;
     }

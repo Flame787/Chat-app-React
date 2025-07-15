@@ -5,35 +5,76 @@ import { createClient } from "@supabase/supabase-js";
 
 // export const supabase = createClient(supabaseUrl, supabaseKey);
 
-export const supabase = null;
+// NEW - fetching secret keys via Netlify serverless functions:
+let supabase = null;
+
+export const initializeSupabase = async () => {
+  try {
+    const response = await fetch("/.netlify/functions/useKeys");
+    const data = await response.json();
+
+    const supabaseUrl = data.supabaseBaseUrl;
+    const supabaseKey = data.supabaseBaseKey;
+
+    if (!supabaseUrl || !supabaseKey) {
+      throw new Error("Supabase keys not available.");
+    }
+
+    supabase = createClient(supabaseUrl, supabaseKey);
+    return true;
+  } catch (err) {
+    console.error("Error while initializing Supabase client:", err.message);
+    return false;
+  }
+};
 
 // upload data:
 export const uploadFile = async (file) => {
-  const { data, error } = await supabase.storage
-    .from("mystorage") // bucket name
-    .upload(`public/${Date.now()}_${file.name}`, file); // bucket path
-
-  if (error) {
-    console.error("Error uploading file:", error.message);
-    return null;
+  if (!supabase) {
+    const initialized = await initializeSupabase();
+    if (!initialized) return null;
   }
 
-  console.log("File uploaded:", data);   // THIS IS SUCCESFUL - FILE PICKED + ENTER, MESSAGE IS SHOWN IN THE CONSOLE.
-  return data;                         // THIS SHOWS EVEN BEFORE THE UPDATE-FILE-BUTTON WAS CLICKED.
+  try {
+    const { data, error } = await supabase.storage
+      .from("mystorage") // bucket name
+      .upload(`public/${Date.now()}_${file.name}`, file); // bucket path
+
+    if (error) {
+      console.error("Error uploading file:", error.message);
+      return null;
+    }
+
+    console.log("File uploaded:", data); // THIS IS SUCCESFUL - FILE PICKED + ENTER, MESSAGE IS SHOWN IN THE CONSOLE.
+    return data;
+  } catch (err) {
+    console.error("Upload greška:", err.message);
+    return null;
+  }
 };
 
 // download data:
 export const downloadFile = async (filePath) => {
-  const { data, error } = await supabase.storage
-    .from("mystorage")
-    .download(filePath); 
-
-  if (error) {
-    console.error("Error downloading file:", error.message);
-    return null;
+  if (!supabase) {
+    const initialized = await initializeSupabase();
+    if (!initialized) return null;
   }
 
-  const url = URL.createObjectURL(data);
-  console.log("Download URL:", url);
-  return url;
+  try {
+    const { data, error } = await supabase.storage
+      .from("mystorage")
+      .download(filePath);
+
+    if (error) {
+      console.error("Error downloading file:", error.message);
+      return null;
+    }
+
+    const url = URL.createObjectURL(data);
+    console.log("Download URL:", url);
+    return url;
+  } catch (err) {
+    console.error("Download greška:", err.message);
+    return null;
+  }
 };

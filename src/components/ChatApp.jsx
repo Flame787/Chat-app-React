@@ -11,9 +11,9 @@ import HeaderChat from "./HeaderChat";
 import ScrollToBottom from "./ScrollToBottom";
 import MembersCount from "./MembersCount";
 
-const CHANNEL = process.env.REACT_APP_CHANNEL_ID
-  ? process.env.REACT_APP_CHANNEL_ID
-  : "Enter your chat-channel ID";
+// const CHANNEL = process.env.REACT_APP_CHANNEL_ID
+//   ? process.env.REACT_APP_CHANNEL_ID
+//   : "Enter your chat-channel ID";
 
 export default function ChatApp() {
   // States:
@@ -32,8 +32,24 @@ export default function ChatApp() {
 
   const [activeRoom, setActiveRoom] = useState(null);
 
-  // function for saving messages to local storage:
+  // NEW - with Netlify serverless functions:
+  const [channelId, setChannelId] = useState(null);
 
+  const fetchSecrets = async () => {
+    try {
+      const response = await fetch("/.netlify/functions/useKeys");
+      const data = await response.json();
+      setChannelId(data.droneChannelId);
+    } catch (error) {
+      console.error("Error while fetching Scaledrone channel ID:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchSecrets();
+  }, []);
+
+  // function for saving messages to local storage:
   function saveMessages(message) {
     // fetching all messages in local storage:
 
@@ -88,13 +104,13 @@ export default function ChatApp() {
 
   // function for connecting to Scaledrone - whenever new member comes, he gets connected to Scaledrone:
   useEffect(() => {
-    if (chat.member.username !== "") {
-      const drone = new window.Scaledrone(CHANNEL, {
+    if (chat.member.username !== "" && channelId) {
+      const drone = new window.Scaledrone(channelId, {
         data: chat.member,
       });
       setDrone(drone);
     }
-  }, [chat.member]);
+  }, [chat.member, channelId]);
   // when user enters/gets his username and avatar, a new Scaledrone instance of object is created.
   // When Scaledrone instance is created, it tries to connect to a chat-room.
   // This new instance becomes/sets new drone-state.
@@ -208,7 +224,7 @@ export default function ChatApp() {
       drone.on("error", (error) => console.log(error));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chat, drone]); 
+  }, [chat, drone]);
 
   function sendMessage(message) {
     drone.publish({
