@@ -1,9 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.REACT_APP_BASE_URL;
-const supabaseKey = process.env.REACT_APP_BASE_KEY;
+// const supabaseUrl = process.env.REACT_APP_BASE_URL;
+// const supabaseKey = process.env.REACT_APP_BASE_KEY;
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+// export const supabase = createClient(supabaseUrl, supabaseKey);
+
+export const supabase = null;
 
 // upload data:
 export const uploadFile = async (file) => {
