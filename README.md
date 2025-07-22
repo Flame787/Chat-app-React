@@ -70,3 +70,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+*** After the app was deployed to Netlify, it should be run locally using this command: `netlify dev` 
+(which initializes the Netlify development environment on http://localhost:8888/).
+
+Starting the app with `npm start` may cause functionality issues, as it was configured to work specifically in the Netlify  environment (e.g., environment variables, serverless functions), which `netlify dev` simulates locally.
+
+To check out a previous version of the app (before deployment to Netlify): use commit 7705d44 from May 6, 2025.
+

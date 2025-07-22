@@ -41,8 +41,10 @@ You can monitor your channel traffic on: https://dashboard.scaledrone.com/channe
 
 All traffic is end-to-end SSL encrypted.
 
+---------------------------------------------------------------------------------------------------------------------
 
-Data-structure:
+Scaledrone chat parameters:
+
 
                         chat (state)
                         |  |  
