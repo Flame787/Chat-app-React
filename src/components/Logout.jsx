@@ -2,7 +2,7 @@ export default function Logout({ onLogout, room }) {
   return (
     <div className="room-logout-div">
       <div className="room-title">
-        <button className="logout-button room-button">
+        <button className="room-button">
           Chat room: <span>{room}</span>{" "}
         </button>
       </div>

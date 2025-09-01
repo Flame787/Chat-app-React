@@ -75,6 +75,7 @@ h1 {
   font-size: 1.8rem;
 }
 
+
 /* header */
 .welcome-registration {
   font-weight: 600;
@@ -115,18 +116,7 @@ h1 {
   background-blend-mode: overlay;
   width: 50%;
   border-radius: 5px;
-  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
-  /* font-family: "Inter", sans-serif; */
-  /* font-family: "Montserrat", sans-serif; */
-  /* font-family: "Roboto", sans-serif; */
   font-family: "Open Sans", sans-serif;
-  /* font-family: "Noto Sans", sans-serif; */
-  /* font-family: "Poppins", sans-serif; */
-  /* font-family: "Rubik", sans-serif; */
-  /* font-family: "Nunito Sans", sans-serif; */
-  /* font-family: "Mulish", sans-serif; */
-  /* font-family: "Heebo", sans-serif; */
-  /* font-family: "Libre Franklin", sans-serif; */
 }
 
 .registration-label-a {
@@ -316,6 +306,10 @@ h1 {
   width: 20%;
 }
 
+h3 br {
+  display: none; /* default: bigger screen: hide <br/>, show subtitle in 1 row */
+}
+
 .members-count-countainer {
   display: flex;
   flex-direction: column;
@@ -485,7 +479,8 @@ h1 {
   outline: none;
   font-size: 0.85rem;
   font-family: "Rubik", sans-serif;
-  font-family: "Rubik", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "EmojiOne Color", "Android Emoji", sans-serif;
+  font-family: "Rubik", "Apple Color Emoji", "Segoe UI Emoji",
+    "Noto Color Emoji", "EmojiOne Color", "Android Emoji", sans-serif;
 
   resize: none;
   /* Firefox style */
@@ -515,7 +510,7 @@ hr {
 }
 
 .registration-button,
-.logout-button {
+.logout-button, .room-button {
   background-color: rgb(10, 161, 221);
   background: linear-gradient(
     to top,
@@ -543,7 +538,7 @@ hr {
   align-items: center;
 }
 
-.logout-button {
+.logout-button, .room-button {
   margin-right: 30px;
   margin-bottom: 10px;
   font-weight: 600;
@@ -801,7 +796,8 @@ hr {
   /* font-family: "Noto Sans", sans-serif; */
   /* font-family: "Poppins", sans-serif; */
   /* font-family: "Rubik", sans-serif; */
-  font-family: "Rubik", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "EmojiOne Color", "Android Emoji", sans-serif;
+  font-family: "Rubik", "Apple Color Emoji", "Segoe UI Emoji",
+    "Noto Color Emoji", "EmojiOne Color", "Android Emoji", sans-serif;
   /* font-family: "Nunito Sans", sans-serif; */
   /* font-family: "Mulish", sans-serif; */
   /* font-family: "Heebo", sans-serif; */
@@ -1026,6 +1022,12 @@ hr {
 
   .no-gifs-found {
     margin-left: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  h3 br {
+    display: inline; /* show subtitle in 2 rows for smaller screens (show <br/>) */
   }
 }
 
