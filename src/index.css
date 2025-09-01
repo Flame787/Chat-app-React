@@ -75,7 +75,6 @@ h1 {
   font-size: 1.8rem;
 }
 
-
 /* header */
 .welcome-registration {
   font-weight: 600;
@@ -510,7 +509,8 @@ hr {
 }
 
 .registration-button,
-.logout-button, .room-button {
+.logout-button,
+.room-button {
   background-color: rgb(10, 161, 221);
   background: linear-gradient(
     to top,
@@ -538,7 +538,8 @@ hr {
   align-items: center;
 }
 
-.logout-button, .room-button {
+.logout-button,
+.room-button {
   margin-right: 30px;
   margin-bottom: 10px;
   font-weight: 600;
@@ -965,6 +966,7 @@ hr {
   margin-left: 100px;
 }
 
+
 @media (max-width: 1450px) {
   .avatar-image {
     width: 9%;
@@ -1023,6 +1025,12 @@ hr {
   .no-gifs-found {
     margin-left: 200px;
   }
+  /* .portfolio {
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+  } */
 }
 
 @media (max-width: 768px) {

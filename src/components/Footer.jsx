@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
 
 export default function Footer() {
   return (
@@ -29,9 +30,19 @@ export default function Footer() {
           <span className="scaledrone-title">Scaledrone</span>
         </a>
       </div>
+
       <div className="author copyright">
         &copy; {new Date().getFullYear()} Marina Brezovic
         <div className="social-links">
+           <a
+            href="https://marina-dev.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Website"
+            title="Website"
+          >
+            <FontAwesomeIcon icon={faLink} />
+          </a>
           <a
             href="https://github.com/Flame787"
             target="_blank"
@@ -50,6 +61,7 @@ export default function Footer() {
           >
             <FontAwesomeIcon icon={faLinkedinIn} />
           </a>
+
           <a
             href="mailto:mbrezovic77@gmail.com"
             target="_blank"
@@ -61,6 +73,8 @@ export default function Footer() {
           </a>
         </div>
       </div>
+
+      
     </div>
   );
 }
